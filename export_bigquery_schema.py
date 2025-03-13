@@ -23,7 +23,7 @@ load_dotenv()
 PROJECT_ID = "bigquery-public-data"
 DATASET_ID = "imdb"
 OUTPUT_FILE = "imdb_bigquery_schema.json"
-CREDENTIALS_PATH = "/Users/sandilya/CascadeProjects/nlq-to-sql/phonic-bivouac-272213-feb28388f88b.json"
+CREDENTIALS_PATH = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', "/tmp/google-credentials.json")
 
 def get_table_relationships():
     """

@@ -36,8 +36,8 @@ class BigQueryIMDBExplorer:
             # Check if file exists
             if not os.path.exists(credentials_path):
                 print(f"Warning: Credentials file not found at {credentials_path}")
-                # Set it explicitly as a fallback
-                credentials_path = "/Users/sandilya/CascadeProjects/nlq-to-sql/phonic-bivouac-272213-feb28388f88b.json"
+                # Use environment variable as fallback
+                credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', "/tmp/google-credentials.json")
                 print(f"Using fallback path: {credentials_path}")
             
             # Create client with explicit credentials path

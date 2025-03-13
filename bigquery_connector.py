@@ -22,7 +22,7 @@ load_dotenv()
 # Configuration
 PROJECT_ID = "bigquery-public-data"
 DATASET_ID = "imdb"
-CREDENTIALS_PATH = "/Users/sandilya/CascadeProjects/nlq-to-sql/phonic-bivouac-272213-feb28388f88b.json"
+CREDENTIALS_PATH = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', "/tmp/google-credentials.json")
 
 def get_client():
     """Get a BigQuery client."""
