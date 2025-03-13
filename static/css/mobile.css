@@ -1,0 +1,130 @@
+/* Mobile-specific styles - Only apply below 768px */
+@media (max-width: 767px) {
+    /* Reset the main layout for mobile */
+    .app-main {
+        flex-direction: column;
+    }
+    
+    /* Results widget at the top */
+    .main-content {
+        order: 1;
+        overflow-y: auto;
+        flex: 1;
+        padding: 0.5rem;
+    }
+    
+    /* Prompt input at the bottom */
+    .app-footer {
+        order: 2;
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+    
+    /* Hide sidebar initially on mobile */
+    .app-sidebar {
+        order: 3;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border-right: none;
+        border-top: 1px solid #ddd;
+        padding: 0;
+    }
+    
+    /* When sidebar is expanded */
+    .app-sidebar.expanded {
+        max-height: 60vh;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+    
+    /* Sidebar toggle button */
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        bottom: 70px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 45px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 101;
+        cursor: pointer;
+    }
+    
+    /* Collapsible sections styling */
+    .history-container,
+    .logs-container {
+        margin-bottom: 0.5rem;
+        border-radius: var(--border-radius);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* When collapsible sections are expanded */
+    .history-container.expanded,
+    .logs-container.expanded {
+        max-height: 40vh;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Collapsible headers */
+    .collapsible-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background: #f5f5f5;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Optimize query results for mobile */
+    .query-result {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+    }
+    
+    /* Make tables responsive */
+    .result-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    /* Optimize input area for mobile */
+    .input-area {
+        padding: 0.75rem;
+    }
+    
+    #query-input {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    /* Optimize header for mobile */
+    .app-header {
+        padding: 0.75rem;
+    }
+    
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .app-header p {
+        font-size: 0.9rem;
+    }
+}
