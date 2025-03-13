@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables
+.env
+
+# Mac OS
+.DS_Store
+
+# Backup files
+*_backup_*
+
+# Database files
+*.db
+*.sqlite
+retail_db.sqlite
+MovieData.db
+query_feedback.db
+
+# Sample data directory
+/sample/
+/sample
+
+# Vercel
+.vercel
+
+# Local development
+.vscode/
+.idea/
+
+# Google Cloud credentials
+*-feb28388f88b.json
+phonic-bivouac-272213-feb28388f88b.json
+*.json.key
+*credentials*.json
