@@ -1,0 +1,2001 @@
+order_id,customer_id,order_date,status,payment_method,shipping_address,shipping_city,shipping_state,shipping_zip,shipping_cost
+1,686,2024-12-30,Cancelled,PayPal,2203 Main Ln,Philadelphia,TX,18142,11.03
+2,164,2024-08-07,Processing,Credit Card,4242 Oak Rd,Phoenix,TX,36605,12.62
+3,789,2024-06-23,Completed,Cash on Delivery,2055 Maple Ln,Houston,CA,89154,20.68
+4,877,2024-05-13,Processing,Bank Transfer,5888 Oak Ave,Houston,NY,61824,30.48
+5,854,2024-11-28,Completed,Bank Transfer,2449 Main Ave,New York,TX,55896,32.05
+6,154,2024-10-13,Completed,Cash on Delivery,1223 Oak Ave,Los Angeles,CA,31774,23.86
+7,404,2023-08-11,Processing,Bank Transfer,4822 Cedar Rd,Los Angeles,TX,23202,15.25
+8,150,2024-07-19,Completed,PayPal,6177 Oak Rd,New York,TX,57909,15.51
+9,754,2024-01-24,Processing,Cash on Delivery,8138 Main St,San Diego,CA,51721,19.7
+10,374,2025-03-01,Processing,Bank Transfer,8130 Maple Ave,Philadelphia,TX,63562,42.13
+11,699,2023-04-17,Cancelled,Bank Transfer,6812 Maple Rd,San Diego,NY,62795,49.41
+12,622,2025-02-04,Completed,PayPal,6420 Main Blvd,San Antonio,CA,18730,29.0
+13,220,2024-08-27,Shipped,Credit Card,807 Maple Blvd,Houston,NY,73299,36.98
+14,234,2023-07-08,Shipped,Credit Card,3579 Cedar St,Phoenix,CA,40875,3.15
+15,111,2024-01-07,Completed,Credit Card,286 Oak Ave,Dallas,NY,83081,9.24
+16,584,2024-10-10,Completed,PayPal,6784 Main Blvd,San Antonio,IL,13596,21.55
+17,363,2023-07-06,Cancelled,Bank Transfer,1593 Main Blvd,Houston,CA,69284,16.37
+18,709,2023-12-18,Processing,Bank Transfer,6863 Cedar Rd,San Antonio,AZ,94337,29.16
+19,851,2024-05-13,Completed,Credit Card,4340 Maple Blvd,Houston,NY,62576,2.77
+20,317,2024-06-02,Processing,PayPal,2568 Main Ave,San Antonio,AZ,96649,40.11
+21,435,2024-12-11,Processing,PayPal,311 Pine Blvd,Chicago,CA,72574,48.24
+22,462,2024-02-15,Shipped,PayPal,2718 Pine Ave,Dallas,TX,30199,38.79
+23,972,2025-01-18,Cancelled,Cash on Delivery,3067 Pine Ln,Chicago,CA,16866,38.84
+24,473,2024-08-01,Shipped,Credit Card,8495 Main Blvd,Philadelphia,AZ,71590,46.3
+25,321,2023-08-26,Cancelled,Cash on Delivery,3585 Cedar Ave,Los Angeles,NY,26173,31.74
+26,187,2025-03-03,Cancelled,Cash on Delivery,9726 Oak Blvd,San Diego,NY,47128,14.14
+27,570,2023-10-13,Completed,Credit Card,3366 Cedar Ave,San Jose,AZ,30060,5.65
+28,405,2024-02-12,Processing,Cash on Delivery,7835 Main St,Houston,CA,34785,34.94
+29,796,2025-01-30,Shipped,Cash on Delivery,3363 Main Ln,Los Angeles,TX,11302,48.19
+30,509,2024-03-24,Completed,Cash on Delivery,9142 Pine St,Phoenix,TX,58105,17.72
+31,350,2023-05-13,Shipped,Cash on Delivery,6955 Main Ln,Chicago,CA,35578,7.76
+32,920,2024-04-30,Shipped,PayPal,8718 Main Rd,Philadelphia,CA,15200,14.38
+33,859,2023-03-18,Cancelled,Cash on Delivery,960 Oak Ln,Houston,AZ,42186,49.31
+34,213,2024-05-29,Shipped,Cash on Delivery,6237 Cedar Ln,Phoenix,NY,33148,47.43
+35,138,2024-05-07,Processing,Cash on Delivery,6113 Cedar Ave,Dallas,AZ,45336,33.32
+36,557,2024-12-04,Completed,Credit Card,2513 Oak Ave,San Jose,PA,75290,45.14
+37,233,2024-10-06,Cancelled,PayPal,171 Maple Ave,Dallas,NY,36009,22.22
+38,66,2024-09-06,Shipped,PayPal,4722 Maple Ave,San Antonio,TX,50352,45.3
+39,5,2024-04-24,Processing,Credit Card,9581 Main Ave,Philadelphia,IL,33258,46.72
+40,602,2024-12-10,Processing,Cash on Delivery,6272 Oak Rd,Phoenix,TX,42189,9.76
+41,113,2024-04-19,Cancelled,Cash on Delivery,986 Oak Blvd,Houston,PA,74657,27.27
+42,869,2024-11-16,Shipped,Bank Transfer,9950 Cedar Blvd,Phoenix,PA,90692,11.44
+43,529,2023-04-19,Cancelled,Credit Card,9634 Cedar Ln,Phoenix,CA,58038,13.06
+44,616,2024-10-10,Processing,Credit Card,8310 Maple Ave,Philadelphia,CA,32333,9.38
+45,819,2024-01-22,Completed,Bank Transfer,7176 Maple Ln,Los Angeles,IL,41633,21.08
+46,154,2023-04-30,Completed,Bank Transfer,1562 Oak St,Dallas,CA,84807,7.43
+47,896,2023-03-16,Completed,Bank Transfer,9429 Main Blvd,Philadelphia,CA,54650,26.05
+48,711,2024-08-02,Completed,Bank Transfer,4795 Maple Rd,Philadelphia,AZ,90056,27.32
+49,432,2024-03-13,Processing,Credit Card,6858 Cedar Ave,Chicago,AZ,12699,31.56
+50,192,2024-12-28,Processing,Credit Card,9658 Maple Ave,Phoenix,PA,63241,10.35
+51,6,2023-09-22,Cancelled,Bank Transfer,2490 Cedar St,Phoenix,AZ,78681,19.78
+52,708,2023-03-31,Cancelled,PayPal,6102 Oak Ln,San Jose,TX,63271,14.69
+53,121,2023-08-10,Cancelled,Cash on Delivery,2683 Pine Blvd,New York,TX,10498,25.59
+54,165,2025-01-13,Completed,PayPal,2029 Cedar St,Phoenix,PA,24285,26.03
+55,814,2023-06-29,Cancelled,PayPal,4378 Cedar Blvd,San Diego,CA,86923,40.33
+56,975,2023-08-30,Cancelled,Bank Transfer,714 Main Ln,San Jose,TX,10928,43.93
+57,496,2024-03-16,Cancelled,Cash on Delivery,1794 Pine St,Houston,PA,29895,19.22
+58,831,2023-12-05,Processing,Credit Card,752 Pine Rd,San Diego,CA,49292,9.62
+59,474,2024-08-16,Processing,Credit Card,5641 Pine Ave,San Diego,CA,69471,27.65
+60,93,2023-09-03,Processing,PayPal,9371 Maple Blvd,New York,NY,36459,25.85
+61,694,2024-04-11,Processing,Cash on Delivery,5592 Pine Ave,Houston,TX,27305,7.9
+62,654,2023-08-18,Processing,Bank Transfer,3584 Cedar Ave,New York,CA,12117,26.02
+63,900,2023-09-06,Completed,Cash on Delivery,5165 Cedar Rd,New York,IL,67224,20.58
+64,628,2023-04-21,Cancelled,Bank Transfer,2411 Cedar Ave,New York,TX,81186,36.52
+65,962,2024-02-20,Completed,Credit Card,6829 Main Ln,San Diego,TX,84690,35.71
+66,271,2024-05-06,Shipped,PayPal,6377 Oak Ave,Phoenix,CA,19836,39.77
+67,708,2024-02-06,Completed,Cash on Delivery,8137 Cedar Blvd,Houston,NY,51615,18.21
+68,374,2024-05-04,Processing,PayPal,7973 Oak Blvd,New York,TX,85471,22.84
+69,153,2023-05-26,Shipped,PayPal,9420 Maple Blvd,San Antonio,TX,81828,3.69
+70,519,2024-11-08,Completed,Credit Card,4352 Maple Ln,Houston,TX,79881,16.13
+71,754,2024-09-22,Cancelled,Credit Card,4538 Maple Rd,Chicago,TX,18720,40.34
+72,828,2024-05-16,Shipped,Cash on Delivery,4226 Pine St,Chicago,CA,26572,13.56
+73,301,2024-08-11,Cancelled,Bank Transfer,6934 Cedar Ln,Los Angeles,CA,15347,15.68
+74,919,2024-12-21,Shipped,PayPal,5180 Oak Rd,San Jose,PA,45038,28.56
+75,526,2024-03-16,Processing,Cash on Delivery,3323 Cedar Blvd,New York,TX,31820,26.28
+76,944,2024-03-20,Completed,Cash on Delivery,5277 Cedar Ln,San Diego,TX,59471,15.68
+77,156,2025-02-05,Cancelled,Cash on Delivery,1736 Maple Rd,Philadelphia,AZ,96339,25.38
+78,471,2024-07-20,Processing,Bank Transfer,812 Oak Rd,Phoenix,CA,77585,46.7
+79,972,2024-05-03,Cancelled,Credit Card,1068 Oak Rd,San Jose,IL,93098,22.09
+80,723,2023-07-26,Cancelled,Credit Card,8561 Main Rd,San Diego,TX,85552,43.68
+81,474,2024-05-06,Completed,Bank Transfer,2894 Cedar Ave,San Antonio,TX,73723,5.16
+82,13,2024-09-05,Shipped,PayPal,8073 Pine St,San Jose,NY,76777,49.69
+83,401,2024-10-11,Shipped,Credit Card,4513 Pine Ave,San Diego,NY,82060,5.16
+84,478,2024-09-05,Shipped,Cash on Delivery,8816 Oak St,Dallas,IL,72327,1.73
+85,185,2024-10-10,Processing,Bank Transfer,9843 Cedar Ave,San Jose,TX,99090,44.13
+86,86,2025-02-14,Completed,Credit Card,4834 Pine Ln,San Diego,CA,96797,2.26
+87,626,2023-11-05,Completed,PayPal,9450 Main Ln,New York,NY,26598,27.3
+88,560,2023-03-26,Cancelled,PayPal,2704 Cedar Rd,Phoenix,NY,62506,22.97
+89,493,2024-10-30,Shipped,Cash on Delivery,5097 Maple Ln,San Jose,CA,97642,4.3
+90,155,2024-03-28,Completed,PayPal,847 Maple St,Chicago,IL,17967,42.74
+91,536,2023-10-20,Shipped,Bank Transfer,372 Oak Blvd,Chicago,PA,18825,34.6
+92,216,2024-05-16,Processing,Credit Card,9983 Maple Ave,Philadelphia,TX,11712,40.54
+93,963,2023-12-07,Processing,Credit Card,3535 Main Ave,New York,CA,53721,2.63
+94,112,2023-06-17,Shipped,PayPal,645 Main Blvd,Philadelphia,CA,73602,45.82
+95,953,2024-08-28,Shipped,PayPal,8504 Cedar Blvd,New York,CA,38316,3.25
+96,737,2023-04-05,Processing,Bank Transfer,3395 Cedar Ave,San Antonio,AZ,42185,49.24
+97,449,2023-08-08,Completed,Cash on Delivery,7551 Maple Rd,New York,AZ,30166,28.43
+98,133,2023-06-18,Cancelled,PayPal,3058 Maple Rd,New York,IL,38245,28.61
+99,580,2025-01-17,Shipped,PayPal,2125 Maple Ave,Chicago,AZ,17852,4.82
+100,507,2023-05-15,Shipped,PayPal,3764 Main Ln,San Antonio,IL,17360,34.99
+101,771,2024-06-21,Cancelled,Cash on Delivery,3742 Main St,Phoenix,AZ,92969,36.51
+102,860,2024-11-29,Processing,Bank Transfer,3915 Pine St,Philadelphia,TX,85100,33.25
+103,902,2024-03-13,Cancelled,Cash on Delivery,1637 Pine Ln,Philadelphia,TX,65556,0.76
+104,879,2023-11-18,Cancelled,Bank Transfer,3550 Cedar Blvd,San Diego,CA,25739,2.96
+105,645,2023-11-04,Cancelled,Credit Card,9100 Pine Ln,Dallas,CA,48322,25.68
+106,640,2024-09-06,Cancelled,Cash on Delivery,6860 Oak Ave,Houston,NY,46990,46.39
+107,605,2025-01-01,Processing,Credit Card,9047 Oak Ln,Los Angeles,IL,77494,43.96
+108,341,2023-11-15,Processing,Bank Transfer,8915 Maple St,Chicago,IL,67903,32.52
+109,741,2023-08-29,Processing,PayPal,2727 Oak Rd,Philadelphia,CA,17869,42.67
+110,228,2023-05-04,Shipped,PayPal,8193 Maple Ln,New York,CA,32956,39.11
+111,883,2024-02-15,Cancelled,PayPal,1116 Maple Blvd,Dallas,CA,57868,25.56
+112,737,2024-08-08,Completed,PayPal,1499 Oak Blvd,San Antonio,IL,66094,34.78
+113,388,2023-04-04,Shipped,Credit Card,5121 Main Ln,San Diego,CA,76133,27.67
+114,969,2024-08-04,Completed,Bank Transfer,9357 Cedar Rd,Dallas,TX,36783,31.69
+115,776,2023-11-08,Shipped,Credit Card,7339 Cedar St,Dallas,IL,35504,13.6
+116,531,2025-02-15,Completed,Bank Transfer,6131 Maple Blvd,New York,CA,97338,41.4
+117,298,2025-01-11,Shipped,Cash on Delivery,9581 Main Blvd,New York,AZ,51441,49.86
+118,422,2024-03-01,Shipped,Cash on Delivery,1307 Maple Ln,Chicago,IL,64007,41.97
+119,355,2023-08-06,Shipped,Credit Card,7438 Oak St,New York,IL,29163,3.83
+120,211,2023-05-22,Shipped,Credit Card,8654 Oak Rd,Dallas,PA,58150,32.36
+121,359,2023-03-24,Shipped,Bank Transfer,2130 Pine Blvd,Chicago,CA,74940,6.8
+122,157,2023-05-20,Processing,Bank Transfer,2584 Main Ave,Phoenix,NY,17492,26.04
+123,940,2024-02-27,Completed,Credit Card,5686 Oak Ave,San Antonio,CA,74334,34.54
+124,93,2024-11-22,Processing,Bank Transfer,9718 Pine Ln,Dallas,CA,71611,18.58
+125,500,2024-08-19,Processing,PayPal,4447 Oak St,Dallas,TX,32381,7.12
+126,145,2024-11-01,Completed,Credit Card,7518 Oak Rd,Dallas,TX,70568,43.48
+127,697,2023-10-04,Completed,Cash on Delivery,5242 Maple St,San Diego,CA,55737,33.09
+128,706,2023-06-03,Cancelled,Cash on Delivery,699 Cedar Blvd,Houston,PA,97924,37.18
+129,303,2023-09-17,Shipped,Credit Card,4246 Maple Rd,Chicago,TX,76229,31.86
+130,632,2024-12-11,Shipped,PayPal,854 Cedar Blvd,Phoenix,PA,94607,37.1
+131,772,2023-08-19,Cancelled,Cash on Delivery,8508 Maple Blvd,San Jose,NY,20462,33.14
+132,534,2024-02-28,Cancelled,Cash on Delivery,6960 Main St,Los Angeles,AZ,34196,42.59
+133,854,2024-09-17,Completed,PayPal,9026 Main Ave,New York,AZ,99879,43.89
+134,398,2023-05-08,Processing,Cash on Delivery,1898 Pine St,San Diego,TX,67705,4.43
+135,889,2023-11-13,Processing,PayPal,5153 Oak Ave,San Jose,TX,75049,0.09
+136,824,2025-01-15,Shipped,PayPal,8188 Main Ln,Los Angeles,TX,93118,1.63
+137,584,2024-10-15,Completed,Credit Card,3325 Oak Rd,San Diego,TX,94506,43.92
+138,482,2025-01-17,Shipped,Credit Card,6134 Main St,San Antonio,TX,56876,39.14
+139,848,2024-09-29,Shipped,PayPal,6721 Maple St,San Jose,IL,54428,34.4
+140,28,2023-09-19,Completed,PayPal,7165 Pine St,Dallas,CA,13204,40.37
+141,746,2024-07-03,Cancelled,Bank Transfer,1464 Pine Rd,San Jose,TX,57627,41.46
+142,442,2023-05-23,Cancelled,PayPal,5498 Cedar Blvd,San Diego,CA,50789,26.6
+143,35,2024-02-25,Completed,Credit Card,8594 Oak Rd,Houston,CA,85974,8.49
+144,907,2024-07-20,Cancelled,Credit Card,6972 Oak Ln,San Jose,TX,85091,28.49
+145,463,2023-10-12,Shipped,Credit Card,2933 Cedar Ave,New York,TX,61609,1.87
+146,864,2024-06-26,Cancelled,Bank Transfer,2284 Pine Blvd,Phoenix,NY,29680,7.21
+147,884,2023-08-09,Cancelled,PayPal,9196 Main Blvd,New York,PA,50606,49.42
+148,1000,2023-04-25,Processing,PayPal,8086 Main Blvd,Houston,IL,75429,30.67
+149,366,2024-01-06,Completed,Credit Card,8201 Cedar Ln,Phoenix,CA,71433,3.61
+150,839,2024-02-02,Completed,PayPal,8064 Oak Blvd,Los Angeles,TX,30057,34.91
+151,759,2024-02-10,Shipped,Credit Card,1977 Cedar St,New York,NY,14634,48.04
+152,529,2025-01-12,Shipped,Credit Card,5889 Oak Rd,San Jose,NY,48797,3.92
+153,860,2024-06-12,Processing,Cash on Delivery,422 Oak Ln,San Diego,IL,46130,26.0
+154,117,2024-02-24,Shipped,Credit Card,3066 Maple Blvd,Dallas,TX,39311,28.05
+155,564,2024-06-20,Processing,Cash on Delivery,9532 Main St,San Antonio,TX,80531,32.23
+156,617,2023-07-21,Processing,Credit Card,3034 Main Ave,Chicago,CA,74649,25.36
+157,682,2023-04-30,Shipped,Cash on Delivery,9430 Pine St,San Diego,IL,22556,7.76
+158,461,2024-06-15,Processing,Cash on Delivery,7131 Maple St,New York,IL,97059,13.58
+159,972,2023-09-03,Processing,Bank Transfer,7262 Oak St,Dallas,AZ,84917,32.12
+160,480,2024-12-27,Completed,Bank Transfer,2086 Cedar Ln,Phoenix,TX,14234,6.92
+161,382,2024-08-10,Cancelled,Cash on Delivery,2312 Maple Ave,Phoenix,TX,65353,19.37
+162,406,2024-12-26,Shipped,Credit Card,3478 Main Blvd,San Diego,TX,82166,16.95
+163,851,2024-09-17,Completed,Bank Transfer,3561 Maple Blvd,San Jose,IL,27225,42.21
+164,135,2024-05-18,Processing,Credit Card,8114 Maple Rd,Philadelphia,TX,63939,39.54
+165,823,2024-02-01,Processing,Credit Card,4279 Maple Ln,Phoenix,AZ,20041,4.74
+166,164,2024-08-07,Cancelled,Credit Card,7488 Oak Rd,Houston,AZ,40889,19.86
+167,246,2024-05-13,Processing,Credit Card,5261 Maple Blvd,Los Angeles,IL,71052,24.31
+168,270,2024-04-01,Completed,Credit Card,8234 Maple St,Dallas,AZ,32683,31.99
+169,215,2024-12-02,Cancelled,Bank Transfer,2620 Main St,San Antonio,CA,33678,49.14
+170,749,2023-08-16,Shipped,Credit Card,504 Maple Ln,Los Angeles,TX,26998,5.34
+171,452,2024-06-12,Shipped,Cash on Delivery,7052 Main Rd,Philadelphia,CA,27609,33.01
+172,878,2023-11-22,Processing,Bank Transfer,1131 Main Ln,New York,PA,32095,44.16
+173,248,2024-04-22,Completed,Bank Transfer,6868 Maple Blvd,San Diego,TX,55586,38.29
+174,491,2023-09-22,Completed,Cash on Delivery,7549 Oak Ave,Phoenix,AZ,96398,20.96
+175,992,2024-01-19,Completed,PayPal,7396 Maple Rd,Phoenix,CA,17647,35.8
+176,251,2024-03-19,Processing,Bank Transfer,8653 Main Ave,Chicago,AZ,80296,1.77
+177,551,2024-08-04,Cancelled,Cash on Delivery,7335 Pine Ave,Dallas,AZ,95290,34.9
+178,466,2023-04-21,Shipped,Cash on Delivery,7706 Oak St,New York,TX,40450,22.55
+179,303,2025-01-23,Shipped,Bank Transfer,1537 Cedar Blvd,Phoenix,TX,39884,9.69
+180,672,2023-09-18,Shipped,PayPal,6527 Cedar Ln,New York,CA,38164,18.29
+181,990,2025-02-25,Cancelled,Bank Transfer,4834 Maple Blvd,San Jose,CA,21990,15.86
+182,828,2024-09-27,Cancelled,Credit Card,3802 Oak St,Los Angeles,IL,93105,14.7
+183,576,2023-12-05,Processing,Credit Card,261 Oak Ln,New York,TX,21674,16.28
+184,245,2024-01-16,Processing,Bank Transfer,6674 Oak St,New York,CA,85672,33.28
+185,801,2023-09-15,Cancelled,Cash on Delivery,157 Main St,San Jose,CA,39683,22.37
+186,139,2023-07-21,Cancelled,Cash on Delivery,7838 Cedar Rd,San Diego,CA,38526,26.59
+187,679,2025-02-10,Cancelled,Bank Transfer,3364 Oak Ln,San Jose,NY,67486,0.44
+188,942,2023-06-15,Cancelled,Cash on Delivery,8751 Pine Rd,Los Angeles,TX,63476,46.11
+189,284,2024-08-19,Completed,PayPal,1846 Pine Blvd,Dallas,TX,87790,42.97
+190,266,2024-09-13,Processing,Bank Transfer,1564 Pine St,Philadelphia,IL,79051,24.91
+191,114,2024-01-26,Shipped,PayPal,7135 Maple Rd,Philadelphia,CA,88200,20.58
+192,949,2023-09-18,Cancelled,Cash on Delivery,1424 Cedar Ln,Philadelphia,PA,49886,10.64
+193,988,2023-05-23,Cancelled,Credit Card,1530 Pine Rd,Phoenix,CA,34862,22.27
+194,887,2023-03-15,Completed,Cash on Delivery,4065 Oak Ln,Phoenix,TX,45104,35.91
+195,864,2024-08-11,Cancelled,Cash on Delivery,3431 Maple Ln,Chicago,TX,68115,47.88
+196,332,2024-02-03,Completed,Bank Transfer,8112 Cedar Rd,San Jose,NY,36043,23.14
+197,709,2023-08-09,Completed,PayPal,3203 Main Blvd,Houston,CA,15733,22.0
+198,304,2024-04-15,Shipped,PayPal,9364 Cedar Blvd,Dallas,CA,42225,6.98
+199,465,2024-07-29,Completed,Cash on Delivery,7412 Cedar Rd,Phoenix,IL,37951,25.06
+200,86,2024-06-07,Cancelled,Cash on Delivery,6530 Cedar Ave,San Jose,NY,43206,2.88
+201,505,2023-05-04,Processing,Cash on Delivery,862 Cedar Blvd,Phoenix,CA,20226,36.89
+202,27,2025-01-19,Cancelled,Bank Transfer,7103 Cedar Ln,San Jose,TX,69101,31.12
+203,758,2024-02-13,Completed,Cash on Delivery,3766 Maple Ave,Chicago,CA,84159,42.46
+204,483,2024-08-17,Shipped,Bank Transfer,1917 Maple Ln,San Antonio,PA,77702,6.17
+205,398,2024-06-19,Processing,Cash on Delivery,5150 Main Rd,New York,CA,27525,46.6
+206,407,2024-01-11,Completed,Bank Transfer,3598 Pine Rd,Philadelphia,PA,31895,47.42
+207,562,2023-11-09,Shipped,Cash on Delivery,9595 Pine Ln,Dallas,NY,14937,18.78
+208,169,2024-01-18,Shipped,Bank Transfer,250 Oak Ln,Chicago,TX,82348,0.25
+209,808,2023-06-21,Completed,Bank Transfer,7418 Pine St,New York,TX,49908,37.77
+210,589,2023-12-25,Shipped,Cash on Delivery,9168 Main Ln,Los Angeles,AZ,96480,38.46
+211,271,2024-05-14,Completed,Cash on Delivery,4042 Main Rd,Houston,NY,62197,29.78
+212,862,2023-03-14,Processing,PayPal,4902 Cedar Ln,Philadelphia,TX,75166,31.66
+213,808,2024-07-02,Processing,PayPal,3666 Main Rd,San Antonio,TX,93804,8.69
+214,67,2025-02-24,Processing,Bank Transfer,2905 Oak Ave,Los Angeles,NY,54733,44.55
+215,738,2024-08-18,Shipped,Bank Transfer,7520 Oak Blvd,New York,AZ,20668,23.57
+216,565,2024-10-24,Completed,PayPal,8443 Main Ave,San Jose,CA,16777,12.26
+217,220,2023-12-06,Processing,Cash on Delivery,1746 Pine Blvd,New York,TX,79257,5.63
+218,70,2023-10-07,Processing,PayPal,997 Oak Ln,San Diego,IL,50120,4.22
+219,537,2023-03-12,Processing,PayPal,3264 Pine Ln,Los Angeles,CA,97840,38.15
+220,419,2023-12-20,Cancelled,Bank Transfer,9956 Pine St,Dallas,AZ,69362,3.92
+221,174,2024-09-30,Completed,Bank Transfer,5558 Pine St,San Antonio,CA,25683,28.5
+222,806,2023-10-17,Shipped,Cash on Delivery,6912 Oak Rd,New York,CA,71536,47.61
+223,1,2024-04-21,Cancelled,Bank Transfer,537 Main Blvd,Houston,CA,49900,22.16
+224,7,2024-08-22,Processing,Cash on Delivery,9050 Oak St,Los Angeles,TX,85299,12.04
+225,560,2023-04-15,Processing,Credit Card,4046 Maple Ave,Houston,NY,63684,3.61
+226,367,2024-11-29,Processing,Cash on Delivery,5630 Cedar Ave,San Diego,AZ,82676,26.68
+227,890,2025-02-25,Shipped,Cash on Delivery,2582 Maple Ln,Houston,CA,19673,14.31
+228,481,2023-11-11,Cancelled,PayPal,2337 Oak Blvd,Phoenix,TX,14752,14.36
+229,314,2023-08-17,Completed,Cash on Delivery,1559 Main Ln,New York,CA,17516,3.6
+230,724,2023-10-27,Processing,Cash on Delivery,8686 Main Blvd,New York,CA,95925,49.71
+231,460,2023-09-01,Cancelled,PayPal,9996 Oak Ave,Philadelphia,CA,84878,38.45
+232,220,2024-09-04,Shipped,Bank Transfer,1072 Maple Ln,San Antonio,TX,47143,13.71
+233,955,2024-12-30,Completed,Cash on Delivery,8137 Maple Rd,San Antonio,CA,92194,38.45
+234,976,2024-03-23,Shipped,Cash on Delivery,2446 Oak Ln,San Diego,TX,92838,3.93
+235,451,2023-05-18,Completed,Bank Transfer,3468 Maple Ave,Chicago,TX,23453,4.32
+236,270,2025-01-26,Shipped,Cash on Delivery,9276 Maple St,San Antonio,TX,40023,3.93
+237,745,2023-12-06,Completed,Credit Card,4353 Maple Ln,Phoenix,CA,63636,6.85
+238,119,2024-02-13,Completed,PayPal,7880 Oak Rd,San Diego,TX,18203,6.1
+239,884,2023-05-11,Processing,Credit Card,5099 Main Rd,San Jose,TX,88378,38.43
+240,840,2023-05-29,Shipped,PayPal,4405 Oak St,Los Angeles,CA,20745,0.59
+241,983,2024-04-13,Processing,Bank Transfer,1777 Oak Ln,Philadelphia,TX,55778,31.24
+242,36,2024-08-01,Completed,Credit Card,3499 Oak Ln,Phoenix,CA,13836,7.11
+243,908,2024-07-22,Shipped,Bank Transfer,6198 Cedar Rd,New York,TX,73968,19.24
+244,994,2024-09-02,Shipped,Cash on Delivery,5663 Pine Ln,New York,PA,73381,21.99
+245,501,2023-12-14,Processing,Credit Card,5710 Oak Ave,San Diego,TX,66970,33.3
+246,886,2023-06-13,Processing,Cash on Delivery,9540 Main Ave,San Antonio,PA,50139,17.55
+247,253,2024-09-02,Shipped,PayPal,8213 Maple St,San Diego,IL,23518,1.79
+248,260,2023-05-11,Cancelled,Cash on Delivery,9652 Pine Rd,Los Angeles,PA,58289,20.72
+249,837,2025-01-14,Completed,Cash on Delivery,8528 Pine Ave,Houston,AZ,58127,43.02
+250,536,2023-10-09,Shipped,PayPal,1346 Maple Ln,San Antonio,IL,46476,42.29
+251,632,2024-06-11,Shipped,Credit Card,6675 Oak Ave,San Jose,TX,99771,14.87
+252,87,2023-08-07,Completed,Credit Card,584 Cedar Ln,San Antonio,NY,23356,46.85
+253,660,2024-11-25,Shipped,Credit Card,8661 Maple Rd,Dallas,TX,16497,7.39
+254,179,2023-09-04,Cancelled,Credit Card,5987 Maple Rd,San Antonio,NY,55088,5.8
+255,255,2024-02-05,Completed,Credit Card,7396 Main Rd,Chicago,CA,38551,40.76
+256,751,2024-01-02,Shipped,Bank Transfer,1779 Oak St,San Antonio,TX,70642,47.25
+257,784,2024-11-28,Processing,Cash on Delivery,9311 Cedar Blvd,New York,TX,53115,11.59
+258,958,2024-08-19,Processing,Cash on Delivery,917 Main Ave,Houston,TX,26192,8.91
+259,742,2023-06-24,Completed,PayPal,6647 Main Ln,Philadelphia,CA,72010,41.3
+260,780,2023-09-12,Cancelled,Bank Transfer,8951 Cedar Blvd,Los Angeles,TX,53350,49.25
+261,81,2024-04-10,Cancelled,Credit Card,6858 Main Blvd,San Antonio,CA,71206,42.94
+262,806,2024-09-30,Cancelled,Bank Transfer,2082 Cedar Ave,San Diego,CA,39587,32.48
+263,879,2023-05-29,Cancelled,Cash on Delivery,4442 Pine Ln,Dallas,TX,95649,21.69
+264,135,2023-03-17,Shipped,Cash on Delivery,8465 Pine Ln,Los Angeles,PA,41681,17.04
+265,489,2023-03-22,Shipped,Credit Card,2020 Maple Ln,Los Angeles,NY,25478,13.44
+266,62,2024-05-05,Shipped,Cash on Delivery,1756 Main St,San Jose,PA,85695,4.88
+267,21,2023-06-06,Shipped,Bank Transfer,8341 Maple Ave,New York,CA,33860,25.57
+268,402,2023-05-17,Processing,Bank Transfer,4997 Oak Rd,San Antonio,CA,67864,42.21
+269,203,2024-07-20,Shipped,PayPal,7379 Pine Blvd,Los Angeles,CA,87300,37.27
+270,705,2025-01-22,Completed,Bank Transfer,3693 Cedar Blvd,San Jose,CA,41088,43.4
+271,82,2024-02-03,Cancelled,Credit Card,5099 Maple St,Dallas,PA,64553,44.23
+272,122,2024-10-04,Processing,PayPal,2774 Main Ave,Houston,CA,66005,11.1
+273,485,2023-07-05,Completed,Bank Transfer,2653 Pine Ln,Houston,AZ,12765,14.12
+274,62,2023-06-24,Processing,PayPal,1569 Cedar Blvd,Phoenix,TX,95188,6.5
+275,743,2023-09-05,Completed,PayPal,9420 Main Blvd,Phoenix,AZ,70675,35.9
+276,98,2024-11-24,Completed,PayPal,1017 Maple Blvd,San Antonio,TX,88092,18.22
+277,606,2023-12-27,Processing,Cash on Delivery,3900 Oak St,Chicago,TX,49942,38.25
+278,26,2023-11-30,Completed,Cash on Delivery,4182 Maple Rd,Los Angeles,TX,46646,42.02
+279,385,2023-08-02,Processing,Credit Card,8404 Maple Blvd,Chicago,CA,45040,19.88
+280,604,2023-07-21,Completed,PayPal,5467 Maple Rd,San Jose,IL,41513,2.3
+281,223,2023-09-22,Completed,PayPal,9581 Cedar Rd,New York,IL,50345,40.99
+282,450,2025-01-28,Processing,Cash on Delivery,185 Main Blvd,Philadelphia,AZ,77699,44.6
+283,57,2024-10-19,Cancelled,Bank Transfer,4576 Main Ave,Houston,TX,47272,0.75
+284,268,2023-08-09,Cancelled,Credit Card,1500 Cedar Ave,San Antonio,CA,28921,5.92
+285,999,2023-03-11,Cancelled,Bank Transfer,3996 Maple Blvd,San Diego,IL,53331,23.33
+286,881,2024-09-17,Shipped,Credit Card,5580 Pine Rd,New York,CA,93309,18.0
+287,216,2023-07-19,Shipped,Credit Card,2241 Pine Blvd,Houston,TX,94987,48.8
+288,20,2023-06-11,Shipped,Bank Transfer,8241 Pine Blvd,Houston,CA,87100,41.52
+289,452,2024-08-15,Completed,Cash on Delivery,9369 Oak Blvd,Chicago,NY,57168,38.97
+290,778,2024-10-09,Shipped,Cash on Delivery,7161 Pine Ave,Phoenix,TX,47299,35.25
+291,465,2024-03-01,Shipped,Cash on Delivery,8337 Maple Blvd,Los Angeles,CA,81314,43.63
+292,565,2025-02-17,Shipped,Bank Transfer,1977 Cedar Blvd,Dallas,PA,38227,2.23
+293,151,2023-11-18,Completed,PayPal,7051 Maple Blvd,San Antonio,CA,54293,26.13
+294,990,2024-03-20,Shipped,PayPal,3516 Pine Rd,San Antonio,TX,72155,41.89
+295,738,2024-12-22,Completed,Bank Transfer,4583 Main Rd,Phoenix,IL,19469,6.16
+296,779,2024-03-27,Completed,Credit Card,8962 Maple St,Philadelphia,NY,45200,6.92
+297,246,2024-08-23,Completed,PayPal,4315 Pine Ave,Dallas,CA,79801,46.67
+298,580,2024-02-28,Cancelled,PayPal,8152 Cedar St,Chicago,NY,93136,27.79
+299,522,2024-03-13,Processing,Bank Transfer,7323 Pine St,New York,CA,96806,20.36
+300,207,2024-11-02,Completed,PayPal,7953 Cedar St,Houston,TX,10834,45.21
+301,835,2024-01-03,Shipped,PayPal,2753 Oak Rd,Dallas,IL,31785,29.81
+302,318,2024-08-29,Processing,Cash on Delivery,2862 Cedar Blvd,Houston,TX,15750,46.49
+303,333,2023-04-06,Shipped,Credit Card,4497 Maple Rd,Los Angeles,CA,94241,11.02
+304,598,2024-03-25,Shipped,Credit Card,7156 Main Ave,Philadelphia,NY,24587,11.63
+305,820,2024-02-02,Completed,Bank Transfer,7914 Main Blvd,Houston,CA,33706,49.67
+306,501,2024-12-27,Cancelled,Cash on Delivery,7284 Pine Rd,Los Angeles,TX,32092,37.53
+307,394,2023-07-15,Completed,Credit Card,4235 Cedar Blvd,Phoenix,TX,67910,34.81
+308,364,2023-08-31,Completed,Cash on Delivery,3299 Maple Rd,San Jose,NY,46765,0.69
+309,116,2024-06-13,Processing,PayPal,2569 Main Rd,San Jose,CA,12078,33.81
+310,203,2023-12-21,Shipped,Cash on Delivery,3677 Cedar Rd,Los Angeles,PA,85770,41.69
+311,625,2024-11-22,Cancelled,PayPal,8569 Oak Ln,Dallas,CA,61467,1.2
+312,729,2024-01-27,Shipped,PayPal,4578 Main Ln,San Diego,NY,99138,45.18
+313,509,2023-12-11,Cancelled,Bank Transfer,2901 Oak Ave,Chicago,CA,73457,25.83
+314,623,2024-01-16,Processing,Bank Transfer,4324 Main Blvd,Chicago,IL,22412,39.27
+315,290,2023-03-17,Processing,PayPal,7222 Maple Blvd,Dallas,TX,29587,9.71
+316,293,2023-06-19,Cancelled,Cash on Delivery,7440 Main Ln,San Antonio,IL,65859,38.64
+317,18,2023-11-02,Cancelled,Bank Transfer,1911 Oak Rd,Chicago,CA,60090,42.22
+318,577,2024-02-26,Processing,Bank Transfer,3087 Cedar St,Chicago,IL,58588,1.7
+319,473,2023-11-21,Completed,PayPal,288 Cedar Ave,New York,IL,50065,39.92
+320,481,2023-07-28,Processing,Credit Card,5824 Cedar St,San Antonio,CA,88098,34.12
+321,118,2024-03-09,Processing,PayPal,4204 Oak Rd,San Diego,CA,83866,19.38
+322,245,2024-09-20,Shipped,PayPal,2446 Cedar Ln,Chicago,CA,39081,26.45
+323,239,2024-05-04,Processing,Cash on Delivery,2753 Pine Ave,New York,TX,94581,13.06
+324,543,2023-07-08,Cancelled,Cash on Delivery,2105 Pine St,Los Angeles,AZ,35327,41.11
+325,589,2024-12-14,Processing,Credit Card,4406 Cedar Rd,Phoenix,TX,37937,6.44
+326,447,2023-11-25,Shipped,Credit Card,4260 Cedar Ln,San Jose,CA,90769,0.09
+327,820,2023-06-21,Processing,Credit Card,2870 Cedar St,San Antonio,NY,77966,5.16
+328,495,2025-01-15,Completed,Credit Card,9186 Maple St,Houston,NY,35390,15.14
+329,444,2023-09-21,Processing,PayPal,4266 Cedar Ave,San Diego,AZ,87247,14.0
+330,520,2024-03-20,Cancelled,PayPal,1172 Maple Blvd,San Jose,CA,28190,14.5
+331,839,2023-07-22,Completed,Credit Card,9946 Main Rd,Phoenix,CA,38582,31.8
+332,11,2023-09-01,Completed,Credit Card,4995 Main Rd,Philadelphia,TX,46609,12.59
+333,734,2024-11-07,Completed,PayPal,7033 Pine Blvd,Philadelphia,IL,23875,39.75
+334,569,2023-10-31,Processing,Credit Card,5948 Oak Blvd,Phoenix,TX,95014,45.0
+335,703,2024-07-23,Processing,PayPal,8483 Pine Ln,Houston,AZ,20696,20.32
+336,857,2023-05-23,Processing,Bank Transfer,7988 Cedar Rd,Los Angeles,AZ,10973,26.7
+337,168,2024-11-27,Shipped,Cash on Delivery,9647 Pine Blvd,San Antonio,CA,56510,25.24
+338,269,2023-09-17,Shipped,Cash on Delivery,6749 Main Ave,Chicago,TX,95333,2.28
+339,418,2024-08-24,Completed,Bank Transfer,2400 Oak Rd,San Antonio,TX,81940,45.01
+340,887,2024-07-25,Processing,Cash on Delivery,9787 Main Ave,Chicago,TX,70110,9.73
+341,678,2023-07-01,Shipped,Cash on Delivery,9228 Oak Ln,San Antonio,TX,95778,24.63
+342,773,2023-12-13,Shipped,Cash on Delivery,5883 Oak Ave,Houston,TX,10942,3.25
+343,155,2023-07-02,Shipped,Credit Card,3729 Main Ln,San Antonio,AZ,64503,13.27
+344,729,2024-02-10,Cancelled,Credit Card,8453 Cedar Ave,San Jose,CA,58196,38.22
+345,138,2023-09-27,Cancelled,Cash on Delivery,8754 Maple Ln,San Diego,IL,17279,31.99
+346,984,2024-05-22,Completed,Bank Transfer,889 Maple Blvd,Chicago,TX,60151,36.34
+347,105,2023-09-08,Completed,Cash on Delivery,5831 Main Ave,San Antonio,CA,20875,17.12
+348,827,2024-05-15,Shipped,Credit Card,8431 Oak Ln,San Antonio,CA,75428,47.75
+349,420,2024-05-31,Processing,Bank Transfer,5859 Pine Blvd,San Jose,NY,92016,28.54
+350,444,2023-05-23,Shipped,PayPal,7288 Main Ave,Chicago,CA,61492,18.03
+351,226,2023-10-25,Completed,Bank Transfer,214 Main Blvd,San Jose,CA,65086,8.48
+352,835,2024-08-22,Processing,PayPal,3558 Maple Rd,Dallas,CA,47719,30.14
+353,278,2024-10-07,Cancelled,Cash on Delivery,6879 Pine Blvd,San Diego,PA,22822,34.2
+354,922,2023-12-31,Processing,Credit Card,7268 Pine Blvd,New York,IL,62682,18.65
+355,31,2024-11-08,Cancelled,PayPal,3823 Pine Rd,San Antonio,TX,97960,35.86
+356,95,2023-06-17,Cancelled,Bank Transfer,130 Pine Ln,Los Angeles,NY,28047,33.31
+357,20,2023-08-29,Completed,Credit Card,641 Oak Blvd,Dallas,AZ,69631,21.75
+358,983,2023-05-31,Processing,PayPal,8755 Maple Rd,Philadelphia,TX,12125,10.47
+359,925,2023-03-27,Completed,Bank Transfer,8553 Maple St,Dallas,TX,77132,17.74
+360,235,2024-07-02,Shipped,PayPal,3549 Pine Ln,Phoenix,PA,41357,0.53
+361,585,2023-12-05,Cancelled,Credit Card,4556 Maple Ln,San Diego,AZ,21878,48.7
+362,78,2023-05-17,Cancelled,Bank Transfer,1601 Pine Blvd,Los Angeles,IL,89211,23.25
+363,160,2023-05-13,Processing,Bank Transfer,4634 Cedar Blvd,San Antonio,TX,46279,32.62
+364,344,2023-04-23,Shipped,Cash on Delivery,7007 Oak Ln,Phoenix,IL,56944,46.13
+365,870,2024-12-10,Processing,PayPal,7125 Cedar Ave,New York,CA,74044,18.0
+366,998,2023-04-04,Completed,Bank Transfer,7237 Main Blvd,San Diego,CA,84368,29.57
+367,374,2024-05-23,Completed,Bank Transfer,6475 Oak Rd,New York,TX,29353,43.91
+368,15,2023-06-18,Completed,Credit Card,113 Maple Ln,San Jose,TX,11262,35.26
+369,800,2024-02-21,Processing,Bank Transfer,3154 Cedar Ave,Dallas,NY,70419,35.74
+370,225,2024-03-01,Shipped,Cash on Delivery,7796 Main Blvd,New York,TX,91266,24.63
+371,139,2023-11-01,Shipped,Bank Transfer,1965 Pine Rd,Los Angeles,IL,42078,43.59
+372,31,2024-01-06,Shipped,Bank Transfer,715 Pine Blvd,New York,AZ,15400,21.6
+373,405,2025-02-15,Completed,PayPal,3764 Main Ln,Chicago,CA,57306,28.29
+374,881,2024-03-14,Cancelled,Cash on Delivery,9044 Cedar Ln,New York,NY,64186,25.84
+375,851,2024-05-04,Cancelled,Bank Transfer,8157 Main Ave,Chicago,TX,44764,45.11
+376,227,2024-01-21,Processing,Cash on Delivery,1106 Oak Rd,Chicago,IL,62877,42.99
+377,134,2024-06-29,Cancelled,Cash on Delivery,311 Cedar Ave,Los Angeles,TX,14107,49.08
+378,877,2024-03-11,Processing,Bank Transfer,7946 Oak Rd,San Antonio,TX,99452,39.6
+379,108,2024-06-27,Completed,Bank Transfer,8002 Pine Rd,Philadelphia,TX,75498,31.33
+380,650,2024-12-08,Cancelled,Cash on Delivery,2996 Maple Ave,Philadelphia,TX,13379,31.28
+381,744,2025-02-09,Completed,Cash on Delivery,4231 Oak Ave,Dallas,TX,98977,26.55
+382,390,2024-01-07,Processing,PayPal,2546 Cedar Ln,San Antonio,CA,56305,32.64
+383,995,2024-09-03,Shipped,Bank Transfer,6061 Cedar Ave,Phoenix,PA,19414,40.33
+384,200,2023-11-07,Completed,PayPal,886 Oak St,San Antonio,CA,58529,31.55
+385,18,2024-04-19,Completed,Cash on Delivery,8265 Oak St,San Antonio,IL,33440,32.84
+386,122,2024-03-28,Completed,Cash on Delivery,2979 Oak Blvd,Houston,TX,12654,37.09
+387,102,2023-05-03,Processing,Credit Card,7884 Main Ave,Chicago,NY,36822,16.78
+388,754,2024-04-06,Cancelled,Bank Transfer,7768 Pine Blvd,New York,CA,41815,35.9
+389,540,2025-02-18,Processing,PayPal,5217 Cedar St,Philadelphia,PA,12883,1.13
+390,418,2023-04-06,Completed,Bank Transfer,668 Pine Rd,Dallas,IL,43551,32.29
+391,120,2023-04-06,Processing,Cash on Delivery,1446 Cedar St,Los Angeles,CA,30510,42.9
+392,363,2023-07-23,Cancelled,Cash on Delivery,9024 Main Rd,San Jose,PA,38090,24.68
+393,242,2024-09-17,Shipped,Credit Card,8665 Pine Blvd,San Jose,CA,34372,10.98
+394,765,2024-09-06,Processing,Bank Transfer,9377 Pine Ln,San Diego,NY,79825,38.4
+395,537,2025-01-31,Completed,Cash on Delivery,9365 Maple Ave,Phoenix,TX,69102,1.99
+396,739,2025-01-23,Processing,Credit Card,3384 Maple Blvd,Chicago,IL,39883,42.39
+397,132,2024-08-07,Cancelled,Bank Transfer,4586 Oak Rd,Phoenix,AZ,97364,23.39
+398,354,2024-11-29,Processing,PayPal,7067 Cedar Ave,Dallas,TX,17930,30.13
+399,903,2024-11-30,Shipped,Cash on Delivery,5558 Oak St,Phoenix,PA,81285,3.93
+400,994,2023-03-12,Processing,Credit Card,7957 Pine St,New York,NY,64441,29.81
+401,392,2024-05-09,Cancelled,Credit Card,7191 Oak St,San Diego,TX,63509,27.08
+402,193,2024-12-17,Completed,PayPal,9177 Oak Ln,San Jose,TX,88303,4.09
+403,533,2023-08-29,Processing,Credit Card,9309 Pine Blvd,San Diego,CA,88717,33.73
+404,629,2023-10-12,Processing,PayPal,8169 Maple Blvd,Chicago,CA,97304,2.19
+405,568,2023-09-02,Processing,PayPal,9873 Cedar Rd,Los Angeles,CA,50633,45.02
+406,564,2025-02-06,Shipped,PayPal,167 Cedar Ln,Houston,PA,18389,18.3
+407,254,2024-01-20,Processing,Cash on Delivery,5852 Cedar Ln,Philadelphia,CA,60069,44.07
+408,474,2024-08-11,Shipped,Credit Card,8860 Cedar Rd,San Jose,PA,73197,41.88
+409,250,2024-10-09,Processing,PayPal,6367 Cedar Blvd,Dallas,CA,79932,33.43
+410,328,2024-03-16,Shipped,Credit Card,9693 Oak Ln,Philadelphia,AZ,62922,44.47
+411,970,2024-05-13,Shipped,Credit Card,1897 Oak Ln,Philadelphia,CA,47985,49.78
+412,518,2023-05-06,Processing,Cash on Delivery,250 Main St,San Jose,TX,58343,22.47
+413,546,2024-09-17,Processing,PayPal,5754 Maple Ave,Philadelphia,IL,86737,34.72
+414,946,2023-06-13,Cancelled,Credit Card,9433 Pine Ln,Chicago,TX,39587,26.54
+415,148,2024-01-24,Cancelled,Cash on Delivery,4141 Main Ln,Houston,TX,26628,33.93
+416,743,2024-10-01,Processing,Bank Transfer,3710 Pine St,Houston,PA,98108,42.32
+417,49,2024-11-18,Processing,Credit Card,3455 Main St,Dallas,TX,15070,47.49
+418,455,2023-05-18,Completed,Cash on Delivery,4705 Oak Rd,Dallas,AZ,60729,44.61
+419,912,2023-12-17,Shipped,Bank Transfer,1780 Oak Rd,Philadelphia,CA,86848,32.02
+420,98,2024-10-15,Shipped,Bank Transfer,535 Pine Blvd,Phoenix,NY,96856,47.7
+421,610,2024-07-26,Processing,Cash on Delivery,4394 Pine Blvd,Philadelphia,TX,92711,2.55
+422,59,2024-07-09,Completed,Credit Card,1684 Maple Blvd,San Diego,CA,40329,16.14
+423,805,2024-07-15,Shipped,PayPal,8329 Pine Ave,Chicago,CA,36391,48.31
+424,211,2024-12-30,Completed,Credit Card,5055 Main Rd,New York,TX,93602,47.99
+425,361,2023-06-08,Cancelled,Bank Transfer,4304 Oak Blvd,San Antonio,PA,32965,14.03
+426,729,2024-12-18,Processing,Cash on Delivery,2107 Oak Blvd,Phoenix,TX,56993,47.64
+427,886,2024-05-24,Cancelled,Bank Transfer,9079 Maple St,New York,CA,25155,40.82
+428,501,2024-01-26,Completed,Cash on Delivery,6923 Cedar Rd,Houston,PA,31555,27.07
+429,327,2023-03-24,Processing,Cash on Delivery,2114 Pine St,Dallas,TX,25757,0.77
+430,578,2024-01-18,Processing,PayPal,1451 Main Blvd,Houston,IL,50703,28.68
+431,894,2024-10-18,Cancelled,PayPal,1831 Oak St,San Diego,NY,81856,42.96
+432,559,2023-03-26,Shipped,Cash on Delivery,4455 Oak Blvd,Chicago,NY,57728,30.87
+433,116,2023-07-29,Processing,Credit Card,2844 Maple St,New York,IL,92170,26.5
+434,40,2023-05-04,Shipped,Credit Card,6307 Main St,Chicago,CA,40277,29.71
+435,5,2025-01-14,Completed,Cash on Delivery,3930 Maple Blvd,San Antonio,CA,44936,42.49
+436,929,2024-01-19,Shipped,Cash on Delivery,4614 Cedar St,Phoenix,PA,68765,49.69
+437,648,2023-11-10,Cancelled,Credit Card,604 Oak Rd,Philadelphia,TX,59204,27.1
+438,222,2023-04-06,Completed,Bank Transfer,1234 Main Rd,Dallas,TX,42475,46.0
+439,677,2024-11-27,Completed,Bank Transfer,446 Cedar Rd,Houston,TX,10348,5.39
+440,208,2024-01-17,Cancelled,Bank Transfer,2512 Cedar Blvd,Los Angeles,TX,67027,10.17
+441,788,2024-07-15,Shipped,Bank Transfer,4040 Cedar Ln,San Antonio,AZ,39761,20.32
+442,270,2023-09-16,Cancelled,Cash on Delivery,6187 Maple St,Dallas,CA,37180,31.94
+443,97,2023-10-02,Completed,Cash on Delivery,7048 Pine Ln,Chicago,TX,75549,27.58
+444,78,2023-06-08,Shipped,PayPal,9750 Pine Blvd,Houston,NY,33059,43.91
+445,541,2024-01-08,Completed,Credit Card,2620 Oak St,Houston,AZ,23795,21.77
+446,450,2025-01-30,Processing,Cash on Delivery,8724 Oak Rd,Dallas,CA,18150,24.17
+447,221,2023-07-18,Cancelled,Bank Transfer,4352 Main Ln,New York,IL,88530,10.3
+448,309,2024-07-01,Cancelled,Bank Transfer,5289 Oak Ave,Dallas,NY,92756,21.48
+449,514,2024-01-21,Processing,Cash on Delivery,6279 Pine Blvd,Los Angeles,CA,97402,26.83
+450,697,2024-10-30,Completed,Credit Card,6011 Maple Rd,Houston,AZ,65002,8.26
+451,549,2024-05-31,Shipped,Bank Transfer,7977 Pine Ave,Houston,TX,61801,19.11
+452,752,2025-01-10,Shipped,PayPal,2480 Oak Rd,Houston,CA,95602,18.66
+453,50,2023-11-21,Shipped,Cash on Delivery,769 Maple Ln,Philadelphia,CA,78265,17.61
+454,123,2024-09-26,Shipped,Cash on Delivery,5610 Oak Rd,San Diego,CA,59490,26.82
+455,731,2023-10-06,Shipped,Cash on Delivery,5075 Pine Blvd,New York,CA,15050,41.3
+456,834,2024-04-11,Completed,PayPal,4158 Maple Blvd,Chicago,NY,26899,0.59
+457,942,2023-10-22,Shipped,PayPal,9312 Cedar Rd,Philadelphia,NY,45235,26.05
+458,266,2024-04-07,Cancelled,PayPal,7385 Cedar Blvd,San Diego,TX,72437,42.71
+459,104,2024-03-20,Processing,Cash on Delivery,4727 Main Ln,San Jose,TX,22705,47.9
+460,381,2024-10-07,Processing,Cash on Delivery,2168 Oak Rd,San Jose,CA,48402,16.61
+461,639,2024-12-24,Shipped,PayPal,6146 Main Rd,San Jose,AZ,12685,28.51
+462,306,2023-09-02,Processing,Cash on Delivery,6121 Maple Rd,San Diego,TX,84624,20.67
+463,660,2023-09-26,Cancelled,Bank Transfer,5951 Main Rd,Philadelphia,CA,41153,6.55
+464,694,2024-11-03,Completed,Bank Transfer,5345 Pine St,Houston,NY,20535,1.41
+465,639,2024-07-08,Completed,PayPal,7771 Oak Ln,Philadelphia,PA,40266,24.97
+466,399,2025-01-15,Processing,Credit Card,790 Maple St,San Diego,NY,56498,16.08
+467,932,2024-09-25,Processing,Credit Card,9037 Maple Blvd,Los Angeles,PA,95905,42.24
+468,386,2024-04-27,Completed,PayPal,4979 Maple Blvd,Chicago,TX,95235,13.49
+469,649,2024-10-09,Processing,PayPal,346 Cedar Blvd,Los Angeles,IL,83032,19.25
+470,209,2023-05-31,Completed,Bank Transfer,1398 Oak Blvd,Phoenix,TX,48686,34.75
+471,525,2023-05-22,Completed,Cash on Delivery,5452 Oak Blvd,Dallas,PA,25975,12.98
+472,529,2023-05-20,Cancelled,Bank Transfer,911 Pine Ln,Phoenix,TX,24671,3.21
+473,634,2025-02-27,Shipped,Cash on Delivery,7834 Main Ln,New York,TX,91588,17.43
+474,168,2023-11-11,Processing,Credit Card,7490 Main Rd,Dallas,TX,82780,13.29
+475,919,2023-06-24,Shipped,Credit Card,6987 Main Blvd,San Diego,AZ,26341,6.24
+476,747,2023-07-29,Shipped,PayPal,1994 Main St,Chicago,PA,56435,15.85
+477,304,2024-12-08,Shipped,Cash on Delivery,9185 Pine Ave,Dallas,AZ,94964,7.86
+478,790,2023-07-02,Completed,Cash on Delivery,8026 Cedar Rd,San Antonio,CA,71097,9.18
+479,818,2024-01-31,Shipped,PayPal,1736 Maple Blvd,Houston,IL,53090,28.74
+480,712,2023-07-22,Processing,Credit Card,4626 Maple St,San Jose,CA,65159,44.83
+481,177,2024-09-26,Cancelled,Cash on Delivery,1673 Main St,San Diego,AZ,46509,0.13
+482,297,2024-06-16,Completed,Bank Transfer,3533 Maple Blvd,San Jose,CA,94851,32.17
+483,833,2024-08-09,Completed,Bank Transfer,2735 Pine Ln,New York,TX,22331,17.84
+484,1,2024-12-10,Cancelled,PayPal,5890 Main Rd,Dallas,TX,27362,44.57
+485,385,2024-04-28,Shipped,Bank Transfer,9218 Oak Ln,New York,TX,21876,25.92
+486,28,2023-06-20,Completed,Cash on Delivery,208 Pine Blvd,Philadelphia,CA,70849,36.14
+487,634,2024-07-13,Completed,Credit Card,1241 Main Rd,Los Angeles,TX,36033,43.99
+488,980,2024-11-01,Processing,Credit Card,1425 Oak St,Los Angeles,AZ,58787,4.73
+489,227,2025-01-05,Shipped,Bank Transfer,3667 Pine Ave,San Jose,NY,54062,25.36
+490,549,2024-08-27,Cancelled,Cash on Delivery,6016 Oak Ln,San Antonio,CA,76559,36.4
+491,282,2023-10-13,Cancelled,Bank Transfer,7966 Pine Ln,San Jose,AZ,29804,30.17
+492,273,2025-02-26,Cancelled,Cash on Delivery,8990 Main Ln,Philadelphia,TX,17355,29.7
+493,140,2024-10-19,Processing,Credit Card,1519 Maple Ln,New York,AZ,85469,8.54
+494,878,2023-05-13,Completed,PayPal,6879 Cedar Rd,Houston,TX,91921,33.05
+495,117,2024-04-26,Cancelled,Bank Transfer,7248 Oak Ave,San Antonio,TX,39318,26.02
+496,382,2023-05-13,Cancelled,Credit Card,3554 Oak Blvd,Dallas,TX,73973,33.5
+497,893,2024-02-15,Completed,Cash on Delivery,7003 Cedar Ln,Phoenix,CA,55715,24.73
+498,483,2024-03-16,Cancelled,Bank Transfer,4741 Maple Ave,Los Angeles,CA,10763,12.62
+499,363,2024-01-28,Completed,Cash on Delivery,4214 Maple Ave,Phoenix,AZ,67206,19.76
+500,132,2024-08-27,Processing,Bank Transfer,2638 Pine Ave,Chicago,TX,36189,41.69
+501,92,2023-07-11,Shipped,Bank Transfer,3939 Pine St,Los Angeles,TX,76070,24.93
+502,515,2024-07-27,Shipped,Bank Transfer,6435 Pine Ln,Los Angeles,CA,39642,19.59
+503,360,2023-10-10,Processing,Cash on Delivery,2403 Maple Blvd,San Antonio,CA,39941,27.91
+504,318,2023-05-11,Cancelled,Credit Card,9573 Maple Blvd,Houston,AZ,96662,17.86
+505,167,2024-02-09,Cancelled,Cash on Delivery,4109 Main Ave,Phoenix,PA,73682,39.76
+506,931,2024-01-18,Shipped,Credit Card,2394 Pine Ave,Chicago,NY,99324,40.83
+507,370,2023-04-17,Shipped,PayPal,4836 Pine Blvd,Philadelphia,PA,83081,20.33
+508,740,2024-12-19,Processing,Cash on Delivery,8985 Oak Rd,San Diego,TX,89202,35.26
+509,373,2023-06-11,Cancelled,Credit Card,184 Cedar Blvd,Phoenix,CA,84564,5.51
+510,659,2024-02-07,Shipped,Cash on Delivery,8388 Oak Ln,San Jose,CA,96734,17.86
+511,983,2024-03-22,Processing,PayPal,7709 Main Ave,Dallas,NY,29868,9.18
+512,575,2024-02-14,Completed,PayPal,8407 Pine Blvd,Houston,CA,57592,32.48
+513,996,2023-03-18,Processing,Credit Card,6353 Main Ave,Los Angeles,NY,64576,1.06
+514,795,2024-06-20,Shipped,PayPal,1676 Maple Ave,Los Angeles,CA,70788,20.0
+515,803,2024-07-16,Completed,Bank Transfer,9957 Pine Blvd,Los Angeles,CA,46912,10.19
+516,578,2023-12-08,Processing,PayPal,7654 Pine St,Philadelphia,CA,35561,42.86
+517,207,2023-11-03,Shipped,Bank Transfer,1619 Oak Ave,Philadelphia,AZ,35375,24.98
+518,368,2024-04-09,Processing,Bank Transfer,1085 Pine Ln,New York,TX,49735,19.72
+519,530,2024-10-18,Completed,PayPal,4529 Cedar Blvd,New York,TX,80591,27.62
+520,365,2024-07-19,Shipped,Cash on Delivery,5342 Main Blvd,New York,AZ,26859,49.62
+521,246,2024-12-02,Cancelled,PayPal,4585 Cedar Ave,Chicago,CA,28829,4.47
+522,211,2024-08-24,Shipped,PayPal,4948 Main St,Dallas,CA,35182,39.74
+523,869,2023-08-16,Completed,Credit Card,7008 Cedar Ave,Phoenix,NY,50264,30.8
+524,737,2024-08-27,Completed,PayPal,2526 Pine Rd,San Jose,AZ,60354,2.64
+525,317,2024-12-14,Shipped,Credit Card,4734 Main St,Dallas,IL,37833,13.01
+526,455,2025-01-15,Completed,Cash on Delivery,4362 Cedar Ln,Phoenix,TX,41484,28.35
+527,596,2024-06-01,Shipped,Cash on Delivery,6654 Maple Rd,Chicago,CA,49964,7.2
+528,412,2025-02-19,Cancelled,PayPal,2058 Maple Rd,Philadelphia,NY,28207,11.69
+529,790,2023-08-06,Completed,Cash on Delivery,6409 Main Blvd,Dallas,TX,29432,36.11
+530,603,2025-01-04,Processing,Credit Card,8850 Maple St,Dallas,TX,66507,12.89
+531,317,2024-09-27,Shipped,Bank Transfer,4181 Cedar Ln,New York,CA,65253,10.44
+532,63,2024-01-30,Cancelled,Cash on Delivery,8784 Main Ave,Philadelphia,CA,76544,0.22
+533,646,2024-12-31,Processing,Bank Transfer,1977 Cedar Rd,Chicago,TX,49195,33.59
+534,475,2023-08-22,Processing,Bank Transfer,2306 Cedar Rd,Dallas,NY,49040,38.54
+535,82,2024-05-23,Completed,PayPal,236 Oak Ln,Phoenix,NY,39032,34.78
+536,950,2023-03-13,Completed,Cash on Delivery,7335 Maple St,New York,CA,89664,30.24
+537,608,2023-10-21,Completed,Credit Card,7572 Oak Blvd,Philadelphia,CA,67572,27.65
+538,886,2025-02-22,Processing,Cash on Delivery,2889 Pine St,San Jose,AZ,38246,37.6
+539,858,2024-08-21,Cancelled,Bank Transfer,9798 Cedar St,San Diego,AZ,15554,13.31
+540,72,2024-01-27,Processing,Credit Card,6389 Pine Ln,Dallas,TX,24708,31.15
+541,216,2025-03-01,Completed,Bank Transfer,574 Maple Blvd,Houston,TX,46784,34.23
+542,280,2023-10-02,Cancelled,Bank Transfer,4491 Pine Ln,San Jose,NY,46122,10.94
+543,886,2024-04-01,Processing,Cash on Delivery,6331 Oak Ave,Los Angeles,TX,65507,46.36
+544,817,2024-09-29,Completed,Bank Transfer,2111 Cedar Ave,Chicago,PA,40193,24.93
+545,391,2024-07-08,Cancelled,Credit Card,7295 Main Ave,Los Angeles,TX,76982,15.62
+546,896,2023-08-16,Cancelled,PayPal,6693 Maple Ave,San Diego,TX,59618,19.58
+547,362,2024-04-01,Completed,Bank Transfer,4870 Maple Rd,San Diego,TX,70443,47.81
+548,53,2024-06-22,Completed,PayPal,2942 Main Ave,Philadelphia,CA,73682,45.03
+549,365,2025-01-17,Shipped,PayPal,7221 Pine Blvd,New York,NY,86783,46.11
+550,261,2024-10-15,Cancelled,PayPal,9855 Maple Ln,San Antonio,CA,91023,22.99
+551,730,2024-01-01,Cancelled,PayPal,9684 Main Ln,Houston,CA,12909,18.67
+552,855,2024-01-07,Cancelled,Cash on Delivery,7643 Pine St,San Jose,TX,97020,36.41
+553,849,2025-02-22,Cancelled,Cash on Delivery,4945 Maple Blvd,Phoenix,CA,38626,31.76
+554,121,2024-04-27,Shipped,Bank Transfer,7434 Oak Rd,San Jose,CA,88738,20.37
+555,329,2024-08-15,Processing,Credit Card,8515 Cedar Rd,San Diego,TX,12944,2.67
+556,711,2024-01-23,Processing,Bank Transfer,375 Oak Blvd,San Jose,CA,52308,0.07
+557,737,2025-02-03,Processing,PayPal,1329 Cedar Rd,Phoenix,CA,61153,38.29
+558,401,2025-02-24,Cancelled,Cash on Delivery,3442 Maple St,Chicago,PA,73427,45.17
+559,754,2023-08-22,Processing,Bank Transfer,4650 Maple St,Dallas,PA,87298,0.9
+560,900,2024-02-12,Processing,PayPal,3533 Maple Rd,San Jose,CA,32404,15.24
+561,219,2023-03-29,Cancelled,Bank Transfer,1767 Maple Ave,Philadelphia,AZ,38974,30.87
+562,100,2023-05-16,Processing,Cash on Delivery,9984 Maple St,Los Angeles,PA,30213,44.17
+563,58,2024-02-25,Processing,PayPal,6374 Main Ln,Dallas,CA,66045,42.34
+564,916,2023-06-28,Processing,Bank Transfer,4366 Maple St,San Antonio,IL,73291,40.81
+565,402,2024-10-10,Processing,PayPal,4044 Oak Ln,Philadelphia,TX,84335,16.57
+566,942,2024-11-01,Completed,Cash on Delivery,7164 Cedar St,San Diego,TX,48851,25.07
+567,45,2023-12-17,Cancelled,Cash on Delivery,3389 Oak St,Philadelphia,CA,88158,34.99
+568,112,2024-08-18,Completed,Cash on Delivery,3571 Pine St,San Diego,PA,66402,1.86
+569,14,2023-06-01,Cancelled,Credit Card,4856 Maple Ln,Phoenix,CA,28462,9.19
+570,153,2023-03-23,Cancelled,Cash on Delivery,4273 Main Ave,San Jose,TX,16778,18.02
+571,757,2023-04-26,Cancelled,PayPal,899 Pine Rd,San Diego,CA,95023,10.8
+572,598,2024-09-22,Processing,PayPal,1177 Main Ave,San Diego,AZ,82272,18.28
+573,797,2024-08-16,Processing,PayPal,7668 Main Blvd,Dallas,TX,67326,3.91
+574,593,2024-09-18,Processing,Credit Card,3180 Oak Blvd,Los Angeles,TX,51781,38.63
+575,786,2023-10-02,Shipped,Bank Transfer,2939 Pine St,New York,PA,26355,33.29
+576,221,2023-10-16,Shipped,Cash on Delivery,4170 Pine Blvd,New York,CA,33552,47.53
+577,654,2024-01-09,Cancelled,Cash on Delivery,4279 Oak St,Phoenix,CA,67322,44.32
+578,598,2025-02-15,Cancelled,Bank Transfer,7889 Pine Rd,Los Angeles,IL,71597,19.55
+579,52,2024-01-24,Shipped,PayPal,872 Main Ln,New York,TX,42968,43.99
+580,855,2023-09-21,Processing,Bank Transfer,8578 Cedar Ave,New York,CA,63750,29.29
+581,589,2023-03-23,Processing,Credit Card,2604 Main Blvd,Houston,CA,94540,3.56
+582,746,2025-01-07,Shipped,Bank Transfer,3930 Maple Ln,Phoenix,TX,55520,35.57
+583,519,2024-04-01,Completed,PayPal,6610 Pine Ln,Phoenix,PA,11000,11.64
+584,33,2024-12-23,Completed,PayPal,2508 Main Ave,Chicago,PA,70303,33.37
+585,37,2023-05-19,Cancelled,Bank Transfer,7017 Oak Ave,San Diego,IL,43399,7.48
+586,170,2023-08-30,Processing,Credit Card,5154 Maple Blvd,Houston,CA,39833,8.59
+587,950,2023-11-06,Processing,PayPal,8713 Main Ln,Los Angeles,IL,10971,40.81
+588,271,2023-10-05,Shipped,Credit Card,9285 Main Blvd,Chicago,AZ,99223,21.81
+589,51,2024-09-19,Cancelled,Bank Transfer,8082 Main Ave,Houston,NY,97976,0.64
+590,559,2023-11-10,Completed,Bank Transfer,6809 Maple Rd,Chicago,PA,17223,18.67
+591,30,2023-12-31,Shipped,Bank Transfer,9167 Pine St,Phoenix,CA,62351,6.17
+592,781,2023-04-13,Processing,Credit Card,7426 Maple Ave,Phoenix,AZ,58837,23.57
+593,690,2023-05-12,Cancelled,Bank Transfer,2169 Cedar Ave,Chicago,IL,65258,10.42
+594,328,2024-11-09,Completed,Bank Transfer,2380 Maple Rd,New York,TX,66264,15.36
+595,699,2023-04-14,Processing,Credit Card,3365 Oak Ave,Chicago,NY,54744,44.97
+596,593,2025-01-30,Completed,Cash on Delivery,7422 Cedar Blvd,New York,CA,20081,13.21
+597,275,2024-12-24,Shipped,PayPal,9888 Maple Blvd,Los Angeles,CA,50960,13.89
+598,569,2024-01-14,Completed,Credit Card,5536 Main Rd,Philadelphia,TX,37428,17.5
+599,171,2024-04-20,Completed,PayPal,3090 Cedar Ln,Phoenix,CA,50828,18.45
+600,65,2024-03-04,Shipped,Credit Card,126 Pine Ave,Dallas,IL,68644,8.1
+601,600,2025-01-23,Completed,Bank Transfer,1561 Pine Ln,San Jose,CA,74412,5.13
+602,663,2024-09-26,Shipped,Credit Card,8452 Cedar St,Dallas,TX,24140,4.19
+603,526,2023-04-15,Shipped,Bank Transfer,1108 Maple St,Dallas,IL,46610,19.82
+604,259,2024-05-31,Shipped,Cash on Delivery,7943 Main Blvd,New York,CA,81205,29.53
+605,693,2023-08-15,Processing,PayPal,169 Maple Rd,Houston,NY,25949,6.29
+606,294,2023-09-09,Completed,PayPal,1590 Cedar Ave,Houston,TX,36206,12.28
+607,576,2025-01-10,Shipped,Credit Card,2785 Cedar St,Los Angeles,CA,47645,22.51
+608,35,2025-02-12,Cancelled,PayPal,5380 Pine Rd,San Antonio,PA,99221,13.9
+609,850,2024-09-12,Cancelled,Bank Transfer,6876 Maple Ln,Chicago,IL,39940,48.03
+610,297,2023-09-10,Processing,Bank Transfer,1479 Main Ave,Los Angeles,NY,49588,25.47
+611,104,2025-01-03,Processing,Bank Transfer,8630 Pine Ln,Phoenix,CA,61963,38.51
+612,325,2024-12-22,Cancelled,Bank Transfer,443 Cedar Ln,New York,TX,42866,43.58
+613,174,2024-12-21,Completed,Cash on Delivery,5438 Maple Ln,Los Angeles,TX,15618,26.9
+614,226,2024-04-23,Processing,Credit Card,7421 Main Rd,San Diego,NY,89041,46.65
+615,602,2023-05-16,Completed,Credit Card,7395 Main Rd,New York,TX,35148,3.74
+616,252,2023-04-25,Completed,Credit Card,599 Pine Rd,Philadelphia,TX,46072,30.16
+617,631,2024-03-06,Completed,Cash on Delivery,4075 Oak Ln,Philadelphia,IL,79023,18.38
+618,53,2024-07-19,Processing,Cash on Delivery,354 Maple Ave,San Jose,TX,67048,8.94
+619,859,2024-11-27,Shipped,Bank Transfer,7638 Main Ln,San Antonio,AZ,71978,19.96
+620,187,2024-10-24,Cancelled,Bank Transfer,9458 Pine Ave,San Antonio,CA,37749,14.07
+621,812,2023-12-28,Processing,Credit Card,4810 Oak Ln,Philadelphia,TX,27469,49.68
+622,743,2024-03-31,Processing,Bank Transfer,873 Pine Ln,Phoenix,AZ,26265,7.71
+623,489,2024-06-07,Completed,Cash on Delivery,7701 Oak St,San Jose,IL,83941,13.97
+624,548,2025-01-24,Cancelled,Cash on Delivery,3837 Pine St,San Antonio,CA,39725,22.87
+625,954,2025-01-26,Processing,PayPal,4122 Maple Blvd,Los Angeles,CA,18521,12.93
+626,6,2023-10-11,Processing,Credit Card,3275 Maple Ave,Phoenix,NY,31610,18.63
+627,198,2024-11-11,Completed,Credit Card,2346 Oak St,Phoenix,IL,42107,32.76
+628,162,2023-12-07,Cancelled,Cash on Delivery,3858 Oak Blvd,Los Angeles,TX,81558,7.48
+629,391,2024-03-10,Completed,Bank Transfer,5004 Maple Blvd,Philadelphia,IL,18339,23.1
+630,816,2023-12-19,Cancelled,Cash on Delivery,6307 Pine St,Phoenix,CA,52512,10.89
+631,925,2023-12-25,Shipped,Cash on Delivery,6067 Oak Blvd,San Jose,IL,71733,14.91
+632,386,2025-02-05,Processing,Cash on Delivery,6818 Cedar St,Philadelphia,TX,14088,0.72
+633,422,2024-07-01,Cancelled,PayPal,1623 Cedar Blvd,Houston,CA,35849,40.86
+634,830,2024-05-10,Shipped,PayPal,5382 Main Ave,Los Angeles,NY,86933,14.95
+635,660,2025-02-04,Processing,Bank Transfer,4812 Pine Rd,San Jose,IL,50881,43.88
+636,503,2023-11-01,Shipped,Bank Transfer,5050 Oak Rd,Phoenix,TX,64994,15.59
+637,527,2024-09-04,Processing,Cash on Delivery,8652 Main Blvd,San Antonio,AZ,92684,13.15
+638,258,2023-05-18,Cancelled,Bank Transfer,6294 Maple Rd,Dallas,NY,86570,11.95
+639,514,2025-01-08,Completed,Cash on Delivery,3801 Pine Ln,Houston,AZ,37758,5.18
+640,50,2024-12-21,Cancelled,PayPal,1031 Main Rd,San Jose,TX,53138,21.91
+641,801,2025-02-02,Processing,Bank Transfer,2279 Cedar St,San Jose,IL,47357,46.9
+642,23,2023-08-26,Shipped,Credit Card,6770 Pine Rd,Phoenix,IL,44678,22.86
+643,282,2023-04-19,Cancelled,Credit Card,9088 Maple Ave,San Diego,AZ,29669,4.91
+644,640,2025-02-27,Completed,PayPal,1854 Oak Blvd,Philadelphia,CA,87471,13.34
+645,667,2023-04-16,Processing,Bank Transfer,2905 Cedar Ln,Phoenix,TX,75767,22.57
+646,70,2024-06-02,Processing,Bank Transfer,3042 Main Blvd,Los Angeles,TX,25343,15.34
+647,316,2023-04-10,Completed,Credit Card,7091 Maple Ave,San Antonio,PA,39337,35.74
+648,620,2023-12-12,Processing,Cash on Delivery,5065 Oak Rd,New York,CA,56680,4.01
+649,336,2024-06-26,Shipped,Bank Transfer,1497 Pine Rd,San Jose,CA,83604,20.78
+650,662,2023-06-13,Shipped,Cash on Delivery,2443 Main Ln,Phoenix,TX,69205,41.32
+651,666,2023-10-25,Shipped,Cash on Delivery,6445 Maple Ave,Houston,TX,85290,28.5
+652,567,2023-08-19,Processing,Credit Card,6527 Main Rd,San Antonio,CA,22624,24.63
+653,855,2023-08-03,Cancelled,Bank Transfer,770 Main St,Chicago,CA,61856,10.92
+654,756,2023-03-13,Cancelled,Credit Card,6183 Cedar Ln,San Jose,CA,60408,17.89
+655,896,2024-05-26,Completed,Credit Card,4887 Oak Rd,Dallas,IL,35707,11.38
+656,86,2024-09-25,Processing,Bank Transfer,9998 Oak Ln,Phoenix,CA,13749,49.45
+657,826,2023-05-24,Processing,Bank Transfer,6271 Pine Rd,San Jose,TX,84252,14.37
+658,980,2024-03-05,Cancelled,PayPal,5600 Main Rd,Philadelphia,CA,31035,36.06
+659,312,2024-10-16,Shipped,Credit Card,2120 Main Ln,San Antonio,PA,53190,49.78
+660,573,2024-11-26,Shipped,Bank Transfer,2787 Maple St,San Jose,CA,83595,39.9
+661,875,2023-11-30,Completed,Cash on Delivery,8541 Main Ave,New York,TX,71616,28.1
+662,254,2025-01-07,Cancelled,PayPal,8536 Maple Ln,San Jose,TX,70619,10.07
+663,419,2024-07-29,Completed,PayPal,8523 Main Ln,Dallas,TX,88506,26.4
+664,346,2024-02-08,Cancelled,Cash on Delivery,8545 Maple Blvd,Philadelphia,TX,87328,35.08
+665,884,2025-01-10,Processing,PayPal,8653 Cedar Blvd,Houston,CA,96621,12.2
+666,357,2023-06-17,Processing,PayPal,4004 Maple Blvd,San Jose,CA,89159,29.58
+667,994,2024-07-12,Completed,Credit Card,5121 Oak Ln,Los Angeles,TX,73944,10.35
+668,352,2023-11-20,Shipped,PayPal,8519 Cedar Blvd,San Antonio,TX,27935,4.18
+669,268,2024-11-26,Cancelled,PayPal,6580 Cedar St,San Jose,TX,63249,7.1
+670,151,2024-05-21,Completed,PayPal,4797 Main Ln,Philadelphia,CA,18471,18.06
+671,216,2024-08-11,Shipped,PayPal,2262 Pine Blvd,San Jose,TX,39897,12.09
+672,652,2023-09-01,Shipped,PayPal,8038 Main Blvd,San Antonio,CA,21818,16.92
+673,174,2024-03-22,Completed,Bank Transfer,2776 Oak St,Philadelphia,PA,48422,45.98
+674,358,2023-09-10,Shipped,Credit Card,5610 Pine Blvd,New York,CA,62196,35.14
+675,649,2023-06-08,Cancelled,PayPal,9679 Cedar Ave,Chicago,PA,69089,12.3
+676,538,2024-11-06,Shipped,Bank Transfer,4957 Cedar St,San Diego,TX,75119,7.68
+677,81,2024-11-02,Completed,Cash on Delivery,9600 Main Blvd,Houston,TX,20797,7.04
+678,96,2024-06-17,Cancelled,Bank Transfer,6232 Main Ln,Philadelphia,TX,22711,15.44
+679,397,2024-08-10,Shipped,Credit Card,9360 Pine Ave,Chicago,IL,38507,44.9
+680,104,2023-09-03,Shipped,Cash on Delivery,9960 Pine St,Philadelphia,PA,10919,27.24
+681,987,2024-12-25,Cancelled,PayPal,6527 Main St,San Jose,TX,81960,31.11
+682,675,2024-05-13,Shipped,PayPal,9523 Oak St,Houston,CA,70158,22.25
+683,521,2024-08-21,Completed,PayPal,921 Maple Rd,San Diego,NY,42294,39.72
+684,220,2024-07-24,Processing,Cash on Delivery,3735 Main Ln,San Diego,IL,96550,24.26
+685,958,2024-03-24,Shipped,PayPal,5500 Maple Blvd,Phoenix,PA,81014,1.93
+686,832,2024-07-04,Cancelled,Bank Transfer,5394 Cedar Blvd,Chicago,TX,39510,12.15
+687,480,2025-01-12,Cancelled,Bank Transfer,6269 Pine Rd,San Antonio,CA,79575,26.96
+688,711,2023-08-20,Cancelled,Bank Transfer,8422 Cedar Blvd,Philadelphia,AZ,78653,1.27
+689,213,2023-05-11,Cancelled,PayPal,4371 Cedar Ln,Los Angeles,IL,87470,48.03
+690,41,2024-02-01,Completed,Cash on Delivery,5438 Pine Ln,Phoenix,PA,88189,10.5
+691,518,2023-08-26,Shipped,Bank Transfer,2791 Pine Blvd,Chicago,AZ,66416,17.46
+692,374,2024-08-12,Shipped,Cash on Delivery,2132 Maple Ln,San Diego,TX,50534,25.22
+693,360,2023-08-12,Shipped,Bank Transfer,644 Main St,Houston,PA,75224,43.2
+694,833,2024-10-07,Cancelled,Bank Transfer,9817 Maple Ln,Los Angeles,TX,82962,5.85
+695,507,2023-11-15,Completed,Bank Transfer,1358 Oak Blvd,San Diego,PA,76400,22.54
+696,719,2024-07-25,Cancelled,Bank Transfer,8501 Maple St,New York,PA,61777,48.65
+697,463,2023-10-08,Cancelled,Credit Card,7589 Pine Blvd,Houston,AZ,80333,37.45
+698,659,2025-02-25,Shipped,Bank Transfer,7013 Maple Ave,New York,TX,11023,15.51
+699,265,2024-03-11,Cancelled,Cash on Delivery,8680 Oak Ave,San Diego,NY,58960,41.58
+700,147,2023-10-11,Shipped,Bank Transfer,5784 Pine Ave,Dallas,PA,36925,19.48
+701,136,2024-10-20,Cancelled,Credit Card,6712 Cedar Blvd,Chicago,TX,19241,29.08
+702,192,2023-07-27,Processing,Bank Transfer,919 Pine Ln,San Antonio,TX,27824,20.86
+703,589,2023-07-19,Cancelled,Bank Transfer,7516 Oak St,Philadelphia,TX,88377,12.17
+704,240,2023-06-30,Cancelled,PayPal,9188 Maple Ave,Phoenix,TX,19465,15.04
+705,711,2023-10-05,Processing,Bank Transfer,5963 Oak Ave,Houston,TX,80192,6.0
+706,970,2023-11-13,Processing,Credit Card,2901 Main Blvd,San Jose,IL,39730,14.82
+707,511,2024-01-16,Shipped,Bank Transfer,6541 Maple Ln,Philadelphia,TX,33817,48.53
+708,648,2024-05-30,Completed,Bank Transfer,7930 Pine Ave,San Antonio,IL,69340,41.99
+709,157,2024-09-04,Processing,Cash on Delivery,6227 Maple Ave,San Diego,PA,38788,30.58
+710,74,2023-12-02,Cancelled,Cash on Delivery,5408 Oak Rd,Los Angeles,AZ,31697,27.2
+711,496,2023-06-11,Shipped,Credit Card,5248 Maple Ln,San Antonio,TX,55905,48.01
+712,374,2024-05-04,Cancelled,Credit Card,8459 Main St,San Antonio,IL,97137,14.99
+713,895,2024-04-30,Processing,Cash on Delivery,753 Pine Rd,San Antonio,AZ,80043,14.67
+714,822,2024-01-08,Processing,PayPal,6658 Main Ln,San Diego,CA,50619,10.62
+715,638,2024-02-22,Processing,Credit Card,2906 Oak Blvd,San Antonio,CA,58188,26.03
+716,847,2024-11-06,Cancelled,Cash on Delivery,2937 Oak Ave,Philadelphia,NY,19850,41.52
+717,490,2024-04-11,Processing,Credit Card,7762 Pine Ln,Dallas,CA,32372,37.64
+718,167,2024-11-24,Cancelled,Credit Card,2262 Maple Ave,Chicago,AZ,79247,49.82
+719,193,2023-10-27,Completed,Cash on Delivery,6899 Maple Rd,Los Angeles,TX,77053,30.85
+720,649,2024-12-20,Shipped,Cash on Delivery,2012 Cedar Blvd,San Antonio,IL,95848,9.2
+721,48,2024-10-09,Cancelled,Bank Transfer,1211 Cedar Blvd,San Diego,CA,62954,17.42
+722,426,2024-07-29,Cancelled,Cash on Delivery,9734 Oak Rd,Philadelphia,TX,16414,6.71
+723,754,2024-12-02,Completed,Credit Card,7770 Oak St,Philadelphia,PA,31611,23.85
+724,123,2025-02-01,Shipped,PayPal,1263 Main Blvd,Philadelphia,IL,82074,40.64
+725,809,2023-03-31,Cancelled,Cash on Delivery,6562 Oak St,Philadelphia,NY,21238,43.1
+726,604,2024-02-20,Completed,Bank Transfer,9737 Main Rd,San Jose,CA,73855,27.07
+727,160,2023-08-20,Shipped,PayPal,9465 Pine Rd,New York,NY,44328,27.15
+728,893,2023-04-14,Cancelled,Bank Transfer,254 Cedar Blvd,Houston,IL,31520,36.58
+729,915,2024-05-04,Processing,Credit Card,7958 Oak Ln,San Antonio,TX,72448,41.52
+730,16,2023-11-13,Shipped,Bank Transfer,2400 Main Rd,San Antonio,NY,87414,5.97
+731,737,2025-03-03,Shipped,Bank Transfer,7908 Maple Ln,Houston,NY,58081,9.57
+732,443,2024-07-05,Processing,Bank Transfer,5115 Main St,Houston,CA,15942,48.38
+733,55,2024-09-21,Shipped,Cash on Delivery,8956 Pine St,Dallas,TX,73560,41.35
+734,715,2023-04-20,Processing,Credit Card,978 Cedar Blvd,San Antonio,TX,11470,28.82
+735,148,2024-04-02,Processing,Credit Card,119 Cedar Ave,Chicago,PA,22525,24.76
+736,64,2024-09-02,Completed,Credit Card,1444 Oak Rd,San Jose,NY,52546,22.88
+737,954,2023-11-06,Shipped,Credit Card,174 Oak Rd,San Jose,TX,42478,26.93
+738,149,2023-12-21,Completed,PayPal,2338 Main Rd,San Jose,CA,24475,26.7
+739,899,2023-08-01,Completed,PayPal,7597 Oak St,Los Angeles,TX,93563,47.44
+740,835,2023-03-22,Completed,PayPal,894 Oak Ave,New York,CA,20259,34.66
+741,617,2024-08-22,Completed,Cash on Delivery,8909 Pine St,San Jose,PA,14681,35.58
+742,733,2023-06-28,Cancelled,Credit Card,8725 Main Rd,Philadelphia,IL,40782,29.67
+743,617,2024-03-22,Processing,PayPal,5096 Cedar Ln,New York,CA,35761,30.75
+744,837,2023-04-21,Cancelled,PayPal,8819 Main St,San Diego,TX,32126,31.3
+745,504,2024-09-05,Shipped,Bank Transfer,4553 Maple Ln,New York,CA,17858,22.14
+746,868,2024-09-11,Completed,Cash on Delivery,2092 Pine Ln,Los Angeles,IL,45601,35.45
+747,970,2023-12-07,Processing,PayPal,1066 Main Rd,San Diego,CA,68871,33.16
+748,400,2025-01-21,Shipped,Bank Transfer,6723 Maple Rd,Houston,CA,87333,10.38
+749,140,2025-01-29,Cancelled,Credit Card,7924 Maple Rd,New York,NY,79764,31.94
+750,264,2023-07-28,Processing,PayPal,2513 Cedar St,New York,AZ,16491,9.45
+751,200,2024-07-24,Cancelled,PayPal,5718 Cedar Blvd,Houston,CA,83112,8.86
+752,153,2024-09-18,Completed,Bank Transfer,7194 Maple Rd,Phoenix,AZ,78082,46.26
+753,918,2023-06-02,Shipped,Bank Transfer,9414 Main Ln,Chicago,CA,73666,48.56
+754,792,2024-12-12,Cancelled,Cash on Delivery,7834 Maple Rd,Phoenix,TX,11781,4.03
+755,855,2023-03-29,Completed,Credit Card,4853 Oak Rd,Phoenix,TX,48876,34.86
+756,73,2023-05-29,Shipped,Bank Transfer,8674 Pine Ave,Philadelphia,TX,71662,38.84
+757,844,2023-05-28,Cancelled,PayPal,5400 Maple Rd,Los Angeles,TX,40290,39.37
+758,559,2023-08-05,Cancelled,Bank Transfer,838 Pine Ln,Los Angeles,NY,20821,9.07
+759,346,2023-09-22,Completed,Credit Card,9478 Oak Ave,Los Angeles,PA,24071,43.7
+760,92,2024-05-29,Shipped,Cash on Delivery,9565 Maple St,Houston,CA,89798,42.14
+761,403,2024-06-22,Completed,Cash on Delivery,5903 Main Blvd,San Diego,CA,20119,17.46
+762,41,2023-10-15,Cancelled,Cash on Delivery,3004 Pine St,New York,TX,82254,5.07
+763,106,2023-11-02,Shipped,Cash on Delivery,5327 Maple St,Dallas,IL,55266,28.07
+764,551,2024-06-08,Cancelled,Cash on Delivery,3079 Cedar Ln,Dallas,IL,36207,21.69
+765,599,2024-12-12,Processing,PayPal,2760 Maple Rd,New York,CA,16674,6.24
+766,493,2024-05-29,Completed,Cash on Delivery,5242 Pine St,Phoenix,NY,13285,27.74
+767,491,2023-03-20,Completed,Cash on Delivery,6024 Oak Ln,Philadelphia,IL,24215,7.26
+768,603,2023-06-09,Processing,PayPal,1093 Maple Blvd,Chicago,CA,44850,38.22
+769,159,2023-11-15,Cancelled,PayPal,9960 Pine Ln,Dallas,AZ,99653,2.92
+770,942,2024-04-30,Completed,Cash on Delivery,9427 Cedar Ln,Houston,CA,19628,28.32
+771,174,2024-09-12,Cancelled,Cash on Delivery,8719 Main Blvd,San Antonio,AZ,55917,24.21
+772,368,2023-08-04,Processing,Bank Transfer,702 Cedar Ave,San Antonio,TX,29212,3.12
+773,411,2024-10-23,Shipped,PayPal,6189 Maple Ave,Dallas,TX,17664,34.55
+774,629,2023-12-17,Cancelled,Cash on Delivery,8503 Oak St,Chicago,CA,76482,6.38
+775,970,2023-08-13,Completed,Bank Transfer,4639 Oak Rd,Phoenix,TX,25525,27.04
+776,919,2023-11-20,Processing,PayPal,656 Cedar Blvd,New York,CA,72947,48.56
+777,731,2024-04-11,Cancelled,Bank Transfer,5405 Main Ave,New York,CA,41803,14.32
+778,602,2024-01-04,Processing,Bank Transfer,2329 Maple St,San Diego,TX,82391,1.95
+779,390,2023-05-07,Shipped,Bank Transfer,815 Main Blvd,San Antonio,TX,28208,48.38
+780,439,2024-01-03,Completed,Credit Card,7940 Cedar Blvd,San Jose,CA,88919,7.14
+781,729,2023-05-17,Shipped,PayPal,339 Main St,San Antonio,AZ,43484,44.41
+782,532,2023-08-11,Shipped,PayPal,9869 Maple Blvd,New York,CA,22026,17.09
+783,435,2024-12-07,Cancelled,Credit Card,5247 Cedar Rd,Houston,AZ,16800,38.71
+784,583,2023-07-01,Cancelled,Cash on Delivery,4689 Main Ln,Chicago,TX,98319,11.78
+785,700,2024-06-24,Processing,PayPal,4634 Cedar Rd,Philadelphia,CA,58815,28.18
+786,350,2023-05-22,Completed,Bank Transfer,1955 Cedar Rd,San Antonio,TX,57566,17.97
+787,284,2024-03-09,Processing,Cash on Delivery,2166 Main Rd,Phoenix,CA,72825,34.36
+788,987,2023-11-03,Shipped,Bank Transfer,6732 Pine Ave,Dallas,AZ,58210,20.17
+789,888,2024-03-01,Completed,Bank Transfer,9227 Oak Rd,San Diego,TX,43812,32.41
+790,938,2024-09-10,Completed,PayPal,8223 Main St,Houston,TX,53615,34.18
+791,6,2024-11-09,Shipped,Cash on Delivery,8337 Main St,Phoenix,PA,97936,1.36
+792,327,2023-03-19,Completed,Cash on Delivery,4069 Maple St,Dallas,CA,31629,8.56
+793,371,2023-08-20,Shipped,Cash on Delivery,1215 Main Rd,Los Angeles,NY,51017,38.27
+794,186,2024-05-07,Cancelled,PayPal,7393 Pine St,San Antonio,TX,17759,38.51
+795,298,2024-02-10,Cancelled,Bank Transfer,7949 Maple Ave,Houston,TX,78377,49.17
+796,828,2024-12-26,Processing,Credit Card,8812 Cedar Ave,New York,CA,98581,6.88
+797,415,2024-08-12,Completed,PayPal,125 Cedar Ave,Houston,TX,16917,35.8
+798,76,2024-04-16,Shipped,Bank Transfer,618 Pine Ln,San Jose,TX,33183,15.14
+799,337,2023-05-31,Cancelled,Credit Card,6343 Cedar St,Houston,IL,29990,4.55
+800,398,2024-06-24,Completed,Cash on Delivery,8089 Pine St,New York,IL,59996,20.42
+801,929,2023-10-01,Processing,Credit Card,6430 Cedar Blvd,Chicago,NY,43937,46.18
+802,38,2023-06-06,Completed,Cash on Delivery,7705 Pine Ln,New York,AZ,59800,29.87
+803,810,2024-08-03,Shipped,PayPal,1687 Pine St,San Diego,TX,19691,32.39
+804,131,2024-07-23,Shipped,Credit Card,4357 Cedar St,San Diego,CA,93132,37.53
+805,525,2024-10-08,Cancelled,Bank Transfer,5605 Cedar Blvd,Chicago,TX,59192,3.68
+806,197,2024-09-14,Processing,PayPal,5447 Main Blvd,San Antonio,CA,12834,30.6
+807,616,2024-05-02,Processing,Cash on Delivery,1595 Oak Rd,Phoenix,CA,70511,21.45
+808,322,2023-08-02,Completed,Cash on Delivery,7943 Maple Rd,Los Angeles,TX,84305,46.33
+809,304,2024-09-01,Processing,Credit Card,8557 Main Ln,Chicago,TX,75762,8.45
+810,56,2023-04-20,Shipped,PayPal,2871 Oak Rd,Houston,TX,31584,34.95
+811,724,2024-09-02,Cancelled,Credit Card,970 Cedar St,San Antonio,AZ,83705,30.14
+812,645,2023-07-10,Cancelled,Credit Card,6511 Oak St,New York,CA,24504,46.07
+813,148,2024-12-06,Processing,PayPal,7987 Main Ln,San Jose,IL,52057,19.51
+814,602,2024-10-27,Processing,Bank Transfer,1181 Oak Blvd,San Antonio,TX,61687,34.37
+815,653,2023-04-28,Cancelled,PayPal,6484 Maple Ave,San Antonio,CA,60884,11.44
+816,103,2024-09-17,Shipped,PayPal,6620 Main Blvd,San Diego,PA,21168,39.85
+817,846,2025-02-02,Processing,Credit Card,9656 Cedar Ln,Phoenix,NY,24273,1.31
+818,442,2023-05-10,Completed,Credit Card,8537 Maple Ln,Dallas,PA,92778,32.49
+819,427,2024-11-15,Completed,Cash on Delivery,7290 Main Rd,Los Angeles,CA,78306,0.64
+820,9,2023-08-06,Processing,Credit Card,3189 Pine Ave,Philadelphia,CA,57070,28.45
+821,945,2024-06-24,Shipped,Credit Card,8079 Oak Blvd,Phoenix,IL,80733,42.82
+822,613,2024-12-01,Shipped,Bank Transfer,8975 Oak St,Philadelphia,CA,12752,31.99
+823,257,2024-02-03,Completed,Bank Transfer,2559 Oak Ln,Chicago,PA,41993,45.29
+824,882,2024-03-18,Processing,Bank Transfer,3033 Main Blvd,Houston,PA,33615,19.53
+825,631,2024-11-30,Completed,PayPal,5169 Pine Blvd,Houston,CA,74251,18.78
+826,351,2024-10-14,Cancelled,PayPal,7822 Maple St,San Antonio,PA,82262,39.48
+827,649,2023-10-01,Shipped,PayPal,5108 Pine Ave,San Antonio,AZ,20142,6.35
+828,397,2023-03-29,Processing,Cash on Delivery,9905 Maple Ln,San Diego,IL,28351,36.35
+829,5,2023-04-15,Cancelled,Bank Transfer,3718 Oak Rd,Houston,TX,79327,26.27
+830,592,2023-06-08,Completed,Credit Card,3209 Maple Blvd,Los Angeles,PA,87844,36.79
+831,812,2024-11-26,Processing,Bank Transfer,9725 Pine Ln,San Jose,CA,58915,24.45
+832,616,2023-05-16,Shipped,PayPal,8208 Pine Blvd,Philadelphia,PA,96549,20.01
+833,473,2023-10-01,Completed,Bank Transfer,2031 Oak St,New York,TX,74598,4.26
+834,377,2024-06-24,Shipped,Credit Card,5657 Pine Ave,Philadelphia,IL,59908,28.91
+835,760,2024-04-07,Shipped,Credit Card,1308 Maple Blvd,San Antonio,NY,51781,7.44
+836,381,2025-01-17,Cancelled,Cash on Delivery,3253 Main Blvd,Los Angeles,IL,88259,2.03
+837,755,2023-11-23,Completed,Cash on Delivery,7121 Maple Rd,San Jose,AZ,63706,4.34
+838,420,2023-08-29,Shipped,Credit Card,7318 Maple Ln,Philadelphia,NY,15732,0.24
+839,751,2024-09-17,Cancelled,Cash on Delivery,5563 Maple St,New York,CA,48626,17.63
+840,79,2023-06-05,Completed,Credit Card,5639 Maple Ave,Dallas,CA,63108,46.45
+841,681,2023-06-04,Completed,Cash on Delivery,6872 Pine Ln,Houston,CA,43960,35.23
+842,504,2023-08-24,Shipped,Cash on Delivery,835 Main Ave,Phoenix,AZ,95971,19.17
+843,829,2023-04-27,Cancelled,Bank Transfer,2197 Cedar Ave,Los Angeles,IL,91664,22.7
+844,243,2023-04-19,Cancelled,Credit Card,2199 Oak Blvd,San Jose,IL,11311,44.19
+845,300,2023-04-04,Cancelled,Bank Transfer,5507 Pine Blvd,Phoenix,NY,71255,47.07
+846,868,2024-03-03,Processing,Credit Card,3260 Maple St,San Antonio,TX,32714,18.2
+847,642,2024-10-08,Shipped,Cash on Delivery,1379 Cedar Ln,Dallas,AZ,27911,39.71
+848,63,2024-08-21,Completed,PayPal,7620 Cedar Ave,Dallas,CA,84749,32.04
+849,401,2025-02-22,Cancelled,Cash on Delivery,399 Maple Blvd,Dallas,TX,15326,41.06
+850,812,2024-06-19,Completed,Cash on Delivery,7639 Main Ave,San Antonio,CA,34970,18.85
+851,363,2023-10-21,Cancelled,Bank Transfer,7937 Maple St,Chicago,PA,79427,6.35
+852,665,2023-04-07,Cancelled,Bank Transfer,3451 Pine Blvd,San Jose,TX,74238,23.35
+853,859,2023-12-12,Cancelled,Credit Card,504 Pine Rd,Houston,CA,37127,48.68
+854,917,2023-08-31,Processing,Bank Transfer,1353 Cedar Ln,San Jose,CA,84876,26.39
+855,244,2023-11-28,Completed,Credit Card,2602 Pine Blvd,Houston,AZ,33529,22.91
+856,111,2024-04-08,Processing,PayPal,1761 Maple Ave,Los Angeles,IL,45794,35.18
+857,930,2024-09-10,Shipped,Cash on Delivery,6952 Pine Blvd,San Antonio,TX,82013,41.02
+858,902,2024-11-04,Cancelled,Cash on Delivery,4687 Main Ln,Chicago,PA,92567,25.99
+859,96,2024-05-19,Shipped,PayPal,374 Main St,San Jose,TX,92566,14.01
+860,280,2024-08-12,Shipped,Bank Transfer,4302 Oak Rd,Los Angeles,AZ,35174,1.1
+861,182,2023-10-13,Completed,Bank Transfer,3582 Cedar Blvd,San Diego,NY,23163,22.3
+862,345,2024-03-04,Shipped,Bank Transfer,1944 Main St,San Antonio,CA,82272,27.11
+863,974,2024-07-27,Processing,Cash on Delivery,4249 Main Blvd,Los Angeles,CA,87285,49.28
+864,733,2023-10-24,Processing,PayPal,9831 Pine Ave,Phoenix,CA,24913,49.14
+865,780,2024-02-28,Cancelled,Bank Transfer,1056 Oak Rd,Houston,TX,86161,23.23
+866,783,2024-03-27,Completed,Credit Card,3057 Pine Ln,Los Angeles,AZ,30980,9.92
+867,817,2023-07-23,Cancelled,PayPal,6804 Cedar St,Dallas,CA,60311,2.96
+868,842,2024-12-17,Shipped,Credit Card,9425 Cedar Blvd,Dallas,NY,74284,28.78
+869,444,2023-07-02,Cancelled,Cash on Delivery,8846 Oak Ave,Chicago,PA,84310,7.45
+870,671,2024-01-27,Cancelled,Cash on Delivery,2012 Maple Rd,San Jose,CA,49390,35.54
+871,944,2023-06-08,Processing,Credit Card,6329 Maple Ave,Phoenix,PA,30977,40.03
+872,238,2023-05-05,Shipped,Bank Transfer,7604 Cedar Blvd,San Antonio,CA,16373,41.31
+873,338,2023-07-10,Cancelled,Bank Transfer,2259 Main Ln,Phoenix,CA,90222,36.82
+874,660,2023-07-08,Cancelled,Credit Card,4332 Oak Blvd,Phoenix,CA,84173,33.64
+875,875,2024-05-16,Shipped,Cash on Delivery,451 Oak Rd,San Jose,TX,54748,18.84
+876,705,2024-05-02,Processing,Cash on Delivery,4827 Cedar Rd,Chicago,CA,77571,27.28
+877,175,2025-02-26,Completed,Cash on Delivery,1824 Maple St,San Jose,AZ,50876,32.94
+878,814,2023-04-30,Completed,PayPal,5645 Oak Rd,Dallas,IL,22614,6.49
+879,504,2024-07-05,Shipped,Cash on Delivery,4912 Maple Rd,New York,AZ,43316,27.77
+880,219,2024-02-24,Completed,Bank Transfer,2132 Maple St,New York,CA,22501,0.23
+881,250,2024-12-24,Shipped,Credit Card,6355 Pine Blvd,Phoenix,TX,61454,14.36
+882,70,2024-04-15,Completed,Credit Card,5087 Pine Rd,San Antonio,AZ,52533,28.0
+883,245,2023-08-31,Processing,Bank Transfer,1600 Main Rd,Phoenix,AZ,38995,37.33
+884,878,2023-07-07,Completed,Bank Transfer,8202 Maple St,Houston,CA,21822,35.68
+885,161,2023-08-14,Completed,Cash on Delivery,7721 Pine St,Dallas,CA,99318,28.2
+886,376,2025-01-28,Completed,Bank Transfer,2509 Pine Ln,Chicago,CA,46733,12.18
+887,199,2023-06-20,Shipped,Bank Transfer,9381 Cedar Rd,Dallas,PA,20210,22.06
+888,70,2024-06-20,Processing,Cash on Delivery,7343 Maple Ln,Chicago,CA,97857,26.78
+889,925,2024-12-28,Cancelled,PayPal,305 Maple Blvd,Dallas,CA,46989,1.82
+890,637,2025-02-28,Processing,Credit Card,730 Main Blvd,San Diego,PA,59817,9.92
+891,902,2023-03-11,Shipped,Credit Card,1637 Cedar Ave,Dallas,CA,89614,13.23
+892,682,2024-12-20,Completed,Bank Transfer,3108 Oak Ave,Philadelphia,CA,31239,9.8
+893,741,2024-10-20,Cancelled,Cash on Delivery,3227 Cedar Blvd,San Jose,TX,51380,17.72
+894,482,2024-06-22,Cancelled,Cash on Delivery,8906 Cedar Blvd,Houston,TX,90834,14.92
+895,144,2023-05-30,Cancelled,Bank Transfer,9735 Cedar St,Philadelphia,TX,97132,13.08
+896,657,2023-05-04,Shipped,Bank Transfer,6172 Main Ave,Los Angeles,IL,31035,38.74
+897,943,2024-02-17,Completed,Bank Transfer,4033 Cedar St,San Jose,CA,39808,45.97
+898,903,2024-01-22,Cancelled,Bank Transfer,4366 Cedar Rd,Philadelphia,PA,87291,29.35
+899,172,2023-08-18,Completed,Credit Card,3382 Main Ave,Los Angeles,IL,12753,39.32
+900,464,2024-10-12,Cancelled,Credit Card,7438 Pine Rd,Houston,CA,96480,20.98
+901,318,2025-02-02,Cancelled,Cash on Delivery,6140 Pine Ave,Philadelphia,TX,51053,25.62
+902,320,2023-12-01,Cancelled,Credit Card,9679 Pine Ave,Houston,CA,42237,8.6
+903,897,2024-11-23,Processing,PayPal,2945 Oak Rd,San Antonio,TX,85556,44.79
+904,462,2023-03-13,Shipped,Bank Transfer,4769 Main Blvd,Houston,AZ,75627,7.57
+905,158,2023-07-25,Cancelled,Credit Card,5938 Oak Ave,San Diego,AZ,13862,5.02
+906,131,2023-03-11,Shipped,PayPal,3850 Cedar Ave,San Diego,PA,75824,45.1
+907,393,2025-01-25,Cancelled,Bank Transfer,314 Oak Ln,Philadelphia,CA,15902,19.93
+908,594,2024-11-20,Completed,PayPal,7849 Oak Ln,Los Angeles,PA,53720,24.29
+909,525,2023-12-31,Processing,Cash on Delivery,9801 Maple Rd,San Jose,TX,24879,33.97
+910,736,2024-02-25,Cancelled,PayPal,6939 Main Ave,Chicago,AZ,83720,28.5
+911,620,2023-08-18,Shipped,PayPal,8107 Oak Rd,Los Angeles,CA,17599,47.12
+912,773,2024-12-03,Cancelled,Credit Card,504 Oak St,Los Angeles,TX,67218,0.82
+913,902,2024-07-03,Cancelled,Bank Transfer,9225 Oak Blvd,Philadelphia,AZ,10219,46.81
+914,148,2025-01-30,Processing,Bank Transfer,9864 Cedar Ln,San Jose,CA,61998,15.55
+915,327,2024-04-07,Cancelled,Credit Card,4895 Maple Rd,San Diego,AZ,87916,29.38
+916,580,2024-10-21,Completed,Cash on Delivery,6758 Pine Ln,Philadelphia,CA,15747,13.0
+917,483,2024-03-03,Cancelled,Credit Card,1152 Oak Ln,San Diego,CA,28386,5.93
+918,6,2024-03-20,Cancelled,Cash on Delivery,597 Oak Ln,Phoenix,TX,49697,1.3
+919,952,2024-04-21,Processing,Cash on Delivery,5442 Maple Ln,Houston,TX,54152,16.45
+920,370,2025-01-19,Shipped,Bank Transfer,8621 Maple Ln,San Antonio,TX,85112,26.82
+921,744,2023-06-16,Shipped,Credit Card,9940 Cedar Blvd,Houston,CA,46713,39.82
+922,490,2025-01-18,Processing,Bank Transfer,7690 Pine Ave,Phoenix,AZ,57672,32.73
+923,717,2024-08-26,Processing,PayPal,1214 Pine St,San Diego,NY,93838,37.19
+924,820,2024-04-29,Processing,Credit Card,9520 Maple Ave,San Antonio,PA,11249,38.7
+925,416,2023-07-24,Completed,PayPal,6992 Oak Rd,New York,TX,97177,41.36
+926,406,2024-09-17,Cancelled,Cash on Delivery,7549 Pine Rd,Houston,NY,89180,27.96
+927,256,2025-01-06,Cancelled,Cash on Delivery,1723 Maple Ave,Phoenix,TX,87729,16.42
+928,484,2024-11-02,Cancelled,PayPal,9328 Main St,New York,TX,77660,12.21
+929,71,2024-02-04,Shipped,Credit Card,8353 Maple Ave,Houston,TX,37756,32.99
+930,623,2023-12-17,Completed,Bank Transfer,6855 Pine Rd,New York,CA,89001,42.03
+931,160,2024-09-30,Processing,Credit Card,5995 Main Ave,Phoenix,IL,43000,15.97
+932,128,2024-10-14,Processing,Bank Transfer,9381 Cedar Rd,San Antonio,AZ,11402,39.06
+933,978,2024-03-15,Cancelled,PayPal,4897 Cedar Ave,Houston,AZ,15194,33.61
+934,360,2023-03-20,Completed,Cash on Delivery,8211 Maple Rd,Phoenix,CA,11835,42.53
+935,238,2024-08-26,Completed,Cash on Delivery,3076 Cedar Blvd,Philadelphia,TX,26530,13.41
+936,342,2024-06-04,Cancelled,Cash on Delivery,8547 Oak Ln,San Diego,TX,30611,49.78
+937,457,2023-12-24,Processing,Credit Card,411 Cedar St,San Antonio,NY,66209,23.33
+938,611,2025-02-16,Cancelled,Credit Card,991 Maple Blvd,Dallas,IL,31029,37.76
+939,913,2024-07-06,Processing,Bank Transfer,7392 Main Ln,San Antonio,TX,80573,27.62
+940,478,2023-10-27,Cancelled,PayPal,2709 Main St,San Diego,CA,14229,47.55
+941,868,2025-03-01,Cancelled,Bank Transfer,7102 Maple Rd,Houston,TX,75746,25.59
+942,294,2025-02-14,Processing,Bank Transfer,911 Pine Ave,Chicago,CA,36000,19.56
+943,799,2024-12-03,Processing,PayPal,3907 Cedar St,San Antonio,PA,97030,32.75
+944,285,2023-06-27,Completed,PayPal,9534 Oak Rd,Chicago,PA,80148,35.65
+945,184,2024-02-21,Shipped,PayPal,7538 Cedar Blvd,Houston,CA,85354,44.71
+946,388,2023-06-28,Completed,Bank Transfer,6370 Maple St,Dallas,PA,63030,7.57
+947,710,2024-04-25,Shipped,Cash on Delivery,4026 Cedar Rd,New York,NY,60972,15.16
+948,866,2025-01-31,Cancelled,PayPal,2874 Pine Blvd,Philadelphia,TX,52948,46.81
+949,166,2025-02-15,Cancelled,PayPal,9487 Oak Ln,Phoenix,TX,93211,25.27
+950,201,2023-04-23,Shipped,Credit Card,631 Maple Ave,New York,CA,77946,47.46
+951,825,2025-02-05,Cancelled,Bank Transfer,4056 Maple Blvd,New York,PA,11245,37.37
+952,346,2024-06-21,Shipped,Cash on Delivery,9372 Maple Ln,Dallas,PA,47428,32.36
+953,248,2024-03-29,Cancelled,Bank Transfer,1343 Main St,Chicago,NY,94041,33.22
+954,194,2023-12-07,Processing,Credit Card,7492 Pine Ave,San Antonio,CA,19385,29.01
+955,810,2024-09-25,Completed,Cash on Delivery,9422 Maple Rd,Houston,PA,64301,31.61
+956,912,2023-10-16,Processing,Cash on Delivery,2812 Oak Ln,Houston,CA,61113,44.92
+957,936,2024-07-29,Cancelled,Cash on Delivery,846 Oak Ave,Philadelphia,CA,50934,16.79
+958,818,2023-10-12,Completed,Credit Card,2405 Pine Blvd,Philadelphia,CA,65733,28.21
+959,810,2024-01-10,Completed,Credit Card,7879 Cedar Ln,Chicago,CA,44236,19.57
+960,23,2024-07-02,Cancelled,Cash on Delivery,4270 Oak Blvd,San Antonio,NY,37030,23.56
+961,679,2024-03-13,Shipped,Credit Card,8976 Pine Ave,Los Angeles,NY,19986,43.7
+962,316,2023-04-27,Completed,PayPal,5795 Cedar St,San Diego,TX,20754,27.12
+963,397,2024-09-30,Shipped,Cash on Delivery,5099 Maple Ave,Dallas,AZ,92156,46.61
+964,603,2023-11-10,Processing,Cash on Delivery,9024 Pine St,Philadelphia,CA,19750,41.7
+965,44,2025-01-30,Shipped,Bank Transfer,7488 Pine St,Phoenix,NY,81461,1.56
+966,63,2024-08-11,Processing,PayPal,1810 Oak Blvd,Phoenix,CA,50223,48.85
+967,121,2023-08-22,Processing,Cash on Delivery,3086 Cedar St,Dallas,AZ,99423,20.76
+968,129,2024-11-12,Cancelled,PayPal,1330 Pine Ln,New York,TX,27835,17.39
+969,553,2023-05-01,Cancelled,Cash on Delivery,5447 Cedar Blvd,San Jose,CA,95713,8.02
+970,388,2024-05-13,Completed,Bank Transfer,5439 Pine Ln,Los Angeles,NY,70470,19.94
+971,822,2024-05-02,Cancelled,Credit Card,941 Oak Ave,Chicago,TX,36069,36.09
+972,438,2024-07-18,Cancelled,Bank Transfer,6091 Oak Rd,San Jose,TX,84415,41.72
+973,602,2024-10-20,Shipped,Bank Transfer,3449 Pine Blvd,Chicago,PA,85691,27.46
+974,773,2023-07-12,Processing,Credit Card,4173 Oak St,San Diego,TX,72242,27.36
+975,31,2024-02-06,Cancelled,Cash on Delivery,1632 Maple Blvd,New York,PA,28999,37.42
+976,428,2024-02-11,Completed,Credit Card,3623 Oak Ave,Philadelphia,CA,37588,42.27
+977,386,2023-05-12,Shipped,Cash on Delivery,3032 Maple Ln,San Jose,CA,44513,48.18
+978,553,2024-11-22,Shipped,Cash on Delivery,365 Main Blvd,Phoenix,AZ,51742,11.44
+979,564,2023-03-18,Shipped,Credit Card,9134 Cedar Rd,Dallas,TX,26116,47.13
+980,299,2024-11-09,Cancelled,Cash on Delivery,1646 Cedar Ave,Houston,NY,12799,26.3
+981,348,2023-07-27,Cancelled,Cash on Delivery,8791 Cedar Rd,San Diego,CA,72964,46.71
+982,562,2024-07-13,Completed,Credit Card,9447 Main St,San Antonio,TX,16379,41.81
+983,333,2024-02-17,Cancelled,PayPal,3351 Maple Rd,Phoenix,PA,98678,3.51
+984,474,2023-05-30,Shipped,Cash on Delivery,7301 Cedar Blvd,New York,TX,17251,20.03
+985,534,2024-04-12,Cancelled,Credit Card,8289 Cedar Rd,New York,CA,84509,3.69
+986,855,2023-05-26,Completed,Cash on Delivery,2431 Pine St,Los Angeles,IL,79933,15.33
+987,984,2024-08-19,Cancelled,Bank Transfer,829 Cedar Blvd,Los Angeles,CA,78147,30.77
+988,160,2023-03-07,Processing,Cash on Delivery,544 Oak St,New York,TX,51397,16.89
+989,179,2023-10-26,Shipped,Bank Transfer,4368 Maple Ln,Dallas,IL,89967,12.35
+990,983,2024-12-09,Cancelled,Credit Card,6675 Pine St,Dallas,CA,68537,11.49
+991,466,2024-09-27,Processing,Credit Card,5546 Oak Ave,Phoenix,CA,70347,39.45
+992,92,2023-06-21,Processing,Cash on Delivery,633 Cedar Rd,Los Angeles,TX,95628,42.46
+993,239,2024-03-26,Processing,PayPal,3020 Maple Ln,Los Angeles,AZ,21463,24.6
+994,399,2024-08-03,Processing,Bank Transfer,866 Pine Blvd,San Diego,PA,58318,12.11
+995,954,2024-02-02,Completed,PayPal,2911 Main Blvd,Chicago,IL,32132,22.92
+996,870,2023-03-25,Cancelled,Cash on Delivery,4025 Maple Ln,San Antonio,TX,69592,6.59
+997,183,2024-03-23,Cancelled,Credit Card,8357 Main Ave,New York,CA,85738,1.3
+998,98,2025-02-18,Cancelled,Cash on Delivery,5425 Pine Ave,Philadelphia,TX,19754,11.39
+999,634,2023-04-29,Cancelled,Bank Transfer,6800 Oak Rd,Philadelphia,IL,74539,45.08
+1000,275,2024-03-04,Cancelled,Cash on Delivery,8092 Main Ln,Dallas,NY,50865,31.16
+1001,347,2024-10-09,Processing,PayPal,6830 Pine Rd,Los Angeles,CA,88983,33.92
+1002,258,2023-10-13,Cancelled,Bank Transfer,5286 Pine Blvd,Los Angeles,CA,28706,35.74
+1003,609,2024-06-01,Processing,Bank Transfer,7789 Cedar Rd,San Diego,CA,12490,3.09
+1004,674,2024-12-11,Shipped,Bank Transfer,4271 Main Ln,Houston,CA,28693,3.03
+1005,426,2023-04-29,Completed,Bank Transfer,6650 Oak Rd,New York,CA,62443,12.06
+1006,921,2024-07-29,Processing,Credit Card,4675 Maple Ln,Dallas,TX,74634,1.22
+1007,691,2023-12-05,Shipped,PayPal,7979 Pine Ave,Dallas,CA,40620,20.4
+1008,63,2023-03-22,Shipped,Bank Transfer,7375 Maple Blvd,San Jose,PA,76172,18.59
+1009,685,2024-05-23,Completed,Cash on Delivery,8321 Main Ave,Houston,NY,33317,49.5
+1010,701,2023-12-27,Completed,PayPal,6920 Main Ave,New York,NY,79993,31.22
+1011,300,2023-06-03,Completed,Bank Transfer,7274 Oak St,New York,PA,90223,29.64
+1012,440,2024-11-25,Shipped,Bank Transfer,6982 Main Ln,Phoenix,TX,67912,6.47
+1013,560,2023-10-06,Completed,Cash on Delivery,2836 Main Blvd,San Antonio,TX,95312,17.45
+1014,84,2024-10-05,Cancelled,Credit Card,8711 Main Blvd,New York,TX,64835,11.92
+1015,618,2024-08-05,Processing,Cash on Delivery,783 Oak Ave,Los Angeles,CA,82662,12.97
+1016,365,2024-06-30,Shipped,Bank Transfer,4810 Cedar Ln,Phoenix,TX,98782,14.99
+1017,385,2023-10-26,Processing,Bank Transfer,7571 Maple St,Philadelphia,CA,23011,28.64
+1018,36,2024-10-03,Cancelled,PayPal,3768 Maple Ln,San Diego,NY,80467,9.8
+1019,796,2024-04-01,Cancelled,Cash on Delivery,1311 Main St,Dallas,TX,49517,8.44
+1020,101,2023-12-11,Shipped,PayPal,5854 Oak Ln,San Jose,TX,66296,14.76
+1021,239,2024-05-16,Completed,Credit Card,6417 Cedar Ln,San Diego,TX,30177,10.29
+1022,900,2025-01-23,Cancelled,Bank Transfer,6090 Oak Ave,Houston,PA,24842,44.61
+1023,662,2024-06-25,Cancelled,Bank Transfer,1642 Oak St,Houston,NY,23177,18.44
+1024,908,2024-11-16,Processing,PayPal,2173 Cedar Ave,Philadelphia,IL,90023,39.0
+1025,764,2023-05-05,Processing,Cash on Delivery,7747 Oak St,Chicago,PA,11602,24.13
+1026,658,2023-08-05,Cancelled,Bank Transfer,3699 Pine Ln,San Antonio,PA,56508,22.48
+1027,854,2023-03-21,Completed,Cash on Delivery,7721 Cedar Blvd,Philadelphia,PA,10898,20.21
+1028,311,2023-04-04,Processing,Bank Transfer,4336 Pine Ave,Dallas,IL,47452,5.73
+1029,289,2024-03-12,Cancelled,PayPal,4186 Oak Ln,Los Angeles,NY,78240,0.18
+1030,5,2023-10-21,Processing,Credit Card,2439 Maple Blvd,Dallas,PA,15764,35.6
+1031,991,2023-05-27,Cancelled,Credit Card,2535 Cedar Ln,Houston,IL,89479,41.29
+1032,641,2025-02-05,Cancelled,Credit Card,3578 Cedar Ave,Chicago,PA,44956,8.47
+1033,623,2024-11-15,Shipped,Credit Card,9611 Main Ln,Chicago,TX,22983,5.98
+1034,323,2024-03-06,Completed,Cash on Delivery,6641 Oak St,Los Angeles,TX,18443,3.95
+1035,359,2023-08-26,Shipped,PayPal,369 Pine Rd,Phoenix,CA,66608,12.07
+1036,525,2023-07-30,Processing,Credit Card,1188 Cedar St,Dallas,TX,41830,3.69
+1037,996,2025-02-12,Completed,Cash on Delivery,8718 Oak Rd,Dallas,CA,96571,44.22
+1038,774,2024-11-18,Completed,Credit Card,6107 Maple Ave,San Jose,NY,80489,15.28
+1039,68,2023-12-15,Shipped,PayPal,5281 Pine Blvd,Phoenix,IL,68686,23.78
+1040,638,2023-07-28,Cancelled,PayPal,6957 Maple Ave,Houston,TX,76773,48.44
+1041,462,2023-07-18,Shipped,Cash on Delivery,1682 Cedar Blvd,San Jose,CA,42715,9.88
+1042,602,2023-07-12,Shipped,Bank Transfer,251 Cedar Ave,San Antonio,TX,21653,2.23
+1043,744,2024-10-19,Completed,Credit Card,6500 Oak Blvd,Dallas,AZ,85580,27.07
+1044,574,2024-08-30,Shipped,Cash on Delivery,2462 Cedar Rd,Houston,CA,85418,43.56
+1045,155,2023-04-10,Shipped,Cash on Delivery,5459 Oak Blvd,San Jose,CA,14146,1.86
+1046,295,2024-12-07,Shipped,Bank Transfer,8659 Main Ln,San Diego,CA,98288,29.46
+1047,964,2023-04-29,Shipped,Credit Card,8129 Oak Rd,New York,AZ,23129,36.84
+1048,986,2025-02-28,Completed,Bank Transfer,3964 Main Rd,San Jose,CA,91526,3.18
+1049,913,2024-05-29,Processing,Credit Card,5899 Cedar St,Los Angeles,TX,96019,12.69
+1050,953,2023-08-21,Shipped,Cash on Delivery,7342 Pine Rd,San Jose,AZ,66301,20.35
+1051,441,2024-02-20,Cancelled,Bank Transfer,6648 Maple Rd,Phoenix,CA,20411,14.37
+1052,483,2023-07-25,Shipped,Credit Card,3113 Oak St,Chicago,PA,27430,43.9
+1053,460,2023-03-15,Shipped,Bank Transfer,9766 Pine Ave,Houston,TX,81107,31.63
+1054,937,2023-06-08,Completed,Credit Card,1645 Pine Ln,Phoenix,NY,77239,19.05
+1055,221,2023-03-10,Shipped,PayPal,5204 Main Ln,Houston,AZ,32309,23.92
+1056,315,2025-02-18,Processing,Bank Transfer,3827 Oak Rd,Dallas,PA,26810,28.47
+1057,271,2025-01-18,Completed,PayPal,1054 Pine Blvd,New York,IL,44247,42.87
+1058,814,2024-11-20,Completed,Cash on Delivery,6718 Oak St,Los Angeles,TX,62085,23.29
+1059,177,2023-03-23,Cancelled,PayPal,7411 Cedar Blvd,San Diego,NY,32337,14.21
+1060,134,2023-05-15,Completed,Credit Card,5363 Oak Rd,New York,TX,44418,36.56
+1061,314,2024-03-17,Processing,Cash on Delivery,5801 Maple Ln,San Diego,AZ,30593,21.86
+1062,18,2023-07-09,Completed,Credit Card,4095 Cedar Ave,New York,TX,73547,43.34
+1063,578,2023-10-25,Processing,Cash on Delivery,4046 Oak Ln,Chicago,CA,93199,48.75
+1064,829,2024-06-01,Cancelled,Bank Transfer,1893 Main Ave,Houston,CA,64105,37.2
+1065,458,2024-06-27,Cancelled,Cash on Delivery,5355 Pine Ave,Philadelphia,NY,70177,49.74
+1066,664,2024-11-04,Shipped,Bank Transfer,4308 Maple Ave,San Diego,CA,31885,15.75
+1067,181,2024-11-09,Shipped,PayPal,776 Main Ave,San Diego,TX,52978,18.84
+1068,204,2024-05-14,Cancelled,PayPal,672 Cedar Ave,Philadelphia,TX,41334,16.08
+1069,467,2024-09-30,Shipped,Bank Transfer,3741 Cedar Blvd,Phoenix,IL,44328,44.43
+1070,332,2024-11-14,Completed,Cash on Delivery,4378 Main Blvd,Chicago,AZ,20915,17.81
+1071,977,2025-01-17,Processing,Bank Transfer,5980 Cedar Blvd,Dallas,PA,26241,24.62
+1072,881,2023-06-19,Cancelled,Bank Transfer,646 Cedar Rd,Los Angeles,CA,71881,29.76
+1073,243,2024-07-23,Processing,Bank Transfer,4561 Pine Ln,Philadelphia,TX,19498,7.54
+1074,164,2024-11-19,Processing,Credit Card,7371 Oak Blvd,Phoenix,AZ,85295,3.44
+1075,159,2023-12-23,Shipped,Cash on Delivery,4896 Pine Blvd,Houston,CA,43431,23.21
+1076,933,2024-10-16,Shipped,PayPal,5290 Main Rd,Chicago,TX,21924,1.41
+1077,731,2023-05-15,Cancelled,Cash on Delivery,2725 Cedar St,San Antonio,CA,14348,12.17
+1078,528,2025-02-26,Shipped,PayPal,2584 Oak Ln,Philadelphia,AZ,28481,8.33
+1079,201,2023-05-03,Shipped,Credit Card,6129 Maple St,Philadelphia,AZ,37421,35.11
+1080,300,2023-10-19,Shipped,Cash on Delivery,9351 Main Ave,San Antonio,TX,70708,42.47
+1081,250,2024-02-29,Processing,Bank Transfer,1872 Maple St,Phoenix,NY,65595,20.71
+1082,474,2023-12-06,Cancelled,Bank Transfer,3131 Cedar Rd,Philadelphia,AZ,46326,25.68
+1083,392,2023-11-27,Shipped,PayPal,7552 Cedar Rd,Chicago,TX,29491,46.38
+1084,472,2024-02-14,Completed,Credit Card,3749 Oak Ave,Dallas,PA,61857,11.34
+1085,752,2023-06-30,Processing,Bank Transfer,7976 Cedar Blvd,Houston,IL,84809,35.55
+1086,157,2024-11-10,Processing,Credit Card,7649 Maple Ave,San Antonio,CA,84238,24.55
+1087,863,2024-10-07,Cancelled,Cash on Delivery,6711 Cedar Rd,San Antonio,PA,35069,46.77
+1088,575,2024-11-26,Processing,Bank Transfer,8705 Oak St,San Antonio,CA,50145,47.47
+1089,357,2024-06-16,Processing,PayPal,3402 Pine St,Phoenix,TX,36590,14.18
+1090,733,2024-12-01,Completed,Credit Card,5174 Main Ln,Houston,PA,22070,34.77
+1091,509,2024-05-30,Completed,Cash on Delivery,6919 Oak Rd,Phoenix,AZ,59866,31.65
+1092,463,2024-07-23,Cancelled,Credit Card,6514 Cedar Blvd,Houston,TX,83011,14.75
+1093,597,2023-04-19,Cancelled,Credit Card,2277 Oak Blvd,Dallas,IL,23302,28.95
+1094,202,2024-04-09,Shipped,Credit Card,3565 Maple St,Phoenix,TX,22022,34.66
+1095,141,2023-10-02,Processing,Cash on Delivery,787 Maple Blvd,New York,CA,79017,30.77
+1096,115,2023-10-20,Processing,Credit Card,674 Cedar Blvd,Philadelphia,NY,93686,3.2
+1097,588,2024-03-18,Shipped,Cash on Delivery,7502 Main Ave,Houston,TX,62079,37.64
+1098,653,2024-10-14,Processing,PayPal,8202 Cedar Rd,Los Angeles,NY,10043,28.3
+1099,162,2023-11-04,Cancelled,Cash on Delivery,2617 Maple St,Los Angeles,IL,57273,40.9
+1100,568,2025-01-26,Processing,Cash on Delivery,3496 Cedar Ln,San Diego,TX,42675,3.45
+1101,495,2023-09-14,Processing,Bank Transfer,9089 Pine Rd,Dallas,TX,14108,32.76
+1102,417,2024-04-03,Cancelled,Cash on Delivery,8566 Oak Blvd,New York,IL,52069,20.19
+1103,50,2023-04-20,Processing,PayPal,6133 Main St,Houston,NY,14858,49.46
+1104,366,2024-06-20,Processing,Bank Transfer,1253 Cedar Ave,Philadelphia,TX,62024,31.43
+1105,706,2024-12-29,Completed,Cash on Delivery,2064 Oak Rd,San Antonio,TX,85859,23.61
+1106,956,2024-05-28,Completed,Cash on Delivery,3748 Maple Ln,Chicago,CA,58357,13.39
+1107,729,2024-06-01,Completed,Bank Transfer,7434 Main Blvd,San Antonio,CA,94189,48.03
+1108,555,2023-07-20,Shipped,PayPal,5920 Maple Ln,New York,NY,57220,28.01
+1109,753,2023-07-03,Completed,Credit Card,8150 Maple Rd,Dallas,NY,66796,14.72
+1110,853,2023-07-21,Completed,Cash on Delivery,6301 Main St,Los Angeles,CA,72319,42.59
+1111,386,2023-05-21,Shipped,Cash on Delivery,5251 Cedar Ln,San Antonio,TX,58441,8.47
+1112,403,2024-11-19,Cancelled,Cash on Delivery,8758 Cedar Blvd,Dallas,AZ,98619,0.23
+1113,92,2024-03-15,Processing,Bank Transfer,9153 Oak St,Phoenix,CA,31912,45.85
+1114,506,2024-03-28,Completed,Cash on Delivery,9666 Cedar Blvd,Philadelphia,TX,28018,47.38
+1115,748,2023-04-22,Shipped,Bank Transfer,143 Cedar Rd,Chicago,CA,42204,30.55
+1116,790,2025-03-05,Shipped,Credit Card,4969 Pine Rd,San Antonio,IL,53764,36.41
+1117,106,2024-10-05,Shipped,PayPal,9541 Cedar St,San Diego,TX,75992,33.87
+1118,748,2023-06-02,Cancelled,Credit Card,5884 Maple St,Dallas,PA,32326,21.87
+1119,243,2023-07-13,Processing,Cash on Delivery,9367 Cedar Rd,New York,AZ,13798,30.27
+1120,544,2024-03-21,Shipped,Credit Card,2327 Pine Ln,San Jose,AZ,66815,14.39
+1121,105,2023-07-26,Shipped,Credit Card,9961 Maple Ave,Dallas,NY,16430,14.92
+1122,331,2023-10-07,Processing,PayPal,6539 Main Ln,Dallas,IL,60708,31.5
+1123,135,2024-06-19,Cancelled,PayPal,5490 Main St,Houston,IL,97382,1.86
+1124,735,2024-11-25,Processing,Bank Transfer,5340 Oak Ave,Phoenix,NY,99245,16.98
+1125,351,2024-03-09,Cancelled,Credit Card,8495 Oak Rd,San Antonio,CA,13952,23.79
+1126,93,2024-11-20,Completed,Bank Transfer,1568 Oak Ave,Chicago,TX,70112,31.39
+1127,519,2025-01-23,Shipped,Credit Card,6914 Maple Rd,New York,NY,23448,38.32
+1128,711,2024-11-20,Completed,PayPal,2658 Main Ave,Los Angeles,CA,16983,16.54
+1129,401,2023-10-22,Cancelled,Credit Card,4711 Main Ln,Chicago,CA,97821,20.93
+1130,980,2023-09-09,Shipped,Cash on Delivery,7964 Main Ln,Phoenix,TX,76229,7.99
+1131,735,2023-05-25,Shipped,Bank Transfer,9291 Oak Rd,Philadelphia,NY,82169,47.64
+1132,239,2023-09-04,Completed,PayPal,4848 Main Rd,Houston,TX,75013,3.37
+1133,192,2023-12-08,Processing,PayPal,5194 Main Ln,Chicago,TX,33320,18.47
+1134,41,2023-12-18,Cancelled,Credit Card,5371 Maple Ave,Los Angeles,CA,23362,19.99
+1135,963,2025-02-15,Shipped,Cash on Delivery,6258 Cedar St,San Diego,CA,63240,41.89
+1136,124,2023-07-11,Processing,Cash on Delivery,5424 Maple Blvd,San Antonio,IL,50482,19.37
+1137,840,2023-07-12,Shipped,Bank Transfer,4115 Main Ln,Phoenix,TX,79966,41.17
+1138,871,2024-06-21,Completed,Bank Transfer,4423 Oak Ave,Houston,CA,72126,7.89
+1139,346,2023-04-02,Processing,Cash on Delivery,1988 Maple Rd,San Diego,TX,27097,17.2
+1140,390,2024-06-11,Completed,Cash on Delivery,3476 Main Rd,Dallas,AZ,27544,22.59
+1141,753,2024-03-08,Processing,Credit Card,6542 Cedar Ln,Dallas,CA,21853,22.76
+1142,737,2025-02-13,Shipped,Cash on Delivery,4765 Main St,Philadelphia,TX,12111,11.06
+1143,874,2023-12-20,Shipped,PayPal,4303 Maple Blvd,Houston,TX,30283,8.53
+1144,955,2023-09-11,Cancelled,Bank Transfer,7074 Cedar Ln,Dallas,TX,40316,9.87
+1145,673,2023-06-15,Cancelled,Bank Transfer,4428 Main Rd,Chicago,CA,34731,41.61
+1146,228,2023-09-24,Cancelled,PayPal,7721 Oak Ave,San Jose,TX,31372,6.34
+1147,33,2023-09-19,Completed,Cash on Delivery,5939 Maple Blvd,San Jose,AZ,55968,5.78
+1148,567,2024-11-30,Processing,Cash on Delivery,292 Cedar Blvd,Chicago,CA,51991,25.91
+1149,724,2024-07-25,Completed,Cash on Delivery,3300 Main St,Philadelphia,AZ,35966,4.6
+1150,401,2024-02-01,Processing,Cash on Delivery,6251 Pine Ave,Houston,CA,71891,28.12
+1151,1,2024-12-31,Shipped,Bank Transfer,6204 Maple St,Los Angeles,NY,71336,39.72
+1152,797,2024-09-01,Cancelled,Cash on Delivery,188 Pine Rd,Chicago,AZ,49136,2.79
+1153,462,2023-12-26,Processing,Cash on Delivery,534 Main Blvd,Houston,PA,38415,8.38
+1154,164,2024-12-10,Shipped,Bank Transfer,1382 Oak Ave,New York,NY,11699,8.93
+1155,733,2024-08-09,Processing,Bank Transfer,999 Main St,Dallas,PA,41489,30.85
+1156,502,2024-06-01,Processing,PayPal,7945 Oak Ave,San Diego,TX,58807,18.59
+1157,85,2025-01-26,Completed,Credit Card,546 Cedar St,Philadelphia,TX,12572,47.36
+1158,878,2024-03-22,Shipped,Cash on Delivery,951 Cedar Blvd,San Diego,IL,20491,13.27
+1159,198,2024-02-27,Processing,Bank Transfer,2752 Oak Ave,San Jose,CA,14871,42.56
+1160,756,2025-01-20,Shipped,Credit Card,9885 Main Blvd,Chicago,IL,66708,5.15
+1161,699,2024-01-07,Shipped,Cash on Delivery,5955 Cedar Blvd,Los Angeles,AZ,12855,28.45
+1162,563,2025-02-09,Shipped,PayPal,3070 Main Rd,Philadelphia,CA,37460,3.98
+1163,773,2024-07-13,Processing,Bank Transfer,1654 Maple Ave,Houston,PA,55881,35.94
+1164,208,2023-07-29,Processing,Cash on Delivery,2611 Cedar Rd,Houston,TX,42409,13.18
+1165,520,2024-02-01,Shipped,Cash on Delivery,6053 Main Ln,New York,NY,68554,0.83
+1166,705,2024-03-03,Processing,Bank Transfer,8580 Cedar Ave,Houston,NY,61242,14.81
+1167,205,2023-07-21,Cancelled,Credit Card,1012 Cedar Ave,New York,TX,43290,23.33
+1168,226,2023-12-14,Completed,Bank Transfer,9728 Cedar Ave,San Diego,AZ,64880,18.7
+1169,440,2024-01-25,Shipped,PayPal,684 Main Blvd,Phoenix,TX,40438,47.51
+1170,169,2025-01-21,Processing,Cash on Delivery,9062 Pine St,Dallas,TX,49854,30.11
+1171,158,2023-10-21,Completed,PayPal,9822 Maple Ave,San Jose,TX,36575,25.48
+1172,314,2024-04-12,Shipped,Cash on Delivery,3984 Maple Rd,Phoenix,TX,36154,35.28
+1173,987,2025-01-15,Shipped,Bank Transfer,7877 Main Ave,Los Angeles,CA,88247,23.73
+1174,806,2023-09-02,Completed,PayPal,5786 Pine Ave,San Diego,CA,56081,39.6
+1175,279,2025-02-24,Cancelled,Credit Card,2111 Maple Ave,San Diego,AZ,36540,34.55
+1176,535,2024-07-16,Completed,PayPal,8620 Maple Ave,Philadelphia,TX,69651,43.28
+1177,568,2023-06-25,Shipped,PayPal,9822 Maple Ave,Houston,CA,43035,47.94
+1178,835,2023-08-13,Completed,Bank Transfer,9221 Oak Ln,San Antonio,TX,73279,5.09
+1179,149,2024-01-06,Cancelled,PayPal,2068 Maple Ln,Dallas,AZ,29355,4.89
+1180,123,2023-12-21,Cancelled,Credit Card,3415 Main St,Chicago,TX,95377,25.61
+1181,197,2024-02-10,Shipped,Cash on Delivery,7279 Oak Blvd,Philadelphia,TX,57464,0.4
+1182,404,2024-08-18,Cancelled,Credit Card,4592 Oak Rd,Chicago,CA,29242,32.39
+1183,739,2024-09-08,Shipped,Cash on Delivery,9543 Pine St,San Antonio,AZ,41190,33.85
+1184,712,2023-08-08,Completed,Credit Card,1237 Main Ave,San Jose,CA,12471,11.14
+1185,381,2024-11-28,Shipped,Bank Transfer,4320 Cedar Ave,Dallas,TX,20231,9.84
+1186,777,2024-04-10,Shipped,PayPal,3310 Cedar Blvd,Houston,PA,90722,19.04
+1187,592,2025-02-05,Shipped,Cash on Delivery,6365 Maple Ave,San Diego,PA,27926,25.82
+1188,66,2024-03-18,Processing,Credit Card,7590 Cedar Ln,San Diego,CA,69939,29.0
+1189,276,2024-03-11,Shipped,Credit Card,4032 Main Rd,Los Angeles,TX,11895,24.97
+1190,932,2024-07-31,Shipped,Bank Transfer,7125 Maple Blvd,Dallas,CA,82341,7.93
+1191,460,2024-11-24,Shipped,Bank Transfer,566 Oak St,New York,CA,80393,19.03
+1192,952,2024-12-14,Processing,PayPal,3863 Maple Rd,Philadelphia,NY,85101,21.47
+1193,564,2023-10-20,Processing,PayPal,5973 Main Ave,Chicago,TX,78030,29.13
+1194,821,2023-03-25,Shipped,PayPal,3383 Maple Blvd,Houston,TX,93968,4.35
+1195,323,2024-02-14,Cancelled,Cash on Delivery,7241 Oak Ln,New York,TX,40516,4.94
+1196,264,2023-04-14,Cancelled,Bank Transfer,1206 Cedar Rd,Philadelphia,IL,47778,29.58
+1197,773,2024-07-23,Shipped,Credit Card,361 Cedar St,Los Angeles,TX,35778,29.53
+1198,388,2023-07-19,Completed,Credit Card,1491 Cedar Blvd,Chicago,CA,18432,36.4
+1199,268,2025-02-05,Processing,Bank Transfer,6038 Oak Rd,San Antonio,CA,14312,8.05
+1200,703,2024-04-23,Shipped,Bank Transfer,1843 Maple Rd,Dallas,AZ,97043,36.51
+1201,955,2024-09-27,Shipped,PayPal,5277 Cedar Ln,New York,IL,50083,13.81
+1202,771,2023-10-05,Completed,Bank Transfer,5344 Cedar Ln,New York,CA,30305,35.15
+1203,702,2024-08-09,Processing,Cash on Delivery,401 Pine Blvd,Houston,TX,18206,23.91
+1204,824,2024-01-26,Shipped,Bank Transfer,7607 Main Rd,San Jose,CA,48085,26.29
+1205,43,2024-01-05,Processing,Credit Card,5241 Main Rd,Los Angeles,TX,85980,41.47
+1206,853,2023-09-16,Completed,Credit Card,2842 Oak Ln,Philadelphia,AZ,19606,49.33
+1207,437,2025-02-17,Shipped,Cash on Delivery,6552 Maple Ave,San Diego,AZ,70594,12.34
+1208,157,2023-08-07,Processing,PayPal,9765 Cedar Blvd,Phoenix,TX,75000,15.97
+1209,819,2024-11-26,Cancelled,Credit Card,2070 Cedar Rd,San Diego,NY,73932,16.91
+1210,198,2024-03-20,Processing,Cash on Delivery,388 Cedar Ave,San Jose,CA,90384,41.43
+1211,152,2024-01-10,Processing,Bank Transfer,2343 Pine Rd,Los Angeles,IL,96784,17.17
+1212,349,2023-07-20,Cancelled,PayPal,9204 Pine Rd,Philadelphia,CA,49215,40.85
+1213,324,2024-08-14,Shipped,Bank Transfer,9683 Maple Ave,New York,PA,33872,3.45
+1214,816,2024-03-31,Completed,PayPal,7327 Maple Ln,San Antonio,TX,91120,1.64
+1215,690,2023-10-15,Shipped,Credit Card,3873 Cedar Ave,San Diego,CA,12261,23.5
+1216,613,2024-01-04,Completed,Bank Transfer,3556 Maple St,Philadelphia,TX,26377,21.17
+1217,386,2023-07-03,Cancelled,Credit Card,6913 Oak Ln,San Diego,NY,45237,1.91
+1218,339,2023-11-16,Completed,Bank Transfer,9767 Pine Ln,Los Angeles,CA,48425,2.56
+1219,990,2024-11-28,Completed,Cash on Delivery,418 Main Blvd,New York,TX,27057,16.69
+1220,535,2023-05-01,Processing,Bank Transfer,8765 Pine Ln,San Antonio,TX,12171,46.21
+1221,729,2024-11-02,Cancelled,Credit Card,5845 Cedar Ln,Los Angeles,TX,94514,12.24
+1222,631,2023-08-27,Processing,PayPal,1500 Oak Blvd,Dallas,CA,70118,4.91
+1223,121,2024-09-29,Processing,Cash on Delivery,6886 Pine Blvd,Philadelphia,CA,86883,18.84
+1224,462,2024-11-14,Shipped,Cash on Delivery,9473 Main St,Philadelphia,CA,41644,48.77
+1225,278,2024-07-28,Completed,Bank Transfer,3483 Pine Blvd,Los Angeles,TX,47252,10.52
+1226,261,2023-07-24,Completed,PayPal,8891 Cedar Ln,San Jose,IL,95373,1.95
+1227,333,2024-06-29,Processing,Bank Transfer,6893 Main Rd,Phoenix,CA,66720,47.26
+1228,899,2023-11-16,Completed,PayPal,7968 Cedar St,San Diego,NY,65551,42.67
+1229,662,2023-05-16,Cancelled,Bank Transfer,5035 Oak St,San Antonio,NY,68813,4.32
+1230,557,2023-12-23,Cancelled,Bank Transfer,3849 Main Ln,Dallas,TX,74446,23.13
+1231,285,2025-01-16,Cancelled,PayPal,6269 Maple St,New York,TX,66296,8.72
+1232,449,2023-10-09,Cancelled,Cash on Delivery,3300 Pine Ave,Los Angeles,TX,46343,28.78
+1233,743,2023-09-25,Completed,Bank Transfer,5259 Maple Rd,Houston,CA,84529,27.64
+1234,198,2024-07-02,Completed,Credit Card,6904 Oak Blvd,Chicago,CA,41252,7.45
+1235,916,2023-03-13,Completed,Bank Transfer,2709 Oak Rd,Dallas,AZ,93053,24.81
+1236,56,2024-01-18,Cancelled,Cash on Delivery,8654 Oak Ave,Dallas,AZ,57346,5.26
+1237,465,2024-10-19,Processing,Cash on Delivery,9555 Maple Rd,Chicago,TX,50420,19.3
+1238,984,2024-10-26,Cancelled,PayPal,6505 Pine St,San Antonio,CA,44226,29.57
+1239,633,2025-02-05,Shipped,Bank Transfer,3979 Oak Ave,San Jose,PA,12428,33.54
+1240,563,2024-10-14,Completed,PayPal,3188 Maple Ave,San Diego,IL,61273,42.0
+1241,930,2024-11-16,Completed,PayPal,3811 Cedar Rd,Dallas,TX,53785,38.46
+1242,95,2023-05-22,Shipped,Credit Card,2351 Oak St,Phoenix,PA,59801,25.38
+1243,627,2023-03-23,Completed,Credit Card,6895 Pine Ave,San Antonio,TX,35073,24.75
+1244,928,2023-05-18,Shipped,PayPal,7752 Maple Rd,San Jose,PA,74906,2.96
+1245,425,2024-12-11,Cancelled,Cash on Delivery,2031 Pine St,San Antonio,AZ,38638,38.89
+1246,3,2025-02-11,Shipped,PayPal,6880 Main Ave,Chicago,IL,91998,9.14
+1247,532,2024-05-29,Processing,Bank Transfer,7924 Cedar Ln,San Diego,CA,25323,24.97
+1248,949,2024-08-24,Completed,Cash on Delivery,1806 Main Rd,San Diego,CA,67486,20.37
+1249,821,2023-09-18,Processing,Credit Card,8593 Pine Ln,San Diego,CA,65766,35.67
+1250,992,2024-02-17,Shipped,Bank Transfer,5777 Pine Blvd,Phoenix,CA,56713,18.65
+1251,6,2023-07-23,Cancelled,Cash on Delivery,5896 Cedar Rd,New York,IL,38442,30.23
+1252,59,2023-11-08,Completed,Credit Card,6785 Pine Blvd,Chicago,PA,87649,25.25
+1253,812,2023-10-13,Completed,PayPal,3016 Pine St,San Antonio,TX,93722,10.31
+1254,873,2024-05-06,Shipped,Cash on Delivery,2675 Cedar St,San Jose,IL,29960,48.59
+1255,807,2023-11-07,Cancelled,Bank Transfer,5742 Pine St,Los Angeles,TX,98207,43.76
+1256,22,2023-08-31,Cancelled,Credit Card,1000 Cedar St,New York,CA,71202,27.87
+1257,190,2023-08-07,Processing,Credit Card,2814 Oak St,Dallas,CA,38507,7.53
+1258,682,2024-04-28,Processing,Bank Transfer,7431 Pine Rd,Philadelphia,TX,42491,4.12
+1259,695,2024-01-04,Completed,Bank Transfer,6661 Main St,Phoenix,NY,87858,17.05
+1260,334,2023-04-16,Cancelled,Credit Card,1213 Maple Rd,San Antonio,PA,99444,34.94
+1261,114,2024-01-27,Processing,PayPal,9081 Oak Ln,Philadelphia,CA,98215,37.53
+1262,115,2023-06-08,Completed,PayPal,7024 Pine Ave,San Diego,TX,26986,7.49
+1263,567,2023-10-24,Cancelled,Cash on Delivery,7995 Oak Ln,Los Angeles,TX,21526,34.89
+1264,701,2023-11-10,Cancelled,Bank Transfer,1966 Maple St,New York,NY,24725,13.79
+1265,669,2024-09-13,Processing,PayPal,385 Main Rd,San Diego,CA,95366,35.25
+1266,440,2024-10-31,Cancelled,PayPal,4064 Main Ln,Chicago,NY,11016,47.5
+1267,137,2024-09-02,Completed,Credit Card,1613 Cedar Rd,Los Angeles,CA,95878,2.71
+1268,797,2023-08-29,Processing,PayPal,5587 Maple Ln,San Antonio,TX,84747,36.96
+1269,162,2024-10-12,Shipped,Bank Transfer,1905 Oak Rd,San Antonio,IL,49211,3.36
+1270,74,2023-12-26,Completed,Bank Transfer,7610 Main Blvd,San Antonio,TX,52112,42.73
+1271,937,2023-12-13,Completed,PayPal,9767 Main Ave,Los Angeles,CA,66469,41.91
+1272,664,2024-09-24,Processing,PayPal,9492 Maple Blvd,Phoenix,TX,41203,13.29
+1273,345,2024-08-25,Cancelled,Cash on Delivery,6779 Cedar St,San Jose,CA,90600,34.18
+1274,839,2024-07-21,Cancelled,Credit Card,9226 Pine Rd,Los Angeles,TX,86226,9.95
+1275,71,2024-02-26,Cancelled,Bank Transfer,8413 Maple St,Phoenix,TX,46551,38.05
+1276,199,2025-02-21,Processing,PayPal,4497 Main Ln,Chicago,CA,25597,22.0
+1277,90,2024-07-01,Shipped,Cash on Delivery,965 Oak St,Los Angeles,CA,81000,16.54
+1278,392,2023-08-06,Cancelled,Credit Card,3008 Main St,Phoenix,TX,49916,25.73
+1279,802,2024-01-27,Cancelled,Bank Transfer,2191 Main St,Los Angeles,TX,61314,48.98
+1280,157,2024-04-25,Shipped,PayPal,3980 Oak Rd,Phoenix,NY,24109,17.3
+1281,65,2024-05-06,Processing,PayPal,2774 Maple St,Houston,CA,45041,26.86
+1282,922,2024-08-14,Cancelled,Bank Transfer,7232 Pine Ave,Chicago,TX,30562,43.44
+1283,733,2023-08-06,Processing,Credit Card,6946 Main St,Dallas,PA,86981,24.43
+1284,252,2023-04-23,Shipped,Cash on Delivery,6255 Oak Ln,Philadelphia,TX,61667,17.74
+1285,395,2023-11-16,Completed,PayPal,6824 Main Ln,Dallas,CA,91010,36.7
+1286,920,2023-05-17,Shipped,Cash on Delivery,8193 Pine Ln,Houston,CA,82557,33.44
+1287,990,2024-09-07,Processing,Cash on Delivery,6143 Cedar Ln,San Jose,CA,16294,34.34
+1288,590,2024-12-23,Cancelled,Cash on Delivery,269 Oak Ave,Phoenix,NY,14312,25.42
+1289,635,2024-02-29,Completed,Cash on Delivery,4802 Cedar St,Phoenix,CA,57105,34.9
+1290,698,2023-08-19,Completed,Credit Card,7360 Cedar Ave,San Diego,IL,71250,14.14
+1291,539,2024-02-14,Cancelled,Cash on Delivery,2390 Pine Ave,Houston,TX,80491,28.74
+1292,730,2023-07-22,Completed,Bank Transfer,9969 Pine Rd,Houston,AZ,54669,8.67
+1293,419,2024-08-28,Completed,Credit Card,8686 Maple Ln,Houston,CA,58357,22.58
+1294,476,2023-04-25,Cancelled,PayPal,3914 Oak Ln,Chicago,IL,55217,6.12
+1295,514,2023-03-30,Processing,Bank Transfer,7409 Main St,Los Angeles,NY,93601,25.48
+1296,926,2023-09-17,Shipped,Cash on Delivery,5602 Maple St,Los Angeles,PA,95800,0.76
+1297,292,2024-01-02,Cancelled,PayPal,3299 Main Ln,New York,CA,32725,47.36
+1298,396,2024-03-28,Shipped,Credit Card,944 Oak Ave,Phoenix,TX,98844,8.66
+1299,623,2025-03-05,Completed,Bank Transfer,4845 Main Blvd,San Jose,AZ,48085,11.17
+1300,634,2023-07-19,Processing,Credit Card,474 Pine Blvd,Chicago,PA,94060,3.7
+1301,467,2024-06-04,Processing,Bank Transfer,7223 Cedar Rd,Los Angeles,CA,68511,48.96
+1302,575,2024-07-11,Cancelled,Bank Transfer,3053 Pine Ln,New York,NY,44070,18.08
+1303,52,2023-08-16,Completed,Bank Transfer,5463 Pine Rd,Chicago,TX,11804,23.66
+1304,183,2023-04-03,Cancelled,Credit Card,4240 Pine Rd,San Antonio,TX,50748,1.18
+1305,395,2024-08-18,Processing,PayPal,8611 Oak St,Philadelphia,TX,11822,16.04
+1306,646,2023-03-31,Cancelled,Bank Transfer,5468 Cedar Ave,Los Angeles,CA,86752,31.32
+1307,942,2023-03-18,Completed,Bank Transfer,603 Pine Rd,San Jose,TX,29924,19.64
+1308,318,2023-07-19,Cancelled,Bank Transfer,3695 Maple St,Philadelphia,AZ,36162,11.02
+1309,495,2023-06-05,Shipped,Credit Card,4617 Cedar Rd,Philadelphia,CA,64349,43.72
+1310,985,2023-05-22,Processing,Bank Transfer,1947 Pine Rd,Phoenix,TX,61721,45.27
+1311,115,2024-03-17,Completed,Cash on Delivery,9002 Oak Rd,San Antonio,IL,96297,24.85
+1312,175,2024-10-16,Processing,Cash on Delivery,3809 Pine Ave,San Antonio,TX,63206,24.87
+1313,234,2023-09-22,Cancelled,PayPal,9306 Cedar Ave,San Diego,NY,78873,33.95
+1314,536,2024-08-24,Shipped,Credit Card,1111 Cedar St,New York,TX,40694,30.83
+1315,973,2024-04-02,Processing,Cash on Delivery,3252 Main Blvd,Chicago,NY,48151,16.15
+1316,682,2023-11-08,Completed,Bank Transfer,2153 Pine Ave,New York,IL,25254,2.21
+1317,448,2024-03-15,Processing,Credit Card,7381 Main St,San Diego,CA,43700,22.34
+1318,399,2023-11-25,Completed,PayPal,8629 Main Ave,Houston,CA,61163,19.59
+1319,233,2023-11-06,Completed,PayPal,9476 Main Rd,San Diego,CA,91698,13.98
+1320,348,2023-08-25,Processing,Credit Card,2210 Pine Ave,San Antonio,PA,96443,5.95
+1321,295,2024-09-16,Completed,Credit Card,5072 Main St,New York,TX,19831,43.74
+1322,8,2025-03-04,Processing,Credit Card,2710 Oak Ln,Philadelphia,TX,22158,19.33
+1323,740,2023-12-02,Processing,Cash on Delivery,6820 Cedar St,Los Angeles,TX,37787,10.19
+1324,302,2023-09-22,Shipped,Cash on Delivery,6173 Main Blvd,New York,NY,76015,23.98
+1325,624,2024-11-23,Cancelled,Cash on Delivery,8979 Cedar Rd,Los Angeles,CA,50599,10.4
+1326,946,2024-04-23,Processing,Credit Card,446 Maple Rd,Phoenix,NY,65729,35.91
+1327,733,2024-06-07,Completed,PayPal,1177 Cedar St,San Diego,IL,32575,49.58
+1328,884,2024-04-01,Shipped,Bank Transfer,4790 Maple Ave,Chicago,TX,95997,11.26
+1329,95,2023-06-13,Cancelled,Cash on Delivery,7689 Oak St,Dallas,TX,75135,28.81
+1330,57,2023-07-01,Completed,Bank Transfer,2081 Cedar Blvd,Phoenix,AZ,15717,44.79
+1331,309,2024-04-14,Cancelled,Cash on Delivery,3647 Main Ave,San Diego,AZ,84341,10.03
+1332,351,2023-05-25,Processing,PayPal,5127 Maple Rd,Houston,AZ,17645,25.46
+1333,69,2023-03-16,Shipped,PayPal,8631 Main Ln,Dallas,CA,73741,3.41
+1334,354,2023-07-01,Processing,Credit Card,1786 Main Ave,Houston,TX,98651,43.07
+1335,784,2024-11-21,Shipped,Cash on Delivery,6428 Pine St,Chicago,CA,94243,44.28
+1336,759,2024-03-26,Processing,PayPal,4166 Pine Rd,Chicago,NY,20520,6.36
+1337,639,2024-11-02,Completed,PayPal,2299 Pine Blvd,Dallas,IL,14938,8.14
+1338,868,2023-12-16,Processing,Cash on Delivery,2496 Maple Ln,Phoenix,TX,71216,44.9
+1339,773,2024-07-18,Shipped,Bank Transfer,3211 Pine Blvd,Los Angeles,TX,23879,44.42
+1340,952,2024-02-02,Completed,Cash on Delivery,5267 Cedar Blvd,Los Angeles,AZ,45281,23.13
+1341,482,2023-12-18,Cancelled,Bank Transfer,8395 Oak St,San Diego,CA,75482,47.42
+1342,67,2024-09-18,Completed,Bank Transfer,931 Cedar St,Chicago,TX,56273,19.63
+1343,235,2025-02-03,Completed,Credit Card,1340 Pine Ln,San Diego,AZ,48615,30.73
+1344,289,2024-03-01,Processing,Bank Transfer,9580 Cedar Blvd,Chicago,PA,31336,10.25
+1345,439,2025-02-03,Processing,PayPal,8966 Pine Ln,San Antonio,NY,55016,49.64
+1346,11,2024-12-10,Cancelled,Credit Card,7849 Cedar Blvd,Phoenix,CA,24611,22.69
+1347,984,2024-10-09,Completed,Credit Card,5780 Oak Blvd,Houston,TX,13400,31.13
+1348,775,2024-05-25,Completed,PayPal,8057 Maple Ave,Dallas,IL,16078,40.98
+1349,598,2024-09-23,Shipped,Credit Card,1481 Main Rd,San Diego,CA,85249,43.3
+1350,977,2023-04-16,Cancelled,PayPal,7151 Maple Blvd,Philadelphia,NY,11595,44.98
+1351,198,2024-04-05,Completed,Bank Transfer,4271 Cedar St,Houston,CA,11024,23.04
+1352,435,2023-11-15,Completed,Bank Transfer,5821 Oak Ln,Philadelphia,PA,36507,47.6
+1353,304,2023-10-09,Shipped,PayPal,1862 Cedar Ave,San Antonio,PA,52450,38.74
+1354,605,2024-07-27,Processing,Credit Card,2154 Maple Ln,New York,PA,80989,23.87
+1355,315,2023-04-02,Cancelled,Cash on Delivery,9357 Maple Ln,Philadelphia,TX,21543,26.27
+1356,766,2023-07-03,Completed,Credit Card,6081 Main Ln,Philadelphia,TX,59872,24.13
+1357,305,2024-10-28,Processing,PayPal,1668 Main Ave,Los Angeles,IL,89124,7.89
+1358,904,2023-12-16,Cancelled,Credit Card,9356 Pine Ln,Phoenix,TX,63479,24.57
+1359,395,2024-04-20,Shipped,Credit Card,3231 Pine Blvd,New York,NY,32164,9.88
+1360,994,2023-12-25,Completed,PayPal,7815 Oak Ln,Philadelphia,CA,91599,19.75
+1361,185,2024-11-06,Processing,Credit Card,6373 Main Blvd,Chicago,AZ,71511,2.47
+1362,324,2024-07-16,Cancelled,Bank Transfer,8509 Oak Rd,Chicago,CA,68477,47.32
+1363,493,2023-05-17,Cancelled,Cash on Delivery,8700 Pine Ave,Houston,TX,91394,42.17
+1364,605,2024-09-27,Processing,Bank Transfer,8738 Maple Rd,Philadelphia,AZ,41125,10.3
+1365,759,2024-01-06,Shipped,Cash on Delivery,6819 Cedar Ave,Philadelphia,CA,20327,17.48
+1366,251,2024-02-24,Shipped,Credit Card,5792 Cedar Ave,New York,AZ,30883,19.33
+1367,123,2024-03-01,Processing,Credit Card,7577 Maple Ln,Los Angeles,CA,86384,22.12
+1368,321,2023-12-19,Shipped,Cash on Delivery,5365 Cedar St,Houston,CA,20495,33.11
+1369,986,2023-09-25,Shipped,Cash on Delivery,4451 Maple Blvd,Chicago,TX,98031,14.99
+1370,18,2025-03-02,Completed,Credit Card,8230 Main Blvd,Los Angeles,PA,87819,49.37
+1371,550,2024-03-05,Completed,Cash on Delivery,103 Oak Ln,Los Angeles,AZ,87614,3.86
+1372,652,2023-11-04,Cancelled,Bank Transfer,1369 Maple Ave,San Antonio,NY,77427,15.07
+1373,967,2023-04-09,Shipped,Bank Transfer,4220 Main Ave,San Jose,TX,17348,36.03
+1374,253,2023-04-09,Shipped,Credit Card,9886 Cedar Blvd,San Antonio,TX,73846,0.82
+1375,735,2023-07-26,Cancelled,Bank Transfer,5274 Oak Ln,New York,AZ,17388,3.75
+1376,992,2024-03-17,Shipped,Cash on Delivery,3706 Oak Ln,Chicago,TX,22838,47.06
+1377,246,2024-06-19,Shipped,Cash on Delivery,2757 Cedar Blvd,Phoenix,NY,77708,5.73
+1378,528,2023-08-31,Shipped,PayPal,2522 Pine Ave,Philadelphia,IL,34993,11.9
+1379,478,2023-09-26,Cancelled,Bank Transfer,8175 Main St,Chicago,CA,55758,20.52
+1380,888,2024-11-26,Processing,PayPal,9997 Main St,New York,CA,48744,25.22
+1381,627,2023-04-29,Processing,PayPal,8143 Cedar Blvd,Chicago,CA,61052,1.99
+1382,487,2025-02-01,Shipped,Bank Transfer,7944 Main Blvd,San Diego,PA,40079,42.6
+1383,110,2023-10-26,Cancelled,Bank Transfer,1404 Oak Blvd,San Antonio,TX,97207,48.73
+1384,398,2024-05-03,Processing,PayPal,4645 Main Blvd,New York,CA,10071,21.71
+1385,486,2023-11-03,Processing,PayPal,761 Cedar Ave,Philadelphia,IL,26040,44.23
+1386,136,2024-09-18,Shipped,Cash on Delivery,5568 Oak Blvd,Dallas,CA,95693,37.21
+1387,706,2024-03-11,Completed,Bank Transfer,4790 Maple Blvd,Chicago,CA,61709,25.21
+1388,203,2024-06-07,Shipped,Bank Transfer,3153 Maple Ln,Houston,TX,71395,6.54
+1389,948,2024-02-01,Completed,Cash on Delivery,9796 Oak Rd,San Diego,CA,26368,33.35
+1390,618,2024-12-26,Completed,Bank Transfer,5492 Maple Ln,San Jose,TX,59585,6.03
+1391,856,2024-12-17,Shipped,Credit Card,6016 Pine Ln,Philadelphia,TX,21636,12.0
+1392,169,2024-11-22,Shipped,Credit Card,2854 Oak Rd,Houston,CA,12841,10.18
+1393,421,2024-09-03,Processing,Credit Card,7620 Cedar St,Los Angeles,NY,91749,15.33
+1394,269,2023-08-02,Shipped,Cash on Delivery,9678 Oak Ln,Philadelphia,CA,56152,8.84
+1395,165,2023-11-11,Processing,Bank Transfer,1690 Main Rd,Phoenix,IL,17613,1.2
+1396,676,2024-12-31,Cancelled,PayPal,7620 Main Rd,San Jose,PA,26204,3.15
+1397,1000,2023-09-30,Processing,Credit Card,9421 Main Ave,Dallas,AZ,51357,45.17
+1398,304,2025-02-24,Completed,Cash on Delivery,7498 Oak St,Chicago,TX,95191,13.18
+1399,537,2024-04-22,Processing,PayPal,6719 Cedar Ln,Los Angeles,TX,85595,44.39
+1400,813,2023-11-19,Processing,Credit Card,5477 Cedar Ln,Dallas,TX,35105,30.03
+1401,778,2024-11-16,Completed,Bank Transfer,7101 Main Ln,San Jose,TX,37462,40.76
+1402,752,2023-08-20,Processing,Bank Transfer,4176 Main Blvd,Los Angeles,TX,70018,20.36
+1403,558,2023-06-12,Cancelled,Credit Card,7837 Pine Ave,New York,CA,75302,17.9
+1404,409,2024-06-06,Processing,PayPal,522 Oak Blvd,San Jose,PA,83110,30.76
+1405,265,2023-03-15,Shipped,Cash on Delivery,3696 Pine Ln,Dallas,PA,85888,28.91
+1406,917,2023-03-18,Shipped,Cash on Delivery,8363 Main Rd,San Jose,TX,12696,49.89
+1407,408,2023-03-30,Shipped,Credit Card,1957 Pine Blvd,Philadelphia,CA,30698,44.45
+1408,567,2024-11-18,Processing,PayPal,2494 Oak St,New York,TX,54614,11.55
+1409,767,2023-03-12,Cancelled,Credit Card,3781 Main Blvd,Phoenix,NY,99948,45.63
+1410,922,2023-07-05,Completed,PayPal,9884 Oak St,Houston,IL,70138,22.17
+1411,589,2024-06-28,Cancelled,Bank Transfer,170 Oak Rd,Dallas,TX,72032,8.02
+1412,918,2023-10-10,Processing,Credit Card,3099 Main Blvd,San Diego,CA,47646,3.27
+1413,578,2023-11-24,Processing,Credit Card,6177 Pine Blvd,Dallas,CA,37246,20.45
+1414,417,2023-09-13,Processing,Cash on Delivery,6375 Pine Blvd,New York,IL,97277,38.87
+1415,783,2024-01-23,Cancelled,PayPal,2940 Maple Rd,Houston,PA,66360,46.69
+1416,847,2023-08-25,Completed,Credit Card,961 Oak Ln,Los Angeles,CA,11848,15.52
+1417,587,2024-12-29,Shipped,Cash on Delivery,5878 Oak St,San Jose,CA,76571,17.0
+1418,359,2024-02-29,Completed,Credit Card,2255 Pine Ave,San Antonio,TX,33752,32.15
+1419,859,2023-10-27,Cancelled,PayPal,406 Maple Rd,Dallas,IL,19402,2.49
+1420,328,2024-02-27,Shipped,Cash on Delivery,8665 Pine Ave,San Jose,TX,47453,39.34
+1421,346,2024-10-02,Cancelled,PayPal,6439 Cedar Ln,San Jose,CA,91481,27.71
+1422,835,2024-01-24,Shipped,Credit Card,4424 Main Rd,Philadelphia,TX,69021,38.3
+1423,63,2023-03-30,Cancelled,Bank Transfer,5694 Main Ln,Los Angeles,CA,81714,47.05
+1424,713,2023-10-03,Processing,Cash on Delivery,3452 Main Blvd,Los Angeles,IL,75714,11.98
+1425,347,2023-04-19,Cancelled,PayPal,7245 Main Rd,New York,TX,95450,42.17
+1426,148,2024-01-31,Completed,Bank Transfer,9832 Maple Ave,Philadelphia,TX,85769,33.43
+1427,919,2023-05-23,Processing,PayPal,8112 Pine Rd,San Diego,TX,90069,3.32
+1428,264,2023-09-09,Cancelled,Bank Transfer,9770 Maple Ln,Phoenix,TX,85541,46.25
+1429,733,2024-01-03,Completed,Cash on Delivery,4559 Cedar Ave,San Diego,NY,96512,22.46
+1430,664,2024-05-23,Completed,PayPal,2073 Maple Rd,San Antonio,PA,48164,4.52
+1431,626,2023-11-03,Processing,Credit Card,6591 Cedar Ln,Los Angeles,TX,97450,32.5
+1432,615,2024-01-27,Processing,Credit Card,6733 Pine Blvd,Houston,IL,84254,5.18
+1433,57,2023-11-30,Completed,Cash on Delivery,3356 Main Blvd,Philadelphia,TX,32950,4.08
+1434,704,2024-07-18,Processing,Cash on Delivery,4290 Maple Ln,San Jose,TX,89309,49.38
+1435,105,2023-08-15,Cancelled,Credit Card,2817 Maple Blvd,Los Angeles,TX,24463,23.91
+1436,96,2023-12-27,Completed,PayPal,1804 Maple Rd,San Antonio,PA,61463,28.52
+1437,431,2024-04-01,Cancelled,Cash on Delivery,2140 Maple Rd,San Diego,CA,44989,30.39
+1438,79,2023-09-07,Completed,Cash on Delivery,1886 Cedar Blvd,Phoenix,IL,60027,47.05
+1439,295,2024-04-29,Shipped,Credit Card,7581 Main Blvd,Dallas,CA,12780,45.08
+1440,34,2023-03-07,Completed,Credit Card,2801 Pine Ln,Phoenix,AZ,35566,20.82
+1441,695,2025-02-21,Cancelled,Bank Transfer,7819 Pine St,Phoenix,TX,87485,42.4
+1442,953,2024-03-01,Processing,Cash on Delivery,9932 Cedar Ln,Los Angeles,AZ,96659,33.13
+1443,789,2024-08-31,Cancelled,Credit Card,310 Oak St,Philadelphia,PA,99040,0.09
+1444,728,2025-01-19,Completed,Bank Transfer,1377 Oak St,Los Angeles,TX,85028,9.93
+1445,187,2023-06-28,Cancelled,Cash on Delivery,6557 Cedar Ln,San Diego,CA,24238,16.2
+1446,795,2023-03-25,Processing,Cash on Delivery,3541 Main St,San Antonio,NY,81581,48.62
+1447,98,2025-01-31,Cancelled,Cash on Delivery,6008 Cedar Rd,Dallas,TX,39286,5.06
+1448,322,2023-03-20,Processing,Cash on Delivery,1910 Main Ln,New York,CA,79906,13.3
+1449,348,2024-12-07,Processing,Credit Card,830 Maple St,Philadelphia,NY,97053,34.02
+1450,143,2023-09-22,Completed,PayPal,515 Oak Blvd,Los Angeles,TX,14207,34.77
+1451,821,2024-02-22,Shipped,Bank Transfer,7813 Oak Rd,San Jose,AZ,47208,1.98
+1452,67,2024-10-21,Cancelled,PayPal,4559 Maple Ln,Philadelphia,TX,44582,47.87
+1453,308,2024-06-13,Cancelled,Credit Card,390 Pine St,Phoenix,NY,34287,22.37
+1454,167,2023-10-16,Completed,Credit Card,7594 Cedar Blvd,San Jose,NY,53693,19.57
+1455,440,2023-09-27,Completed,Cash on Delivery,8052 Pine Blvd,San Diego,TX,96258,41.6
+1456,717,2024-05-03,Processing,Bank Transfer,6124 Cedar Ln,New York,CA,77389,17.21
+1457,340,2023-06-26,Completed,PayPal,1298 Cedar St,Philadelphia,CA,37622,28.69
+1458,93,2023-04-18,Cancelled,Bank Transfer,8177 Main St,Los Angeles,CA,51959,12.27
+1459,386,2023-12-25,Completed,Credit Card,265 Maple Blvd,Los Angeles,PA,57937,34.73
+1460,642,2024-06-24,Cancelled,PayPal,7368 Oak Ave,Houston,IL,36509,44.45
+1461,727,2023-05-04,Completed,Cash on Delivery,2188 Maple St,New York,CA,11282,41.48
+1462,553,2023-06-14,Cancelled,Cash on Delivery,5629 Pine St,Phoenix,TX,31283,3.17
+1463,977,2024-01-20,Completed,PayPal,5863 Maple Ave,Houston,IL,95346,27.54
+1464,920,2025-01-30,Processing,PayPal,2819 Maple St,Dallas,NY,81611,22.79
+1465,742,2023-04-06,Cancelled,Bank Transfer,6950 Maple Ln,Houston,TX,59474,37.64
+1466,321,2024-09-14,Cancelled,Credit Card,1073 Maple Rd,Phoenix,PA,48352,48.83
+1467,889,2025-03-03,Completed,Bank Transfer,7313 Oak St,San Jose,PA,88633,19.97
+1468,945,2023-09-29,Completed,Cash on Delivery,1214 Cedar Rd,San Antonio,CA,54129,23.04
+1469,188,2025-02-19,Cancelled,Cash on Delivery,2430 Pine Rd,Phoenix,TX,14853,40.54
+1470,840,2024-07-26,Shipped,PayPal,9507 Main Ave,Los Angeles,IL,38225,2.58
+1471,610,2024-05-08,Processing,Bank Transfer,5296 Main St,Houston,PA,45971,45.0
+1472,515,2024-01-02,Shipped,Bank Transfer,9168 Main St,Chicago,IL,67615,8.98
+1473,198,2024-09-16,Completed,Cash on Delivery,9521 Pine Ln,San Jose,TX,79517,17.83
+1474,463,2024-12-05,Cancelled,Bank Transfer,7737 Main St,Houston,AZ,69633,1.9
+1475,293,2023-04-07,Shipped,PayPal,2338 Main Rd,Chicago,CA,40468,48.82
+1476,515,2023-06-09,Cancelled,Bank Transfer,5646 Main Ln,Los Angeles,IL,54745,25.8
+1477,229,2024-04-10,Processing,PayPal,5233 Main Rd,San Jose,TX,42486,25.45
+1478,687,2024-06-18,Completed,Bank Transfer,5484 Oak Rd,New York,TX,22706,11.27
+1479,934,2024-09-28,Cancelled,Bank Transfer,7327 Oak Blvd,Dallas,PA,60976,12.04
+1480,958,2023-07-12,Processing,Cash on Delivery,6568 Oak Ln,Phoenix,AZ,60574,3.2
+1481,712,2024-06-03,Shipped,Credit Card,2499 Main Ln,San Diego,NY,60314,4.15
+1482,118,2023-09-29,Completed,Bank Transfer,3098 Main Ave,Phoenix,CA,81873,18.5
+1483,825,2024-12-13,Shipped,Cash on Delivery,1843 Cedar Rd,New York,NY,91733,7.62
+1484,871,2024-10-16,Completed,Credit Card,1989 Main Rd,Chicago,TX,91793,30.96
+1485,73,2024-08-31,Processing,Bank Transfer,3801 Main Blvd,Chicago,AZ,25605,14.97
+1486,882,2023-04-28,Processing,PayPal,3166 Oak Blvd,Phoenix,TX,30046,38.47
+1487,172,2024-06-29,Completed,Credit Card,4232 Oak Ln,Phoenix,AZ,67724,43.54
+1488,377,2023-05-29,Processing,PayPal,1833 Oak Ln,Chicago,TX,27198,13.96
+1489,114,2025-01-19,Completed,Bank Transfer,5010 Main Ln,San Antonio,CA,63789,12.44
+1490,560,2023-08-17,Completed,Cash on Delivery,5063 Cedar Rd,Houston,IL,54907,38.45
+1491,306,2024-12-22,Processing,Credit Card,2036 Oak Ln,San Diego,CA,92233,1.46
+1492,695,2023-11-17,Completed,Bank Transfer,8707 Pine St,Houston,PA,65239,26.2
+1493,334,2023-12-12,Shipped,Credit Card,1396 Cedar St,Philadelphia,NY,53407,11.77
+1494,20,2024-03-25,Cancelled,Cash on Delivery,7891 Cedar St,San Antonio,CA,18531,35.93
+1495,444,2023-09-16,Shipped,PayPal,6730 Pine Blvd,San Antonio,IL,61220,42.47
+1496,387,2023-05-01,Cancelled,Cash on Delivery,5398 Main Rd,Los Angeles,CA,82366,1.76
+1497,811,2023-12-05,Completed,Credit Card,8072 Main Ln,Houston,TX,63034,5.91
+1498,789,2025-02-20,Shipped,Cash on Delivery,1601 Main Rd,San Antonio,CA,65918,47.68
+1499,31,2023-08-11,Completed,PayPal,356 Main Ln,San Diego,AZ,60018,16.27
+1500,283,2024-02-29,Processing,Cash on Delivery,8066 Oak Ave,Philadelphia,TX,79355,46.46
+1501,425,2024-07-07,Completed,Bank Transfer,3107 Cedar Blvd,Houston,TX,98991,6.74
+1502,522,2024-12-27,Shipped,Credit Card,9779 Pine Rd,San Antonio,IL,19875,0.9
+1503,2,2024-05-20,Shipped,PayPal,4140 Main St,Houston,NY,66185,22.79
+1504,601,2024-10-05,Shipped,Credit Card,4830 Cedar Rd,Houston,TX,97618,32.33
+1505,875,2023-07-31,Completed,Credit Card,9138 Cedar Blvd,Dallas,CA,20461,41.98
+1506,6,2023-11-19,Completed,Bank Transfer,3924 Main St,San Jose,IL,49240,47.61
+1507,471,2023-09-15,Cancelled,Bank Transfer,2383 Maple Rd,Philadelphia,CA,59857,47.09
+1508,536,2023-04-25,Processing,Bank Transfer,7970 Maple Ln,San Antonio,CA,10167,4.79
+1509,460,2024-01-09,Cancelled,Bank Transfer,1371 Maple Blvd,San Diego,CA,60233,12.42
+1510,619,2024-05-19,Shipped,Bank Transfer,2882 Main St,Phoenix,IL,41769,41.86
+1511,121,2025-01-25,Cancelled,Credit Card,5815 Pine Blvd,Phoenix,TX,56780,35.51
+1512,451,2024-10-09,Processing,Cash on Delivery,151 Oak Ln,Phoenix,CA,60498,26.57
+1513,30,2023-10-31,Completed,Credit Card,6216 Maple Ln,Phoenix,IL,75775,37.41
+1514,934,2024-12-30,Completed,Credit Card,4095 Oak Ln,Chicago,NY,61080,29.38
+1515,613,2023-04-19,Processing,Cash on Delivery,8694 Main Ave,Houston,AZ,74471,23.63
+1516,74,2024-11-21,Shipped,Bank Transfer,1972 Cedar St,Dallas,CA,53246,13.0
+1517,918,2023-07-20,Processing,Cash on Delivery,2659 Pine Ln,Phoenix,TX,66790,17.56
+1518,364,2024-04-02,Shipped,Cash on Delivery,9609 Pine Rd,Philadelphia,TX,95507,48.2
+1519,983,2024-12-18,Shipped,Credit Card,6570 Oak Blvd,Philadelphia,TX,29220,48.64
+1520,628,2024-06-30,Cancelled,PayPal,6230 Pine Ave,San Antonio,CA,82098,31.87
+1521,905,2024-07-27,Completed,Cash on Delivery,1441 Oak Blvd,Chicago,AZ,21045,15.03
+1522,992,2023-03-29,Cancelled,Credit Card,2062 Maple Rd,Philadelphia,PA,27586,44.69
+1523,529,2024-04-06,Processing,PayPal,3260 Pine Ln,New York,PA,80157,27.3
+1524,539,2023-06-05,Cancelled,Credit Card,4125 Cedar Blvd,San Diego,IL,63594,32.94
+1525,324,2024-06-16,Cancelled,PayPal,3290 Main St,Dallas,TX,47678,27.71
+1526,503,2023-08-08,Processing,Credit Card,613 Oak Rd,San Diego,AZ,16854,23.07
+1527,302,2024-04-08,Completed,PayPal,4408 Cedar Ln,Chicago,CA,78963,38.01
+1528,413,2023-08-17,Completed,Cash on Delivery,145 Cedar Blvd,Philadelphia,CA,61440,48.69
+1529,932,2023-05-13,Processing,Bank Transfer,1518 Main Rd,San Antonio,TX,30273,24.7
+1530,307,2024-03-10,Cancelled,Credit Card,6727 Cedar Rd,Chicago,IL,52864,4.97
+1531,561,2023-07-05,Completed,Bank Transfer,4596 Oak Blvd,New York,IL,83393,23.88
+1532,214,2024-02-14,Cancelled,Bank Transfer,534 Pine Blvd,Houston,NY,62899,47.85
+1533,670,2024-02-06,Completed,Cash on Delivery,7487 Maple Ave,Dallas,IL,82851,9.37
+1534,331,2024-11-08,Shipped,Credit Card,2375 Main Ln,Los Angeles,IL,54528,7.65
+1535,607,2023-04-06,Cancelled,Credit Card,9684 Cedar Rd,San Jose,TX,16305,42.19
+1536,209,2023-06-10,Completed,Credit Card,9337 Maple Ave,New York,CA,98994,28.14
+1537,823,2023-12-25,Processing,PayPal,3646 Pine Ave,Philadelphia,CA,64403,25.21
+1538,833,2024-12-12,Cancelled,Bank Transfer,5157 Main Ave,San Antonio,IL,82647,12.82
+1539,528,2025-01-17,Cancelled,Credit Card,5329 Cedar Blvd,Philadelphia,PA,40940,38.15
+1540,705,2024-10-27,Completed,Bank Transfer,9848 Oak St,New York,CA,52421,29.11
+1541,302,2024-11-18,Shipped,Cash on Delivery,8133 Maple St,New York,NY,48437,34.85
+1542,28,2023-04-04,Shipped,PayPal,3621 Oak St,Dallas,PA,23389,15.01
+1543,784,2023-09-14,Processing,Bank Transfer,2968 Maple Rd,Phoenix,IL,66441,46.46
+1544,268,2023-11-10,Shipped,Credit Card,4820 Cedar Blvd,Houston,CA,83777,29.01
+1545,310,2024-07-01,Shipped,PayPal,5562 Oak St,Phoenix,AZ,27591,10.35
+1546,154,2023-05-29,Processing,PayPal,9986 Main Ave,Houston,TX,53812,30.28
+1547,513,2024-11-09,Cancelled,Bank Transfer,4818 Oak Ln,Dallas,CA,15786,45.36
+1548,812,2023-08-20,Completed,Cash on Delivery,6883 Oak Rd,San Diego,NY,38630,12.23
+1549,450,2024-02-07,Cancelled,Cash on Delivery,6985 Pine Ave,New York,AZ,61026,22.73
+1550,772,2025-01-31,Completed,Bank Transfer,9796 Oak St,Chicago,TX,94772,48.19
+1551,760,2023-11-07,Completed,Cash on Delivery,5944 Cedar Blvd,San Diego,TX,32906,39.15
+1552,29,2023-09-12,Cancelled,Cash on Delivery,3908 Cedar Ln,Houston,AZ,85971,4.21
+1553,838,2024-08-22,Shipped,Credit Card,9614 Maple Blvd,Los Angeles,TX,33059,9.09
+1554,853,2023-12-22,Shipped,Cash on Delivery,2700 Cedar Rd,Phoenix,IL,13630,29.04
+1555,369,2023-03-14,Shipped,Cash on Delivery,9031 Oak St,Phoenix,CA,20593,35.08
+1556,631,2024-10-07,Cancelled,Bank Transfer,9821 Pine Blvd,San Diego,TX,34642,40.32
+1557,741,2024-02-23,Processing,PayPal,4205 Maple Ave,Houston,PA,88327,39.31
+1558,863,2023-07-08,Completed,Cash on Delivery,9331 Main Ave,Chicago,PA,16102,41.13
+1559,420,2025-02-09,Shipped,Bank Transfer,7520 Oak Blvd,Philadelphia,IL,68951,4.1
+1560,48,2024-02-23,Completed,PayPal,9497 Cedar Ln,Chicago,IL,59859,27.24
+1561,581,2024-04-02,Processing,Cash on Delivery,9122 Main St,Los Angeles,PA,21325,19.16
+1562,154,2023-11-12,Processing,Cash on Delivery,4904 Pine Blvd,San Jose,CA,27183,36.62
+1563,570,2023-07-13,Completed,PayPal,4591 Pine Blvd,San Jose,PA,78953,10.46
+1564,794,2024-03-13,Shipped,Cash on Delivery,5236 Cedar Rd,Chicago,PA,48503,11.65
+1565,521,2024-03-07,Shipped,Cash on Delivery,6934 Maple Ave,Los Angeles,PA,63510,38.07
+1566,695,2023-10-28,Processing,Cash on Delivery,4918 Pine Rd,San Antonio,IL,83807,20.61
+1567,292,2023-08-13,Cancelled,Bank Transfer,4709 Main Blvd,San Antonio,PA,56101,38.48
+1568,489,2024-08-01,Processing,Bank Transfer,6478 Maple Rd,Philadelphia,CA,14463,31.04
+1569,268,2024-05-21,Shipped,Credit Card,3114 Pine Rd,New York,TX,65801,21.63
+1570,74,2023-07-25,Shipped,PayPal,2875 Pine St,Phoenix,NY,48263,49.65
+1571,264,2023-04-03,Completed,Credit Card,7950 Maple Blvd,Phoenix,AZ,26399,14.69
+1572,230,2024-12-14,Processing,Bank Transfer,6097 Main Ln,Dallas,CA,50397,43.49
+1573,562,2023-10-18,Completed,Bank Transfer,194 Oak Blvd,San Jose,NY,43313,22.01
+1574,340,2024-07-19,Shipped,PayPal,727 Main St,Phoenix,TX,64346,2.7
+1575,531,2023-05-05,Shipped,Bank Transfer,4083 Main Rd,San Diego,TX,20531,31.42
+1576,977,2024-01-18,Completed,PayPal,6630 Maple Ave,San Antonio,IL,18973,13.01
+1577,349,2023-03-27,Processing,PayPal,7387 Cedar Rd,Los Angeles,PA,34214,13.64
+1578,75,2023-11-14,Completed,Cash on Delivery,4376 Pine Blvd,New York,NY,40383,22.33
+1579,569,2023-03-19,Completed,Cash on Delivery,5183 Maple St,San Diego,TX,48485,38.16
+1580,513,2024-08-07,Processing,Bank Transfer,6921 Maple Ln,Dallas,TX,77114,20.88
+1581,616,2023-06-03,Cancelled,Bank Transfer,968 Maple Rd,Chicago,CA,87725,9.87
+1582,318,2023-12-25,Shipped,PayPal,8902 Pine St,Los Angeles,CA,43011,40.57
+1583,778,2023-08-17,Shipped,Cash on Delivery,1920 Cedar Blvd,Phoenix,CA,53698,37.44
+1584,261,2023-07-14,Shipped,Cash on Delivery,5964 Main Ln,Dallas,IL,10766,14.36
+1585,821,2023-12-15,Completed,Cash on Delivery,5856 Main Blvd,New York,TX,77922,48.07
+1586,410,2023-12-06,Completed,Bank Transfer,6082 Pine Ave,New York,TX,96066,27.63
+1587,318,2024-08-20,Shipped,Cash on Delivery,2152 Cedar Blvd,San Diego,TX,53162,38.33
+1588,163,2024-10-14,Cancelled,PayPal,7119 Cedar Blvd,San Antonio,TX,40868,33.68
+1589,69,2023-06-17,Processing,Bank Transfer,9846 Cedar St,Chicago,IL,61795,7.91
+1590,946,2025-02-15,Completed,Cash on Delivery,3451 Main Ln,San Antonio,AZ,47353,44.38
+1591,931,2024-11-23,Completed,Cash on Delivery,1754 Oak Ave,Phoenix,TX,50546,37.31
+1592,568,2023-04-20,Cancelled,Bank Transfer,1589 Cedar Ave,San Antonio,TX,95740,40.28
+1593,746,2024-03-11,Completed,Credit Card,6036 Cedar Ln,Dallas,CA,35762,2.27
+1594,502,2023-08-14,Processing,PayPal,6523 Oak Blvd,Phoenix,AZ,69496,21.77
+1595,858,2024-03-19,Cancelled,PayPal,4758 Cedar Rd,Chicago,CA,32446,37.24
+1596,500,2024-10-12,Cancelled,PayPal,7456 Oak Ave,Phoenix,IL,78546,9.13
+1597,304,2024-07-02,Shipped,Bank Transfer,6404 Cedar Ave,Houston,CA,58264,22.25
+1598,613,2024-08-16,Cancelled,Cash on Delivery,2423 Cedar St,Philadelphia,NY,82845,28.71
+1599,824,2023-05-16,Completed,Cash on Delivery,3443 Maple Rd,Phoenix,CA,71195,10.79
+1600,20,2024-07-21,Completed,Bank Transfer,5965 Main Ln,Philadelphia,NY,90975,17.87
+1601,274,2024-10-13,Processing,Bank Transfer,5737 Pine Ln,Philadelphia,TX,41520,33.44
+1602,321,2024-09-17,Shipped,Cash on Delivery,7924 Cedar Ave,Chicago,TX,72916,26.44
+1603,730,2025-01-24,Shipped,Credit Card,5343 Oak St,Phoenix,CA,29351,10.53
+1604,466,2025-03-04,Shipped,Credit Card,5964 Cedar Blvd,Los Angeles,TX,54488,10.93
+1605,611,2023-06-23,Cancelled,Bank Transfer,6183 Oak St,San Antonio,IL,63441,16.78
+1606,862,2024-12-05,Shipped,Cash on Delivery,7666 Pine Blvd,San Antonio,NY,20258,38.74
+1607,394,2023-04-13,Cancelled,Credit Card,1258 Oak Rd,Dallas,IL,77891,34.48
+1608,636,2025-01-13,Processing,Bank Transfer,5949 Maple Rd,Los Angeles,CA,26533,36.07
+1609,512,2024-08-09,Completed,PayPal,9604 Pine Ave,Philadelphia,TX,97371,17.87
+1610,781,2023-05-26,Processing,PayPal,2434 Oak Ave,San Antonio,CA,67891,42.67
+1611,456,2024-07-09,Cancelled,Bank Transfer,6857 Maple St,Houston,IL,85952,12.89
+1612,628,2023-03-10,Completed,Credit Card,4283 Oak Ln,Chicago,CA,13528,49.58
+1613,681,2023-03-11,Shipped,Credit Card,6978 Oak St,San Jose,IL,16471,44.21
+1614,85,2023-08-17,Cancelled,PayPal,8955 Pine Blvd,Houston,AZ,45590,36.89
+1615,899,2023-05-09,Cancelled,PayPal,3316 Oak Blvd,San Jose,TX,42847,32.07
+1616,272,2024-04-22,Completed,Cash on Delivery,3209 Pine St,Dallas,NY,21712,15.36
+1617,525,2023-08-26,Cancelled,Bank Transfer,1345 Maple Blvd,Houston,TX,15088,9.01
+1618,587,2025-01-18,Processing,PayPal,9048 Cedar Blvd,Dallas,TX,22935,44.68
+1619,702,2024-01-19,Completed,Bank Transfer,1631 Main Ave,Chicago,AZ,42928,28.19
+1620,708,2023-10-04,Shipped,PayPal,5007 Pine St,Chicago,CA,75189,33.95
+1621,400,2024-06-29,Completed,Cash on Delivery,7570 Cedar Ave,Chicago,AZ,16803,33.24
+1622,869,2024-08-21,Completed,Cash on Delivery,8574 Maple Ln,Philadelphia,TX,85267,18.27
+1623,737,2023-11-16,Completed,Bank Transfer,7918 Oak St,New York,TX,75413,22.56
+1624,357,2024-08-24,Completed,PayPal,7004 Pine St,Phoenix,AZ,67897,3.31
+1625,450,2023-04-13,Completed,Cash on Delivery,8295 Main Ave,Dallas,NY,12260,47.49
+1626,942,2024-11-24,Shipped,PayPal,4502 Maple Rd,San Antonio,IL,92515,24.99
+1627,900,2024-04-14,Completed,PayPal,5317 Maple Ave,San Antonio,CA,37909,44.89
+1628,800,2024-11-20,Shipped,Cash on Delivery,2749 Maple Ln,Dallas,CA,89338,6.19
+1629,968,2023-09-23,Completed,Bank Transfer,6385 Main St,New York,CA,38332,24.03
+1630,91,2023-10-21,Processing,PayPal,4916 Main Ln,Los Angeles,NY,91533,41.07
+1631,772,2024-10-12,Shipped,PayPal,6851 Cedar St,Houston,PA,47245,4.4
+1632,156,2024-09-05,Shipped,Cash on Delivery,3376 Main Ave,Philadelphia,CA,88182,45.37
+1633,789,2023-04-15,Cancelled,PayPal,3601 Oak Blvd,Los Angeles,CA,76012,39.7
+1634,523,2024-04-05,Completed,PayPal,8918 Oak St,New York,CA,84780,24.06
+1635,893,2024-09-15,Shipped,Bank Transfer,293 Main Ln,San Antonio,PA,46652,9.22
+1636,660,2024-10-13,Shipped,PayPal,7846 Cedar St,Philadelphia,CA,15774,30.75
+1637,806,2023-04-07,Cancelled,PayPal,2379 Cedar St,Dallas,PA,96423,9.07
+1638,650,2025-01-17,Shipped,Bank Transfer,7218 Cedar St,Phoenix,TX,41942,39.37
+1639,786,2023-05-22,Processing,PayPal,4271 Main Blvd,Los Angeles,TX,55727,17.01
+1640,942,2023-03-08,Completed,PayPal,3147 Pine Ave,Dallas,CA,34164,34.46
+1641,909,2023-04-06,Shipped,Credit Card,1665 Oak Ln,Dallas,TX,36264,2.29
+1642,725,2024-10-23,Completed,Bank Transfer,7178 Cedar Blvd,New York,NY,66226,7.55
+1643,273,2024-08-15,Cancelled,PayPal,1412 Pine Ave,Philadelphia,CA,25169,31.97
+1644,952,2023-12-03,Shipped,Bank Transfer,660 Oak St,Dallas,IL,55169,43.8
+1645,841,2023-09-16,Shipped,Credit Card,2998 Oak Ave,Chicago,TX,49426,15.77
+1646,424,2023-11-15,Processing,PayPal,5220 Maple St,New York,CA,98666,13.59
+1647,577,2024-04-06,Shipped,Credit Card,1029 Maple Blvd,San Antonio,NY,37555,9.11
+1648,668,2023-04-19,Shipped,Bank Transfer,6863 Maple Ln,Phoenix,TX,81644,33.09
+1649,874,2025-02-01,Completed,Cash on Delivery,8202 Pine Rd,San Antonio,CA,11067,32.72
+1650,601,2023-07-21,Cancelled,PayPal,3374 Pine Ln,Los Angeles,PA,55536,11.55
+1651,304,2024-12-25,Completed,Credit Card,1127 Cedar Rd,San Jose,NY,33983,9.4
+1652,479,2024-06-16,Processing,Bank Transfer,5405 Oak Blvd,Chicago,CA,20337,13.04
+1653,391,2024-02-05,Cancelled,Credit Card,8424 Maple Blvd,Phoenix,NY,49963,11.61
+1654,843,2023-03-31,Completed,PayPal,6049 Maple St,San Diego,TX,44573,48.52
+1655,374,2024-07-06,Cancelled,PayPal,5344 Cedar Blvd,Phoenix,CA,31764,5.74
+1656,938,2023-07-01,Processing,PayPal,8312 Main Rd,New York,TX,31754,37.71
+1657,983,2024-06-09,Processing,Cash on Delivery,2193 Pine St,Los Angeles,CA,74022,4.48
+1658,213,2025-01-01,Completed,Credit Card,7944 Oak St,Dallas,CA,98020,4.89
+1659,175,2024-06-25,Shipped,Cash on Delivery,6660 Maple St,Philadelphia,TX,32178,16.91
+1660,389,2023-07-23,Completed,Credit Card,6463 Main Rd,Chicago,PA,39475,7.49
+1661,853,2023-12-09,Shipped,PayPal,6658 Main St,New York,PA,33634,14.43
+1662,630,2024-08-06,Completed,Cash on Delivery,2867 Oak Blvd,San Diego,CA,53725,43.67
+1663,138,2025-02-08,Processing,Bank Transfer,4591 Oak Ln,Houston,AZ,25605,30.52
+1664,928,2024-07-28,Cancelled,PayPal,7170 Pine Blvd,Philadelphia,AZ,91785,11.05
+1665,984,2025-02-08,Shipped,Bank Transfer,8079 Maple Blvd,Chicago,CA,22714,37.71
+1666,591,2025-01-26,Cancelled,Cash on Delivery,1727 Cedar Blvd,San Diego,TX,37645,37.95
+1667,922,2023-03-10,Completed,PayPal,7569 Pine Ave,Los Angeles,CA,72953,45.89
+1668,942,2024-11-15,Processing,PayPal,8624 Maple Rd,Los Angeles,NY,30379,0.25
+1669,898,2023-05-08,Completed,PayPal,900 Pine St,Philadelphia,TX,71424,19.05
+1670,804,2024-12-27,Completed,Credit Card,1222 Oak St,Los Angeles,TX,52129,44.92
+1671,970,2023-06-16,Cancelled,PayPal,6076 Cedar Ln,San Diego,CA,61910,42.46
+1672,139,2023-09-15,Cancelled,PayPal,5179 Pine St,San Diego,IL,67465,30.52
+1673,31,2024-01-15,Completed,Bank Transfer,714 Pine Blvd,San Jose,TX,78404,32.31
+1674,615,2024-09-06,Shipped,Credit Card,3657 Cedar Ln,New York,CA,78144,39.78
+1675,597,2024-11-14,Processing,PayPal,3438 Main Rd,Phoenix,IL,46721,14.23
+1676,178,2024-12-14,Shipped,Cash on Delivery,1716 Pine Rd,Los Angeles,IL,30161,11.37
+1677,402,2024-02-02,Cancelled,PayPal,558 Main St,Dallas,AZ,38368,0.27
+1678,873,2023-07-17,Processing,Credit Card,3750 Maple Blvd,Los Angeles,TX,50480,33.63
+1679,719,2025-01-07,Cancelled,PayPal,7539 Oak Ln,San Antonio,AZ,86240,31.14
+1680,751,2023-04-27,Completed,Credit Card,7597 Cedar Rd,San Diego,CA,79232,31.03
+1681,875,2023-12-31,Completed,Bank Transfer,7741 Maple Ave,Philadelphia,PA,78511,11.04
+1682,457,2023-05-15,Completed,PayPal,1239 Pine Ln,San Jose,TX,36323,14.48
+1683,335,2023-05-06,Shipped,Cash on Delivery,5919 Oak Rd,New York,CA,68494,46.2
+1684,58,2024-01-09,Completed,PayPal,5729 Main Blvd,Los Angeles,PA,81276,42.44
+1685,402,2024-10-21,Cancelled,Credit Card,9705 Cedar Ln,Philadelphia,CA,15886,14.1
+1686,355,2024-06-11,Completed,Cash on Delivery,6598 Main Ln,New York,CA,69043,26.08
+1687,731,2023-09-14,Completed,Credit Card,1605 Oak Rd,Phoenix,IL,39438,49.19
+1688,942,2024-10-17,Completed,PayPal,7882 Cedar Ave,New York,NY,66150,44.97
+1689,602,2025-02-12,Cancelled,Credit Card,5126 Cedar Rd,Philadelphia,CA,52131,4.81
+1690,77,2024-07-05,Cancelled,Credit Card,5527 Maple St,Houston,IL,94683,26.41
+1691,8,2024-03-15,Cancelled,Cash on Delivery,9714 Main Rd,Phoenix,CA,48600,36.2
+1692,270,2023-12-07,Processing,Bank Transfer,9550 Oak Ln,New York,TX,56267,30.73
+1693,925,2024-05-14,Shipped,Credit Card,6663 Oak Ln,Dallas,CA,84291,11.36
+1694,438,2024-09-21,Cancelled,Credit Card,8044 Maple Blvd,Los Angeles,CA,70278,8.96
+1695,324,2023-06-18,Processing,Bank Transfer,2003 Maple St,Los Angeles,AZ,89943,22.43
+1696,419,2024-08-18,Completed,Bank Transfer,3283 Pine St,Phoenix,CA,57907,9.53
+1697,930,2023-08-09,Completed,Bank Transfer,4655 Maple Ave,New York,CA,55076,14.25
+1698,945,2023-03-10,Shipped,Bank Transfer,8962 Oak Rd,Phoenix,CA,55323,30.72
+1699,874,2024-01-01,Shipped,Credit Card,5019 Maple Rd,New York,TX,82827,1.81
+1700,962,2024-12-27,Shipped,PayPal,9086 Maple Rd,New York,AZ,39603,20.8
+1701,829,2025-02-24,Cancelled,Cash on Delivery,5202 Maple St,San Diego,CA,27742,43.62
+1702,77,2024-12-27,Completed,Cash on Delivery,8785 Oak Rd,San Antonio,TX,28386,6.32
+1703,198,2023-07-21,Shipped,Bank Transfer,6038 Maple Ln,Philadelphia,TX,67168,5.67
+1704,98,2024-05-07,Completed,PayPal,5666 Maple Ln,Chicago,CA,25587,34.61
+1705,428,2023-11-06,Cancelled,Credit Card,5288 Oak St,New York,CA,29707,13.92
+1706,668,2023-03-27,Cancelled,Cash on Delivery,3963 Main Rd,New York,CA,62036,5.32
+1707,673,2024-09-01,Cancelled,Cash on Delivery,1479 Cedar Blvd,Houston,TX,93358,21.25
+1708,74,2023-03-27,Completed,Cash on Delivery,9291 Main Rd,San Jose,AZ,44966,35.41
+1709,593,2023-05-09,Processing,Credit Card,223 Maple St,Los Angeles,PA,43236,31.66
+1710,411,2024-06-18,Cancelled,Bank Transfer,229 Maple Ln,Chicago,CA,91612,36.14
+1711,243,2024-02-20,Cancelled,Bank Transfer,537 Oak St,Philadelphia,TX,22184,47.57
+1712,309,2024-08-31,Processing,PayPal,4745 Oak Rd,Phoenix,CA,10173,25.4
+1713,791,2023-08-31,Completed,Bank Transfer,6684 Cedar Rd,Houston,CA,17849,37.89
+1714,990,2023-08-17,Shipped,PayPal,6436 Pine Blvd,New York,AZ,46806,18.83
+1715,620,2024-10-26,Cancelled,Cash on Delivery,1489 Cedar Ln,Dallas,IL,34002,40.79
+1716,58,2024-08-08,Cancelled,Bank Transfer,3296 Maple Rd,San Antonio,AZ,46079,2.09
+1717,481,2023-09-23,Completed,PayPal,1265 Maple Rd,San Diego,IL,44147,21.98
+1718,768,2025-02-01,Completed,Credit Card,2937 Pine St,Philadelphia,TX,67704,39.73
+1719,429,2024-07-22,Completed,Cash on Delivery,390 Main Rd,Chicago,PA,90074,45.59
+1720,32,2024-05-29,Completed,PayPal,7787 Maple St,San Jose,TX,94232,22.44
+1721,685,2025-02-18,Completed,Bank Transfer,7569 Main St,New York,AZ,90086,6.31
+1722,322,2023-09-08,Cancelled,Bank Transfer,9284 Oak Blvd,Chicago,AZ,51627,23.37
+1723,966,2025-01-13,Processing,Bank Transfer,9783 Oak St,San Diego,TX,47839,27.53
+1724,768,2023-12-29,Completed,Credit Card,3572 Oak Ln,Phoenix,CA,94544,23.98
+1725,282,2023-07-08,Cancelled,Credit Card,2796 Main Ave,Los Angeles,AZ,76244,40.51
+1726,732,2023-06-16,Processing,Credit Card,6205 Pine Ave,San Jose,TX,94962,1.0
+1727,299,2023-05-26,Processing,Bank Transfer,9123 Maple Rd,San Diego,CA,72209,27.18
+1728,504,2024-10-26,Cancelled,PayPal,6894 Cedar Rd,Philadelphia,TX,93690,41.13
+1729,849,2024-04-15,Shipped,PayPal,6255 Oak St,San Antonio,PA,38195,18.04
+1730,331,2024-05-24,Completed,PayPal,4688 Pine Rd,Philadelphia,CA,97273,45.98
+1731,538,2024-10-03,Processing,Credit Card,2918 Pine Rd,San Jose,TX,18620,28.42
+1732,984,2024-02-21,Completed,Bank Transfer,1907 Pine Rd,New York,CA,43287,11.4
+1733,546,2024-03-24,Processing,Credit Card,2018 Pine Ln,Chicago,CA,10985,26.45
+1734,256,2024-08-09,Shipped,Cash on Delivery,6990 Cedar Ln,Los Angeles,AZ,38107,36.34
+1735,649,2024-01-26,Cancelled,Bank Transfer,6047 Maple Ave,Los Angeles,CA,73514,4.03
+1736,747,2025-02-23,Cancelled,Cash on Delivery,7170 Pine Ave,San Antonio,NY,99163,26.67
+1737,436,2024-03-02,Processing,PayPal,5106 Oak Ln,Houston,TX,82496,47.15
+1738,428,2024-07-08,Shipped,Bank Transfer,8237 Pine St,Dallas,CA,51103,20.77
+1739,487,2023-03-11,Shipped,Cash on Delivery,9138 Oak St,Philadelphia,TX,37122,5.85
+1740,247,2024-04-01,Shipped,Bank Transfer,3250 Main Rd,New York,NY,90663,41.78
+1741,939,2023-12-14,Shipped,PayPal,509 Maple Rd,New York,NY,64694,39.06
+1742,287,2025-02-23,Completed,Cash on Delivery,1963 Main Blvd,San Diego,TX,36841,35.83
+1743,727,2023-10-28,Shipped,Cash on Delivery,7198 Maple St,Phoenix,CA,55491,45.63
+1744,194,2023-10-01,Processing,Credit Card,4605 Oak Ave,San Antonio,IL,69420,26.1
+1745,964,2023-10-24,Shipped,Credit Card,2736 Oak Blvd,New York,TX,53308,8.53
+1746,38,2024-09-04,Shipped,Cash on Delivery,1132 Main St,San Antonio,TX,51435,43.87
+1747,802,2023-11-30,Processing,Bank Transfer,7645 Pine Ln,Chicago,PA,91392,32.49
+1748,985,2024-08-02,Shipped,Credit Card,5052 Oak St,San Antonio,AZ,15487,22.57
+1749,301,2023-10-10,Processing,PayPal,9622 Pine St,San Diego,CA,25623,24.41
+1750,1,2023-03-21,Cancelled,Bank Transfer,7799 Main Rd,San Diego,CA,28372,46.89
+1751,644,2023-05-20,Processing,PayPal,8328 Oak Ave,New York,IL,18006,13.99
+1752,936,2024-08-27,Cancelled,PayPal,875 Pine St,San Jose,CA,68371,36.71
+1753,60,2025-03-01,Completed,PayPal,2943 Main Ave,San Diego,CA,72012,8.94
+1754,646,2024-11-03,Cancelled,PayPal,3210 Cedar St,Chicago,PA,10877,24.18
+1755,761,2025-02-16,Shipped,PayPal,6249 Cedar St,Dallas,CA,50717,20.9
+1756,255,2024-04-03,Shipped,PayPal,2311 Maple St,Chicago,IL,74452,30.12
+1757,240,2024-07-31,Completed,PayPal,5727 Main Ave,Philadelphia,TX,94140,27.45
+1758,893,2025-01-17,Shipped,PayPal,1328 Main Blvd,Los Angeles,NY,10324,5.87
+1759,700,2024-03-06,Cancelled,Cash on Delivery,9426 Pine St,Houston,CA,82114,11.03
+1760,655,2023-11-13,Processing,Bank Transfer,6154 Oak Rd,Houston,IL,79925,6.87
+1761,167,2023-04-29,Shipped,PayPal,6839 Pine Ave,San Antonio,IL,14073,30.41
+1762,558,2023-05-19,Completed,Bank Transfer,4368 Main Ave,New York,IL,75478,17.04
+1763,290,2023-11-05,Completed,Cash on Delivery,8175 Main Rd,San Antonio,CA,27007,45.0
+1764,241,2024-08-23,Shipped,Bank Transfer,5460 Pine Blvd,New York,TX,63845,4.09
+1765,359,2023-08-30,Shipped,Bank Transfer,4648 Main Rd,New York,TX,61346,40.71
+1766,771,2024-04-28,Completed,Bank Transfer,2120 Main St,Houston,AZ,60335,45.66
+1767,704,2023-08-14,Cancelled,PayPal,3161 Oak Blvd,Dallas,TX,66976,23.48
+1768,31,2024-07-13,Completed,Cash on Delivery,4636 Main Blvd,Houston,TX,59589,28.13
+1769,819,2024-04-13,Completed,Credit Card,748 Pine Blvd,Los Angeles,NY,89209,44.5
+1770,888,2025-01-27,Shipped,PayPal,9316 Maple Rd,Houston,CA,65509,4.47
+1771,965,2024-03-28,Shipped,Bank Transfer,3929 Oak St,San Antonio,TX,67093,26.72
+1772,293,2024-07-26,Shipped,Cash on Delivery,3614 Cedar Rd,New York,TX,84325,46.87
+1773,555,2023-06-09,Processing,Bank Transfer,8047 Cedar Rd,San Jose,TX,72569,25.34
+1774,867,2024-04-16,Completed,Cash on Delivery,8403 Main Rd,New York,CA,39683,26.52
+1775,595,2024-10-27,Processing,Cash on Delivery,4010 Maple Ln,New York,CA,75657,5.33
+1776,770,2024-02-08,Cancelled,Bank Transfer,2261 Oak St,New York,TX,91889,13.28
+1777,824,2023-11-29,Processing,Bank Transfer,4000 Pine Ln,Dallas,CA,22719,48.19
+1778,914,2024-03-20,Shipped,Credit Card,6866 Maple Ave,Phoenix,TX,93880,32.28
+1779,488,2023-11-16,Processing,Credit Card,3099 Pine St,Dallas,TX,79121,10.36
+1780,648,2023-06-14,Shipped,Cash on Delivery,8094 Cedar St,New York,TX,41649,25.84
+1781,764,2023-09-17,Shipped,Cash on Delivery,8104 Maple Ave,Chicago,PA,28044,3.84
+1782,354,2024-09-20,Processing,PayPal,2086 Maple Ln,Los Angeles,AZ,33124,1.29
+1783,485,2024-12-30,Processing,Cash on Delivery,352 Cedar Ave,Houston,CA,74438,32.28
+1784,79,2023-03-12,Completed,Bank Transfer,5117 Oak Blvd,Houston,CA,50590,40.86
+1785,200,2023-04-13,Shipped,Cash on Delivery,2812 Oak St,San Diego,TX,36167,31.47
+1786,419,2024-06-27,Completed,PayPal,2465 Oak Blvd,San Jose,IL,34151,34.01
+1787,103,2024-04-13,Shipped,PayPal,4091 Maple St,San Diego,TX,31808,41.77
+1788,481,2023-04-05,Processing,Credit Card,2436 Cedar Blvd,New York,CA,92927,44.8
+1789,77,2024-11-14,Cancelled,Cash on Delivery,2230 Oak Ln,Houston,TX,10752,7.36
+1790,15,2023-03-19,Processing,Bank Transfer,2129 Pine St,Los Angeles,NY,85988,23.96
+1791,669,2023-12-28,Cancelled,Bank Transfer,7660 Cedar Ln,Dallas,AZ,92540,27.08
+1792,626,2024-10-04,Processing,Bank Transfer,5879 Pine Ln,New York,CA,40716,36.91
+1793,672,2023-06-13,Processing,PayPal,7931 Main Ln,San Diego,TX,29281,4.34
+1794,165,2023-11-23,Shipped,PayPal,7610 Cedar St,Phoenix,NY,62285,19.49
+1795,26,2024-03-15,Shipped,PayPal,4194 Oak Ave,Los Angeles,TX,28851,34.24
+1796,260,2023-06-12,Processing,Cash on Delivery,8375 Cedar Rd,Dallas,PA,29878,34.69
+1797,462,2025-02-07,Shipped,Cash on Delivery,2310 Maple Blvd,New York,CA,32922,37.11
+1798,448,2024-02-23,Shipped,Credit Card,6181 Oak Ave,Chicago,CA,54221,3.42
+1799,43,2024-01-11,Completed,Cash on Delivery,5714 Maple Rd,New York,CA,15683,20.64
+1800,520,2024-11-26,Processing,Bank Transfer,4366 Main Blvd,Philadelphia,NY,65209,27.59
+1801,260,2023-08-29,Cancelled,Credit Card,8838 Maple Ave,San Jose,CA,22785,16.73
+1802,588,2023-04-15,Cancelled,PayPal,7339 Cedar Rd,Chicago,TX,94243,7.11
+1803,386,2023-05-04,Shipped,Cash on Delivery,3774 Pine Ave,San Diego,IL,75171,45.11
+1804,516,2023-09-27,Cancelled,PayPal,8872 Oak St,New York,TX,30175,37.81
+1805,453,2023-03-29,Shipped,PayPal,4644 Pine Blvd,San Diego,TX,94029,20.92
+1806,59,2024-08-21,Cancelled,Bank Transfer,3685 Maple Ln,New York,PA,78785,20.93
+1807,330,2025-01-28,Processing,Cash on Delivery,7384 Main Ln,Phoenix,TX,11569,7.43
+1808,984,2023-10-11,Cancelled,Bank Transfer,2246 Main Ave,San Jose,TX,46610,29.7
+1809,243,2023-08-19,Completed,Credit Card,441 Main Blvd,Houston,AZ,19189,39.24
+1810,809,2024-03-05,Shipped,Credit Card,5001 Main Rd,San Antonio,CA,76189,0.23
+1811,466,2024-02-07,Shipped,PayPal,5134 Main Ave,San Jose,NY,66022,12.48
+1812,518,2024-01-04,Completed,Cash on Delivery,9328 Maple Rd,San Antonio,IL,97343,48.78
+1813,675,2023-05-17,Cancelled,PayPal,5124 Main Rd,San Antonio,TX,66674,45.84
+1814,585,2025-01-12,Cancelled,Bank Transfer,2349 Pine Rd,Los Angeles,TX,91134,2.81
+1815,537,2024-08-18,Processing,Bank Transfer,8752 Oak Ave,Houston,IL,10913,32.53
+1816,819,2023-11-26,Cancelled,Cash on Delivery,1738 Cedar St,Philadelphia,CA,79358,19.06
+1817,910,2025-02-10,Processing,PayPal,8470 Oak St,Houston,NY,42362,42.9
+1818,596,2025-01-16,Processing,Credit Card,2022 Cedar Ave,Dallas,TX,63615,8.28
+1819,976,2023-05-31,Shipped,Credit Card,7733 Main Ave,Los Angeles,TX,99999,1.15
+1820,650,2023-08-23,Shipped,Cash on Delivery,3468 Pine Ave,San Diego,PA,80084,15.36
+1821,884,2024-05-01,Shipped,Credit Card,6061 Cedar Blvd,New York,AZ,67589,32.27
+1822,908,2023-04-13,Completed,PayPal,3381 Main Blvd,Phoenix,TX,88419,13.75
+1823,284,2024-05-08,Completed,Bank Transfer,4508 Oak Ave,Philadelphia,CA,59744,19.95
+1824,805,2024-12-06,Completed,Bank Transfer,3909 Oak Blvd,Dallas,NY,82892,16.71
+1825,433,2023-05-22,Shipped,PayPal,1809 Cedar Rd,Los Angeles,TX,55580,4.14
+1826,883,2025-01-02,Shipped,Credit Card,7102 Oak Ave,New York,CA,43716,40.06
+1827,589,2024-03-02,Shipped,Credit Card,8356 Pine Ave,Dallas,CA,18077,34.59
+1828,897,2023-12-30,Processing,Credit Card,5251 Cedar Ave,San Antonio,NY,98574,34.62
+1829,552,2023-12-18,Shipped,PayPal,3644 Cedar Blvd,Chicago,NY,85670,21.71
+1830,153,2024-10-21,Shipped,Cash on Delivery,2546 Maple Ave,San Antonio,IL,42078,26.39
+1831,293,2025-02-23,Processing,Cash on Delivery,2926 Oak Blvd,San Jose,TX,95746,21.25
+1832,331,2023-04-18,Completed,Bank Transfer,8349 Maple St,San Diego,CA,88504,33.88
+1833,271,2024-09-28,Processing,Credit Card,4002 Maple Ln,Phoenix,TX,52932,3.06
+1834,781,2024-12-22,Completed,PayPal,4823 Cedar Blvd,Los Angeles,NY,93183,44.2
+1835,37,2024-12-16,Shipped,PayPal,3843 Pine Rd,San Antonio,TX,40699,17.88
+1836,265,2023-07-08,Shipped,Credit Card,6489 Cedar Ave,Dallas,CA,91415,5.98
+1837,188,2023-08-03,Shipped,PayPal,7418 Maple Blvd,Los Angeles,AZ,43018,38.37
+1838,544,2025-01-18,Processing,Credit Card,8054 Pine Rd,New York,PA,90795,8.32
+1839,187,2024-06-29,Cancelled,Cash on Delivery,2334 Maple Blvd,San Jose,CA,74693,42.41
+1840,229,2025-02-19,Cancelled,Credit Card,7999 Cedar Blvd,San Diego,TX,84764,31.74
+1841,902,2024-02-26,Cancelled,Cash on Delivery,1063 Cedar Ave,Los Angeles,NY,77437,14.12
+1842,626,2023-07-25,Processing,Cash on Delivery,7770 Oak Ave,New York,PA,92769,41.64
+1843,127,2025-01-28,Shipped,Bank Transfer,9257 Main Ln,Phoenix,PA,10731,30.76
+1844,554,2024-06-02,Shipped,Credit Card,2535 Pine Ave,Phoenix,PA,38468,21.72
+1845,806,2023-03-23,Processing,Cash on Delivery,6105 Main Blvd,Philadelphia,AZ,90784,10.9
+1846,380,2024-10-08,Processing,Bank Transfer,2618 Maple Ave,San Antonio,TX,38983,42.6
+1847,728,2023-09-28,Shipped,Cash on Delivery,5134 Cedar St,San Antonio,TX,14520,0.9
+1848,7,2023-10-08,Cancelled,PayPal,1966 Maple Blvd,San Diego,NY,50740,22.92
+1849,846,2025-01-07,Shipped,Bank Transfer,422 Pine Ln,San Jose,CA,12146,6.58
+1850,950,2023-12-21,Shipped,PayPal,8937 Maple Blvd,Philadelphia,CA,91563,26.79
+1851,507,2023-08-14,Shipped,Cash on Delivery,5419 Main Blvd,San Antonio,TX,91934,6.98
+1852,930,2024-04-03,Processing,PayPal,1226 Oak Blvd,Los Angeles,TX,88821,37.51
+1853,903,2024-09-23,Cancelled,Cash on Delivery,5674 Pine St,Los Angeles,PA,40806,1.36
+1854,368,2023-10-15,Processing,PayPal,9736 Pine Ave,Philadelphia,NY,98044,46.84
+1855,911,2025-02-22,Cancelled,PayPal,749 Cedar Ln,Los Angeles,TX,89096,23.54
+1856,34,2024-06-26,Processing,Credit Card,6094 Oak Rd,San Jose,CA,42017,31.88
+1857,243,2024-04-30,Cancelled,Cash on Delivery,2532 Main Rd,San Jose,CA,75852,18.73
+1858,645,2023-11-20,Processing,Bank Transfer,8176 Oak Ln,Houston,NY,17144,26.48
+1859,968,2024-12-07,Processing,Bank Transfer,5573 Oak Rd,Chicago,CA,28524,19.16
+1860,334,2024-10-15,Cancelled,Credit Card,5843 Pine Rd,Dallas,NY,29884,29.3
+1861,654,2023-07-28,Completed,Credit Card,5961 Pine Ln,San Antonio,TX,20643,28.51
+1862,246,2024-03-02,Completed,Cash on Delivery,5901 Main Blvd,New York,TX,26745,36.55
+1863,963,2023-05-18,Completed,Credit Card,6175 Pine Ln,Dallas,AZ,43419,28.29
+1864,142,2024-11-14,Shipped,PayPal,3432 Pine St,Phoenix,IL,18266,30.25
+1865,730,2024-09-17,Processing,PayPal,9790 Maple Rd,Chicago,PA,51723,20.72
+1866,397,2023-05-05,Processing,Cash on Delivery,9871 Cedar Rd,Philadelphia,CA,44782,14.18
+1867,741,2024-08-09,Cancelled,PayPal,5401 Cedar Blvd,New York,IL,28495,2.49
+1868,556,2024-10-22,Cancelled,Bank Transfer,8921 Pine Blvd,New York,CA,60576,46.24
+1869,630,2023-12-15,Processing,PayPal,1363 Oak Ave,San Diego,NY,21687,33.5
+1870,457,2024-03-21,Cancelled,Bank Transfer,8963 Oak Ave,New York,NY,73276,5.33
+1871,22,2023-11-07,Cancelled,Credit Card,705 Maple Ave,Houston,TX,15072,37.53
+1872,365,2023-12-06,Cancelled,Bank Transfer,853 Oak Ln,San Diego,CA,59015,42.24
+1873,479,2025-02-17,Completed,Credit Card,1091 Cedar St,New York,PA,47294,11.95
+1874,599,2024-02-13,Shipped,Credit Card,197 Cedar Ln,Phoenix,CA,36116,42.2
+1875,320,2023-08-30,Shipped,Bank Transfer,4215 Maple St,Philadelphia,TX,69250,17.61
+1876,31,2023-03-06,Completed,Bank Transfer,8909 Pine Blvd,Chicago,CA,37905,45.21
+1877,456,2024-01-07,Cancelled,PayPal,6580 Main Ave,San Diego,CA,16624,28.3
+1878,65,2023-11-23,Cancelled,Cash on Delivery,9761 Oak Rd,Chicago,CA,68040,32.51
+1879,28,2023-10-29,Completed,PayPal,2541 Cedar Blvd,San Antonio,AZ,45966,43.35
+1880,61,2024-02-04,Cancelled,PayPal,3425 Pine St,Houston,CA,75770,38.25
+1881,213,2023-11-10,Completed,Cash on Delivery,241 Maple Ave,Philadelphia,TX,44038,7.57
+1882,750,2023-11-21,Shipped,Bank Transfer,7807 Pine Ave,Philadelphia,TX,20789,35.5
+1883,237,2023-07-21,Completed,Bank Transfer,8574 Cedar Ave,Dallas,TX,64709,49.58
+1884,138,2024-10-23,Cancelled,Bank Transfer,2910 Main Blvd,San Diego,CA,86039,29.33
+1885,711,2024-05-20,Processing,PayPal,9404 Maple Ave,San Antonio,CA,32288,25.51
+1886,946,2023-11-09,Shipped,Cash on Delivery,9165 Oak St,San Diego,NY,56730,21.65
+1887,851,2023-12-08,Completed,Credit Card,1131 Main Ave,Houston,TX,52681,9.78
+1888,751,2024-05-07,Cancelled,Bank Transfer,9778 Maple Ln,Dallas,TX,34541,26.47
+1889,427,2023-03-31,Cancelled,Bank Transfer,6772 Main Blvd,Philadelphia,PA,66583,49.72
+1890,536,2023-05-16,Shipped,Credit Card,9057 Maple Ave,San Diego,NY,16913,16.32
+1891,940,2024-10-30,Shipped,Bank Transfer,2930 Oak Ln,San Jose,PA,78758,39.6
+1892,955,2023-11-04,Processing,Bank Transfer,225 Main Ln,Los Angeles,AZ,12379,4.33
+1893,873,2023-07-23,Completed,Credit Card,5533 Main Ave,San Diego,PA,43851,11.77
+1894,759,2023-07-26,Shipped,PayPal,6364 Maple Ave,Houston,CA,49349,11.47
+1895,447,2024-10-29,Cancelled,Credit Card,9120 Maple St,San Jose,IL,63603,49.36
+1896,601,2024-02-09,Cancelled,Bank Transfer,9374 Maple Ave,Chicago,TX,71969,35.05
+1897,57,2025-03-04,Shipped,Credit Card,2649 Pine Blvd,San Jose,CA,53960,20.03
+1898,12,2024-12-04,Completed,Bank Transfer,7498 Oak Blvd,Dallas,CA,41695,16.18
+1899,385,2024-05-09,Processing,PayPal,327 Cedar Blvd,Phoenix,TX,75589,46.84
+1900,870,2024-01-08,Processing,Bank Transfer,6795 Oak Ave,Philadelphia,PA,52101,48.12
+1901,782,2024-04-27,Shipped,Bank Transfer,4482 Oak Rd,Dallas,CA,31633,23.78
+1902,277,2023-06-18,Completed,Cash on Delivery,4720 Main St,New York,PA,61593,16.11
+1903,756,2024-10-23,Shipped,PayPal,3897 Pine Blvd,Dallas,IL,17574,6.98
+1904,345,2023-12-10,Completed,Cash on Delivery,3381 Main Ave,Phoenix,AZ,52481,37.68
+1905,284,2024-06-11,Processing,PayPal,682 Cedar Rd,Phoenix,CA,24088,14.2
+1906,667,2024-07-13,Shipped,Bank Transfer,8299 Cedar Ave,New York,CA,44701,4.78
+1907,993,2024-08-07,Completed,Cash on Delivery,3926 Pine Rd,New York,CA,81867,29.02
+1908,748,2023-04-07,Shipped,Cash on Delivery,9696 Maple Ave,Dallas,TX,78850,3.96
+1909,639,2023-08-04,Shipped,Cash on Delivery,9555 Oak Blvd,San Jose,IL,31787,45.67
+1910,868,2023-10-08,Completed,Cash on Delivery,4554 Main Ln,Dallas,TX,94916,8.1
+1911,892,2025-02-26,Shipped,Cash on Delivery,8626 Maple Rd,San Jose,NY,36239,47.53
+1912,652,2023-06-08,Processing,Bank Transfer,7786 Pine Blvd,Los Angeles,NY,22567,10.81
+1913,190,2024-01-24,Completed,Cash on Delivery,466 Cedar Rd,Philadelphia,CA,18216,0.25
+1914,918,2023-09-10,Processing,Bank Transfer,6201 Maple Ave,New York,AZ,22407,5.76
+1915,540,2025-01-28,Cancelled,Bank Transfer,6068 Maple Rd,Chicago,IL,73662,13.53
+1916,599,2023-07-12,Cancelled,PayPal,7326 Oak St,Dallas,NY,93443,4.26
+1917,114,2024-10-30,Cancelled,PayPal,9817 Cedar Rd,New York,CA,70139,0.94
+1918,475,2024-07-30,Shipped,PayPal,6599 Maple Ave,Dallas,AZ,39429,17.92
+1919,810,2023-06-29,Processing,Credit Card,5876 Maple Ave,Dallas,AZ,73322,18.18
+1920,356,2023-07-30,Processing,Bank Transfer,4195 Main Ln,San Jose,CA,90293,4.19
+1921,592,2024-01-26,Processing,Credit Card,7299 Maple Ave,San Diego,CA,41785,6.96
+1922,406,2023-07-24,Shipped,Credit Card,9753 Maple Ln,Houston,TX,36630,4.18
+1923,927,2024-09-08,Processing,Credit Card,7281 Maple Ln,San Diego,CA,32051,16.43
+1924,286,2023-06-20,Processing,Credit Card,5436 Cedar Ave,San Diego,NY,56031,38.96
+1925,688,2024-04-10,Processing,Bank Transfer,4088 Pine Ave,San Diego,CA,63426,11.73
+1926,253,2024-08-03,Shipped,Credit Card,6559 Pine St,Philadelphia,NY,48166,4.46
+1927,426,2023-03-20,Processing,Credit Card,3892 Maple Blvd,San Jose,CA,74527,47.76
+1928,300,2024-09-26,Completed,Bank Transfer,3719 Cedar Ln,San Diego,NY,55979,43.43
+1929,938,2023-07-25,Shipped,Credit Card,8375 Cedar Ave,San Jose,CA,38669,29.5
+1930,832,2024-11-19,Shipped,Bank Transfer,1413 Oak St,San Jose,PA,70112,7.19
+1931,195,2023-11-13,Processing,Bank Transfer,5983 Oak Rd,Dallas,AZ,43776,37.55
+1932,315,2024-04-07,Cancelled,Bank Transfer,8325 Pine Ln,New York,PA,42946,8.27
+1933,340,2023-08-27,Shipped,PayPal,5306 Cedar Ave,New York,CA,32618,37.11
+1934,689,2024-10-18,Cancelled,Credit Card,3444 Pine St,Los Angeles,AZ,33662,44.03
+1935,126,2024-02-17,Completed,Cash on Delivery,2579 Maple Rd,Los Angeles,TX,54802,35.66
+1936,803,2024-09-29,Cancelled,Bank Transfer,993 Main Rd,Los Angeles,AZ,83254,26.68
+1937,685,2023-12-11,Shipped,PayPal,3369 Oak Ave,Chicago,CA,36945,5.79
+1938,568,2023-05-08,Shipped,Credit Card,8831 Cedar Ln,San Diego,PA,27922,12.89
+1939,679,2024-03-07,Shipped,Cash on Delivery,2627 Main Ave,Los Angeles,CA,18441,21.26
+1940,782,2024-10-19,Shipped,PayPal,2588 Oak Ave,San Antonio,NY,99793,5.5
+1941,509,2024-04-02,Shipped,Bank Transfer,5999 Main Ave,Philadelphia,PA,11578,48.76
+1942,17,2023-06-17,Cancelled,PayPal,555 Maple Blvd,Philadelphia,TX,58768,17.29
+1943,280,2023-04-26,Completed,Bank Transfer,8261 Cedar Ave,Chicago,CA,70343,18.88
+1944,963,2023-11-30,Shipped,Credit Card,335 Main St,San Antonio,TX,26182,11.78
+1945,99,2023-06-15,Shipped,Bank Transfer,3700 Oak Ave,Houston,PA,41203,19.56
+1946,303,2024-05-06,Cancelled,Credit Card,6256 Main Ln,New York,NY,11842,6.61
+1947,897,2023-10-14,Processing,PayPal,430 Main Blvd,Dallas,CA,16077,47.34
+1948,731,2024-05-27,Cancelled,Credit Card,5295 Maple Ln,San Diego,TX,57622,19.71
+1949,378,2023-07-25,Completed,Cash on Delivery,9377 Main Ln,Phoenix,PA,77884,31.32
+1950,645,2023-10-10,Processing,Bank Transfer,770 Maple St,San Diego,IL,84313,38.17
+1951,572,2024-03-16,Shipped,Credit Card,7031 Main Rd,New York,CA,73624,15.37
+1952,966,2024-05-31,Cancelled,PayPal,4529 Main Blvd,New York,TX,20186,38.44
+1953,497,2024-01-08,Completed,PayPal,6869 Cedar Rd,New York,TX,89039,31.72
+1954,984,2023-05-20,Processing,Bank Transfer,3023 Oak St,Houston,PA,49040,43.01
+1955,295,2024-08-09,Cancelled,PayPal,3963 Cedar Ave,Houston,TX,32576,27.52
+1956,76,2024-07-21,Cancelled,Credit Card,7653 Pine Ln,San Diego,CA,42330,12.31
+1957,334,2024-10-07,Cancelled,Bank Transfer,4251 Oak Ave,San Antonio,IL,40686,18.89
+1958,494,2023-04-27,Cancelled,Credit Card,8439 Pine Ln,San Jose,CA,29502,7.54
+1959,391,2024-07-23,Cancelled,Cash on Delivery,5902 Oak Ave,Dallas,PA,77922,10.85
+1960,343,2023-04-05,Processing,Cash on Delivery,3995 Main Blvd,San Diego,AZ,33474,1.96
+1961,886,2024-04-02,Cancelled,Bank Transfer,1493 Pine Blvd,San Jose,TX,13643,10.1
+1962,879,2023-08-08,Processing,Bank Transfer,9586 Main Ave,Phoenix,PA,70916,43.97
+1963,927,2023-11-19,Completed,Cash on Delivery,5095 Main Blvd,New York,TX,20384,23.8
+1964,677,2023-08-20,Processing,Bank Transfer,3020 Main Ave,San Diego,NY,44590,32.81
+1965,548,2024-02-19,Shipped,Credit Card,1349 Pine Ln,Los Angeles,TX,17372,48.04
+1966,174,2023-07-08,Shipped,PayPal,5456 Oak Ln,San Diego,IL,74718,19.0
+1967,344,2023-11-07,Processing,Bank Transfer,3458 Pine St,Philadelphia,CA,71055,5.06
+1968,285,2023-04-12,Cancelled,Credit Card,949 Cedar Ln,Chicago,IL,72691,17.74
+1969,742,2024-12-13,Processing,Credit Card,4856 Pine Ave,San Jose,CA,89896,1.89
+1970,229,2023-03-19,Shipped,Bank Transfer,7977 Pine St,San Antonio,TX,25274,8.28
+1971,529,2024-06-29,Processing,Cash on Delivery,6285 Maple Rd,San Antonio,CA,36305,45.31
+1972,796,2024-02-19,Processing,Credit Card,7456 Maple Ave,Philadelphia,CA,66106,8.6
+1973,250,2023-09-27,Processing,Bank Transfer,8203 Oak Ave,San Antonio,TX,14682,38.28
+1974,343,2024-04-23,Shipped,Credit Card,5425 Pine Ln,Phoenix,TX,43699,19.37
+1975,293,2025-01-23,Cancelled,Cash on Delivery,6298 Main St,Houston,NY,44136,34.0
+1976,671,2024-04-13,Processing,Bank Transfer,6215 Cedar Ln,Houston,CA,63993,8.07
+1977,722,2024-04-24,Processing,Credit Card,1172 Maple Blvd,Chicago,TX,74207,21.55
+1978,9,2023-04-19,Cancelled,Cash on Delivery,1464 Main Rd,Chicago,CA,11091,1.31
+1979,295,2023-10-09,Shipped,Bank Transfer,9895 Cedar St,Phoenix,TX,44066,25.53
+1980,719,2023-12-30,Completed,Bank Transfer,5093 Oak Blvd,New York,CA,79891,3.09
+1981,1000,2024-07-23,Cancelled,Bank Transfer,9908 Maple St,Houston,CA,26248,49.15
+1982,663,2024-01-10,Shipped,Bank Transfer,6688 Oak Ln,Chicago,AZ,91598,11.71
+1983,604,2023-11-13,Shipped,Bank Transfer,6482 Maple Blvd,Philadelphia,PA,96122,7.54
+1984,506,2023-06-03,Processing,Credit Card,1335 Main Rd,Los Angeles,TX,54266,8.48
+1985,187,2024-02-12,Processing,Cash on Delivery,674 Pine Rd,Chicago,CA,74898,49.09
+1986,286,2024-05-24,Cancelled,PayPal,8711 Main St,Phoenix,IL,69944,39.72
+1987,397,2023-11-25,Cancelled,Cash on Delivery,4288 Main Rd,Chicago,CA,42471,32.84
+1988,488,2023-08-01,Cancelled,Credit Card,1271 Cedar St,San Antonio,CA,59398,42.87
+1989,891,2024-11-09,Cancelled,Credit Card,2520 Main Rd,Philadelphia,TX,52041,40.59
+1990,730,2024-06-29,Shipped,PayPal,4796 Maple St,Phoenix,CA,58948,9.88
+1991,500,2023-03-24,Cancelled,Credit Card,414 Maple Ave,Dallas,CA,32687,48.1
+1992,24,2023-11-29,Completed,PayPal,3299 Oak Ln,Houston,TX,36436,5.64
+1993,332,2024-06-21,Completed,Credit Card,9509 Main Rd,San Antonio,CA,32544,20.0
+1994,462,2023-06-10,Processing,Bank Transfer,7580 Pine Rd,Phoenix,CA,92495,42.58
+1995,642,2024-02-16,Shipped,Credit Card,1580 Maple Blvd,San Diego,NY,28935,10.26
+1996,165,2025-02-09,Processing,Cash on Delivery,8942 Main Ln,San Jose,TX,92536,13.07
+1997,37,2025-01-08,Processing,PayPal,1467 Maple St,Dallas,NY,73303,45.62
+1998,928,2023-06-17,Completed,Credit Card,8151 Cedar Ln,San Antonio,AZ,55492,23.87
+1999,565,2023-06-25,Processing,PayPal,3302 Main St,Chicago,TX,28280,28.99
+2000,408,2023-05-10,Completed,Cash on Delivery,2269 Cedar Ln,Philadelphia,TX,91661,6.64

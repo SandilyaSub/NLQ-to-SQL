@@ -1,0 +1,634 @@
+{
+  "database_type": "bigquery_imdb",
+  "tables": {
+    "name_basics": {
+      "columns": [
+        {
+          "name": "nconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier of the name/person."
+        },
+        {
+          "name": "primary_name",
+          "type": "STRING",
+          "description": "Name by which the person is most often credited."
+        },
+        {
+          "name": "birth_year",
+          "type": "INTEGER",
+          "description": "Birth year in YYYY format."
+        },
+        {
+          "name": "death_year",
+          "type": "INTEGER",
+          "description": "Death year in YYYY format if applicable."
+        },
+        {
+          "name": "primary_profession",
+          "type": "STRING",
+          "description": "The top-3 professions of the person."
+        },
+        {
+          "name": "known_for_titles",
+          "type": "STRING",
+          "description": "Titles the person is known for."
+        }
+      ],
+      "sample_data": [
+        {
+          "nconst": "nm7371078",
+          "primary_name": "Lee Pingle",
+          "birth_year": null,
+          "death_year": null,
+          "primary_profession": "\\N",
+          "known_for_titles": "tt0170980"
+        },
+        {
+          "nconst": "nm7372901",
+          "primary_name": "Ga\u00e9tane Marquis",
+          "birth_year": null,
+          "death_year": null,
+          "primary_profession": "\\N",
+          "known_for_titles": "tt3236056"
+        },
+        {
+          "nconst": "nm7386157",
+          "primary_name": "Evgeniya Rodina",
+          "birth_year": null,
+          "death_year": null,
+          "primary_profession": "\\N",
+          "known_for_titles": "tt3770700,tt3804520,tt5135606,tt4700374"
+        }
+      ],
+      "description": "Contains information about people (directors, writers, actors, etc.)"
+    },
+    "reviews": {
+      "columns": [
+        {
+          "name": "review",
+          "type": "STRING",
+          "description": "User review's in IMDb."
+        },
+        {
+          "name": "split",
+          "type": "STRING",
+          "description": "It has two categories test and train."
+        },
+        {
+          "name": "label",
+          "type": "STRING",
+          "description": "It has three categories Negative, Positive and Unsupervised. All Unsupervised label has only split equals-to train."
+        },
+        {
+          "name": "movie_id",
+          "type": "STRING",
+          "description": "UniqueId for the movie in IMDb."
+        },
+        {
+          "name": "reviewer_rating",
+          "type": "INTEGER",
+          "description": "Reviewer rating for particular movie in IMDb. For train-unsupervised, reviewer_rating is NULL."
+        },
+        {
+          "name": "movie_url",
+          "type": "STRING",
+          "description": "Movie url for corresponding movie_id"
+        },
+        {
+          "name": "title",
+          "type": "STRING",
+          "description": "Title of the movie for corresponding movie_id"
+        }
+      ],
+      "sample_data": [
+        {
+          "review": "Once again Mr. Costner has dragged out a movie for far longer than necessary. Aside from the terrific sea rescue sequences, of which there are very few I just did not care about any of the characters. Most of us have ghosts in the closet, and Costner's character are realized early on, and then forgotten until much later, by which time I did not care. The character we should really care about is a very cocky, overconfident Ashton Kutcher. The problem is he comes off as kid who thinks he's better than anyone else around him and shows no signs of a cluttered closet. His only obstacle appears to be winning over Costner. Finally when we are well past the half way point of this stinker, Costner tells us all about Kutcher's ghosts. We are told why Kutcher is driven to be the best with no prior inkling or foreshadowing. No magic here, it was all I could do to keep from turning it off an hour in.",
+          "split": "test",
+          "label": "Negative",
+          "movie_id": "tt0406816",
+          "reviewer_rating": 2,
+          "movie_url": "http://www.imdb.com/title/tt0406816/",
+          "title": "The Guardian"
+        },
+        {
+          "review": "This is an example of why the majority of action films are the same. Generic and boring, there's really nothing worth watching here. A complete waste of the then barely-tapped talents of Ice-T and Ice Cube, who've each proven many times over that they are capable of acting, and acting well. Don't bother with this one, go see New Jack City, Ricochet or watch New York Undercover for Ice-T, or Boyz n the Hood, Higher Learning or Friday for Ice Cube and see the real deal. Ice-T's horribly cliched dialogue alone makes this film grate at the teeth, and I'm still wondering what the heck Bill Paxton was doing in this film? And why the heck does he always play the exact same character? From Aliens onward, every film I've seen with Bill Paxton has him playing the exact same irritating character, and at least in Aliens his character died, which made it somewhat gratifying...Overall, this is second-rate action trash. There are countless better films to see, and if you really want to see this one, watch Judgement Night, which is practically a carbon copy but has better acting and a better script. The only thing that made this at all worth watching was a decent hand on the camera - the cinematography was almost refreshing, which comes close to making up for the horrible film itself - but not quite. 4/10.",
+          "split": "test",
+          "label": "Negative",
+          "movie_id": "tt0105636",
+          "reviewer_rating": 4,
+          "movie_url": "http://www.imdb.com/title/tt0105636/",
+          "title": "Trespass"
+        },
+        {
+          "review": "First of all I hate those moronic rappers, who could'nt act if they had a gun pressed against their foreheads. All they do is curse and shoot each other and acting like clich\u00e9'e version of gangsters.The movie doesn't take more than five minutes to explain what is going on before we're already at the warehouse There is not a single sympathetic character in this movie, except for the homeless guy, who is also the only one with half a brain.Bill Paxton and William Sadler are both hill billies and Sadlers character is just as much a villain as the gangsters. I did'nt like him right from the start.The movie is filled with pointless violence and Walter Hills specialty: people falling through windows with glass flying everywhere. There is pretty much no plot and it is a big problem when you root for no-one. Everybody dies, except from Paxton and the homeless guy and everybody get what they deserve.The only two black people that can act is the homeless guy and the junkie but they're actors by profession, not annoying ugly brain dead rappers.Stay away from this crap and watch 48 hours 1 and 2 instead. At lest they have characters you care about, a sense of humor and nothing but real actors in the cast.",
+          "split": "test",
+          "label": "Negative",
+          "movie_id": "tt0105636",
+          "reviewer_rating": 1,
+          "movie_url": "http://www.imdb.com/title/tt0105636/",
+          "title": "Trespass"
+        }
+      ]
+    },
+    "title_akas": {
+      "columns": [
+        {
+          "name": "title_id",
+          "type": "STRING",
+          "description": "A tconst, an alphanumeric unique identifier of the title."
+        },
+        {
+          "name": "ordering",
+          "type": "INTEGER",
+          "description": "A number to uniquely identify rows for a given title_id."
+        },
+        {
+          "name": "title",
+          "type": "STRING",
+          "description": "The localized title."
+        },
+        {
+          "name": "region",
+          "type": "STRING",
+          "description": "The region for this version of the title."
+        },
+        {
+          "name": "language",
+          "type": "STRING",
+          "description": "The language of the title."
+        },
+        {
+          "name": "types",
+          "type": "STRING",
+          "description": "Enumerated set of attributes for this alternative title. One or more of the following: 'alternative', 'dvd', 'festival', 'tv', 'video', 'working', 'original', 'imdbDisplay'. New values may be added in the future without warning."
+        },
+        {
+          "name": "attributes",
+          "type": "STRING",
+          "description": "Additional terms to describe this alternative title, not enumerated"
+        },
+        {
+          "name": "is_original_title",
+          "type": "BOOLEAN",
+          "description": "False: not original title; True: original title."
+        }
+      ],
+      "sample_data": [
+        {
+          "title_id": "tt30024609",
+          "ordering": 1,
+          "title": "Il mistero del cibo scomparso",
+          "region": null,
+          "language": null,
+          "types": "original",
+          "attributes": null,
+          "is_original_title": true
+        },
+        {
+          "title_id": "tt30051416",
+          "ordering": 1,
+          "title": "Episode #1.510",
+          "region": null,
+          "language": null,
+          "types": "original",
+          "attributes": null,
+          "is_original_title": true
+        },
+        {
+          "title_id": "tt30127693",
+          "ordering": 1,
+          "title": "Episode #1.55",
+          "region": null,
+          "language": null,
+          "types": "original",
+          "attributes": null,
+          "is_original_title": true
+        }
+      ],
+      "description": "Contains alternative titles for titles"
+    },
+    "title_basics": {
+      "columns": [
+        {
+          "name": "tconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier of the title."
+        },
+        {
+          "name": "title_type",
+          "type": "STRING",
+          "description": "The type/format of the title (e.g. movie, short, tvseries, tvepisode, video, etc)."
+        },
+        {
+          "name": "primary_title",
+          "type": "STRING",
+          "description": "The more popular title / the title used by the filmmakers on promotional materials at the point of release."
+        },
+        {
+          "name": "original_title",
+          "type": "STRING",
+          "description": "Original title, in the original language."
+        },
+        {
+          "name": "is_adult",
+          "type": "INTEGER",
+          "description": "0: non-adult title; 1: adult title."
+        },
+        {
+          "name": "start_year",
+          "type": "INTEGER",
+          "description": "Represents the release year of a title. In the case of TV Series, it is the series start year."
+        },
+        {
+          "name": "end_year",
+          "type": "INTEGER",
+          "description": "TV Series end year."
+        },
+        {
+          "name": "runtime_minutes",
+          "type": "INTEGER",
+          "description": "Primary runtime of the title, in minutes."
+        },
+        {
+          "name": "genres",
+          "type": "STRING",
+          "description": "Includes up to three genres associated with the title."
+        }
+      ],
+      "sample_data": [
+        {
+          "tconst": "tt6829872",
+          "title_type": "tvEpisode",
+          "primary_title": "Episode #1.1513",
+          "original_title": "Episode #1.1513",
+          "is_adult": 0,
+          "start_year": null,
+          "end_year": null,
+          "runtime_minutes": null,
+          "genres": null
+        },
+        {
+          "tconst": "tt7039774",
+          "title_type": "tvEpisode",
+          "primary_title": "Brochettes Ap\u00e9ritives de Tomates au Bacon",
+          "original_title": "Brochettes Ap\u00e9ritives de Tomates au Bacon",
+          "is_adult": 0,
+          "start_year": null,
+          "end_year": null,
+          "runtime_minutes": null,
+          "genres": null
+        },
+        {
+          "tconst": "tt7249726",
+          "title_type": "tvEpisode",
+          "primary_title": "Nominal Interest Rate",
+          "original_title": "Nominal Interest Rate",
+          "is_adult": 0,
+          "start_year": null,
+          "end_year": null,
+          "runtime_minutes": null,
+          "genres": null
+        }
+      ],
+      "description": "Contains basic information for titles"
+    },
+    "title_crew": {
+      "columns": [
+        {
+          "name": "tconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier of the title."
+        },
+        {
+          "name": "directors",
+          "type": "STRING",
+          "description": "Strinng of nconsts - director(s) of the given title."
+        },
+        {
+          "name": "writers",
+          "type": "STRING",
+          "description": "String of nconsts - writer(s) of the given title."
+        }
+      ],
+      "sample_data": [
+        {
+          "tconst": "tt14726680",
+          "directors": null,
+          "writers": null
+        },
+        {
+          "tconst": "tt14727610",
+          "directors": null,
+          "writers": null
+        },
+        {
+          "tconst": "tt14729062",
+          "directors": null,
+          "writers": null
+        }
+      ],
+      "description": "Contains director and writer information for titles"
+    },
+    "title_episode": {
+      "columns": [
+        {
+          "name": "tconst",
+          "type": "STRING",
+          "description": "Alphanumeric identifier of episode."
+        },
+        {
+          "name": "parent_tconst",
+          "type": "STRING",
+          "description": "Alphanumeric identifier of the parent TV Series."
+        },
+        {
+          "name": "season_number",
+          "type": "INTEGER",
+          "description": "Season number the episode belongs to."
+        },
+        {
+          "name": "episode_number",
+          "type": "INTEGER",
+          "description": "Episode number of the tconst in the TV series."
+        }
+      ],
+      "sample_data": [
+        {
+          "tconst": "tt2286699",
+          "parent_tconst": "tt0217211",
+          "season_number": 16,
+          "episode_number": 120
+        },
+        {
+          "tconst": "tt2286701",
+          "parent_tconst": "tt0217211",
+          "season_number": 16,
+          "episode_number": 121
+        },
+        {
+          "tconst": "tt2286703",
+          "parent_tconst": "tt0217211",
+          "season_number": 16,
+          "episode_number": 122
+        }
+      ],
+      "description": "Contains episode information for TV series"
+    },
+    "title_principals": {
+      "columns": [
+        {
+          "name": "tconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier of the title."
+        },
+        {
+          "name": "ordering",
+          "type": "INTEGER",
+          "description": "a number to uniquely identify rows for a given title_id."
+        },
+        {
+          "name": "nconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier of the name/person."
+        },
+        {
+          "name": "category",
+          "type": "STRING",
+          "description": "The category of job that person was in."
+        },
+        {
+          "name": "job",
+          "type": "STRING",
+          "description": "The specific job title if applicable."
+        },
+        {
+          "name": "characters",
+          "type": "STRING",
+          "description": "The name of the character played if applicable."
+        }
+      ],
+      "sample_data": [
+        {
+          "tconst": "tt3884276",
+          "ordering": 1,
+          "nconst": "nm14286776",
+          "category": "actor",
+          "job": null,
+          "characters": "Waiter"
+        },
+        {
+          "tconst": "tt1594696",
+          "ordering": 1,
+          "nconst": "nm0491005",
+          "category": "actor",
+          "job": null,
+          "characters": "Ben Coleman"
+        },
+        {
+          "tconst": "tt1604648",
+          "ordering": 1,
+          "nconst": "nm0472305",
+          "category": "actor",
+          "job": null,
+          "characters": "Polizeihauptkommissar Jan Reuter"
+        }
+      ],
+      "description": "Contains principal cast/crew for titles"
+    },
+    "title_ratings": {
+      "columns": [
+        {
+          "name": "tconst",
+          "type": "STRING",
+          "description": "Alphanumeric unique identifier for title."
+        },
+        {
+          "name": "average_rating",
+          "type": "FLOAT",
+          "description": "Weighted average of all the individual user ratings."
+        },
+        {
+          "name": "num_votes",
+          "type": "INTEGER",
+          "description": "Number of votes the title has received."
+        }
+      ],
+      "sample_data": [
+        {
+          "tconst": "tt0000024",
+          "average_rating": 3.7,
+          "num_votes": 157
+        },
+        {
+          "tconst": "tt0000025",
+          "average_rating": 4.2,
+          "num_votes": 50
+        },
+        {
+          "tconst": "tt0000037",
+          "average_rating": 4.5,
+          "num_votes": 79
+        }
+      ],
+      "description": "Contains ratings information for titles"
+    }
+  },
+  "relationships": [
+    {
+      "table1": "name_basics",
+      "column1": "nconst",
+      "table2": "title_principals",
+      "column2": "nconst"
+    },
+    {
+      "table1": "reviews",
+      "column1": "title",
+      "table2": "title_akas",
+      "column2": "title"
+    },
+    {
+      "table1": "title_akas",
+      "column1": "ordering",
+      "table2": "title_principals",
+      "column2": "ordering"
+    },
+    {
+      "table1": "title_akas",
+      "column1": "title",
+      "table2": "reviews",
+      "column2": "title"
+    },
+    {
+      "table1": "title_basics",
+      "column1": "tconst",
+      "table2": "title_crew",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_basics",
+      "column1": "tconst",
+      "table2": "title_episode",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_basics",
+      "column1": "tconst",
+      "table2": "title_principals",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_basics",
+      "column1": "tconst",
+      "table2": "title_ratings",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_crew",
+      "column1": "tconst",
+      "table2": "title_basics",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_crew",
+      "column1": "tconst",
+      "table2": "title_episode",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_crew",
+      "column1": "tconst",
+      "table2": "title_principals",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_crew",
+      "column1": "tconst",
+      "table2": "title_ratings",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_episode",
+      "column1": "tconst",
+      "table2": "title_basics",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_episode",
+      "column1": "tconst",
+      "table2": "title_crew",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_episode",
+      "column1": "tconst",
+      "table2": "title_principals",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_episode",
+      "column1": "tconst",
+      "table2": "title_ratings",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "tconst",
+      "table2": "title_basics",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "tconst",
+      "table2": "title_crew",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "tconst",
+      "table2": "title_episode",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "tconst",
+      "table2": "title_ratings",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "ordering",
+      "table2": "title_akas",
+      "column2": "ordering"
+    },
+    {
+      "table1": "title_principals",
+      "column1": "nconst",
+      "table2": "name_basics",
+      "column2": "nconst"
+    },
+    {
+      "table1": "title_ratings",
+      "column1": "tconst",
+      "table2": "title_basics",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_ratings",
+      "column1": "tconst",
+      "table2": "title_crew",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_ratings",
+      "column1": "tconst",
+      "table2": "title_episode",
+      "column2": "tconst"
+    },
+    {
+      "table1": "title_ratings",
+      "column1": "tconst",
+      "table2": "title_principals",
+      "column2": "tconst"
+    }
+  ]
+}

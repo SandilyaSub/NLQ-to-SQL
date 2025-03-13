@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Insights Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Movie Insights Explorer</h1>
+            <p>Unleash the power of NL to SQL to query Google's movie database.</p>
+        </header>
+
+        <main class="app-main">
+            <aside class="app-sidebar">
+                <div class="history-container">
+                    <h2>Query History</h2>
+                    <div class="history-items" id="history-list">
+                        {% for query in query_history %}
+                            <div class="history-item">{{ query }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="logs-container">
+                    <h2>Processing Logs</h2>
+                    <div class="logs-items" id="logs-container">
+                         <!-- Logs will be displayed here -->
+                    </div>
+                </div>
+            </aside>
+
+            <section class="main-content">
+                <div class="output-container" id="results-container">
+                    <!-- Results will be displayed here -->
+                    <div class="result-section">
+                        <button class="collapsible active">
+                            <i class="fas fa-table"></i> Results
+                        </button>
+                        <div class="content results-table-container" style="max-height: 1000px;">
+                            <!-- Results Table -->
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <button class="collapsible">
+                            <i class="fas fa-code"></i> Query Details
+                        </button>
+                        <div class="content query-details-container">
+                            <p><strong>Query:</strong> <span class="query-text"></span></p>
+                            <p><strong>SQL:</strong> <pre><code class="sql-code"></code></pre></p>
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <button class="collapsible">
+                            <i class="fas fa-brain"></i> Confidence & Interactions
+                        </button>
+                        <div class="content interactions-container">
+                            <p><strong>Confidence:</strong> <span class="confidence-score"></span></p>
+                            <p><strong>Interactions:</strong></p>
+                            <ul class="interaction-list">
+                                <!-- Interactions -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+           <div class="input-area">
+                <span class="prompt">nlq-to-sql></span>
+                <input type="text" id="query-input" placeholder="Ask a question about movies...">
+                <button id="submit-btn"><i class="fas fa-paper-plane"></i> Submit</button>
+           </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLQ to SQL Terminal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Natural Language to SQL Terminal</h1>
+            <p>Ask questions about your retail database in plain English</p>
+        </header>
+
+        <main>
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-title">SQL Query Terminal</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="results-container" id="results-container">
+                        <!-- Results will be displayed here -->
+                    </div>
+                    <div class="logs-container" id="logs-container">
+                        <!-- Logs will be displayed here -->
+                    </div>
+                    <div class="input-container">
+                        <div class="prompt">nlq-to-sql&gt;</div>
+                        <textarea id="query-input" placeholder="Type your question here..." rows="1"></textarea>
+                        <button id="submit-btn">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-container">
+                <div class="history-header">
+                    <div class="history-title">Query History</div>
+                </div>
+                <div class="history-body" id="history-list">
+                    <!-- Query history will be displayed here -->
+                    {% for query in query_history %}
+                    <div class="history-item">{{ query }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&COPY; 2025 Powered by Sandilya, Clarivoy.ai</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

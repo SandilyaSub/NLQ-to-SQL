@@ -1,0 +1,128 @@
+<svg width="900" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="800" fill="#f8f9fa" rx="0" ry="0"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">NLQ-to-SQL BigQuery System Flow</text>
+  
+  <!-- Step 1: User Input -->
+  <rect x="300" y="80" width="300" height="60" rx="8" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="450" y="110" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">1. User Submits Natural Language Query</text>
+  <circle cx="310" cy="90" r="15" fill="#2196f3" stroke="white" stroke-width="1"/>
+  <text x="310" y="95" font-family="Arial" font-size="14" text-anchor="middle" fill="white">1</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="140" x2="450" y2="170" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 2: Flask Server -->
+  <rect x="300" y="170" width="300" height="60" rx="8" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+  <text x="450" y="200" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">2. Flask Server Processes Request</text>
+  <circle cx="310" cy="180" r="15" fill="#9c27b0" stroke="white" stroke-width="1"/>
+  <text x="310" y="185" font-family="Arial" font-size="14" text-anchor="middle" fill="white">2</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="230" x2="450" y2="260" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 3: SchemaRAG -->
+  <rect x="300" y="260" width="300" height="80" rx="8" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+  <text x="450" y="285" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">3. SchemaRAG System</text>
+  <text x="450" y="310" font-family="Arial" font-size="14" text-anchor="middle">Retrieves relevant schema information</text>
+  <circle cx="310" cy="270" r="15" fill="#9c27b0" stroke="white" stroke-width="1"/>
+  <text x="310" y="275" font-family="Arial" font-size="14" text-anchor="middle" fill="white">3</text>
+  
+  <!-- Arrow to BigQuery Schema -->
+  <line x1="600" y1="300" x2="700" y2="300" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="700" y1="300" x2="700" y2="400" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="700" y1="400" x2="600" y2="400" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="650" y="290" font-family="Arial" font-size="12" text-anchor="middle">Extract</text>
+  <text x="650" y="410" font-family="Arial" font-size="12" text-anchor="middle">Schema</text>
+  
+  <!-- BigQuery Schema Box -->
+  <rect x="700" y="350" width="150" height="100" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="775" y="380" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">IMDB Schema</text>
+  <text x="775" y="400" font-family="Arial" font-size="12" text-anchor="middle">title_basics</text>
+  <text x="775" y="420" font-family="Arial" font-size="12" text-anchor="middle">title_ratings</text>
+  <text x="775" y="440" font-family="Arial" font-size="12" text-anchor="middle">...</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="340" x2="450" y2="370" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 4: Together AI -->
+  <rect x="300" y="370" width="300" height="80" rx="8" fill="#fff8e1" stroke="#ffa000" stroke-width="2"/>
+  <text x="450" y="395" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">4. Together AI API</text>
+  <text x="450" y="420" font-family="Arial" font-size="14" text-anchor="middle">Llama-3.3-70B-Instruct-Turbo</text>
+  <circle cx="310" cy="380" r="15" fill="#ffa000" stroke="white" stroke-width="1"/>
+  <text x="310" y="385" font-family="Arial" font-size="14" text-anchor="middle" fill="white">4</text>
+  
+  <!-- Arrow to Embedding Model -->
+  <line x1="300" y1="410" x2="200" y2="410" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="400" font-family="Arial" font-size="12" text-anchor="middle">Generate</text>
+  <text x="250" y="415" font-family="Arial" font-size="12" text-anchor="middle">Embeddings</text>
+  
+  <!-- Embedding Model Box -->
+  <rect x="50" y="380" width="150" height="60" rx="8" fill="#fff8e1" stroke="#ffa000" stroke-width="2"/>
+  <text x="125" y="415" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Embedding Model</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="450" x2="450" y2="480" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 5: SQL Generation -->
+  <rect x="300" y="480" width="300" height="60" rx="8" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+  <text x="450" y="510" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">5. SQL Generator Creates Query</text>
+  <circle cx="310" cy="490" r="15" fill="#9c27b0" stroke="white" stroke-width="1"/>
+  <text x="310" y="495" font-family="Arial" font-size="14" text-anchor="middle" fill="white">5</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="540" x2="450" y2="570" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 6: SQL Validation -->
+  <rect x="300" y="570" width="300" height="60" rx="8" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+  <text x="450" y="600" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">6. SQL Validator Checks Query</text>
+  <circle cx="310" cy="580" r="15" fill="#9c27b0" stroke="white" stroke-width="1"/>
+  <text x="310" y="585" font-family="Arial" font-size="14" text-anchor="middle" fill="white">6</text>
+  
+  <!-- Feedback Loop -->
+  <path d="M600 600 C650 600, 650 510, 600 510" stroke="#757575" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="650" y="560" font-family="Arial" font-size="14" text-anchor="middle" fill="#757575">Feedback Loop</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="630" x2="450" y2="660" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 7: BigQuery Execution -->
+  <rect x="300" y="660" width="300" height="60" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="450" y="690" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">7. BigQuery Executes SQL</text>
+  <circle cx="310" cy="670" r="15" fill="#4caf50" stroke="white" stroke-width="1"/>
+  <text x="310" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="white">7</text>
+  
+  <!-- Arrow Down -->
+  <line x1="450" y1="720" x2="450" y2="750" stroke="#757575" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 8: Return Results -->
+  <rect x="300" y="750" width="300" height="60" rx="8" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="450" y="780" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">8. Return Results to User</text>
+  <circle cx="310" cy="760" r="15" fill="#2196f3" stroke="white" stroke-width="1"/>
+  <text x="310" y="765" font-family="Arial" font-size="14" text-anchor="middle" fill="white">8</text>
+  
+  <!-- Legend -->
+  <rect x="700" y="480" width="180" height="130" rx="8" fill="white" stroke="#757575" stroke-width="1"/>
+  <text x="790" y="500" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Legend</text>
+  
+  <rect x="710" y="510" width="20" height="20" rx="4" fill="#e3f2fd" stroke="#2196f3" stroke-width="1"/>
+  <text x="740" y="525" font-family="Arial" font-size="12" text-anchor="start">User Interface</text>
+  
+  <rect x="710" y="540" width="20" height="20" rx="4" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="740" y="555" font-family="Arial" font-size="12" text-anchor="start">Application Layer</text>
+  
+  <rect x="710" y="570" width="20" height="20" rx="4" fill="#e8f5e9" stroke="#4caf50" stroke-width="1"/>
+  <text x="740" y="585" font-family="Arial" font-size="12" text-anchor="start">Data Layer</text>
+  
+  <rect x="710" y="600" width="20" height="20" rx="4" fill="#fff8e1" stroke="#ffa000" stroke-width="1"/>
+  <text x="740" y="615" font-family="Arial" font-size="12" text-anchor="start">External Services</text>
+  
+  <!-- Arrowhead definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000000"/>
+    </marker>
+  </defs>
+</svg>

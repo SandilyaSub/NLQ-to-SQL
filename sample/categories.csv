@@ -1,0 +1,6 @@
+category_id,category_name,description,parent_category_id
+1,Electronics,This category contains various electronics products.,
+2,Computers,This category contains various computers products.,1.0
+3,Audio,This category contains various audio products.,1.0
+4,Accessories,This category contains various accessories products.,1.0
+5,Networking,This category contains various networking products.,1.0

@@ -1,0 +1,101 @@
+product_id,product_name,category_id,price,cost,stock_quantity,description,weight_kg,dimensions_cm,is_active
+1,Basic Headphones,4,1660.98,994.24,633,This is a advanced tablet with great features.,10.83,50x61x28,True
+2,Deluxe Laptop,5,674.81,1173.07,958,This is a standard smartphone with great features.,13.03,97x52x7,True
+3,Premium Laptop,4,1309.26,1103.99,872,This is a deluxe smartphone with great features.,18.04,17x74x17,False
+4,Professional Laptop,2,408.02,1366.93,371,This is a advanced camera with great features.,5.46,1x16x12,True
+5,Standard TV,1,1773.33,1356.71,519,This is a premium usb drive with great features.,5.19,96x64x22,True
+6,Ultimate USB Drive,4,402.48,1184.63,760,This is a essential mouse with great features.,3.68,72x37x41,True
+7,Deluxe Speaker,5,1013.89,814.07,298,This is a advanced camera with great features.,3.71,51x29x42,False
+8,Advanced Scanner,1,425.13,1162.74,152,This is a standard speaker with great features.,17.25,85x36x27,True
+9,Standard Headphones,1,111.04,1252.2,236,This is a advanced printer with great features.,16.58,49x79x49,True
+10,Advanced Smartphone,5,1766.75,1419.18,773,This is a standard laptop with great features.,9.43,14x90x43,True
+11,Essential Smartphone,4,673.99,122.83,382,This is a premium speaker with great features.,5.79,99x32x9,True
+12,Advanced Monitor,3,1245.3,1446.73,937,This is a deluxe speaker with great features.,7.91,87x41x9,True
+13,Standard Scanner,3,1511.75,179.01,883,This is a basic printer with great features.,18.98,53x50x14,True
+14,Standard Keyboard,1,1365.26,736.99,916,This is a basic hard drive with great features.,18.67,94x53x47,True
+15,Basic Router,3,1168.31,263.85,93,This is a advanced router with great features.,16.99,27x6x17,True
+16,Essential Hard Drive,3,1364.79,1473.65,957,This is a premium ssd with great features.,5.87,79x63x21,True
+17,Deluxe Headphones,5,1049.69,217.74,763,This is a advanced speaker with great features.,8.26,55x22x31,False
+18,Ultimate Speaker,2,1740.25,194.32,982,This is a ultimate hard drive with great features.,6.6,92x4x13,True
+19,Professional SSD,4,295.36,815.74,806,This is a premium printer with great features.,9.4,52x71x38,True
+20,Advanced Smartphone,1,1778.73,1441.21,856,This is a advanced printer with great features.,10.77,27x50x11,True
+21,Standard Hard Drive,3,808.08,1297.46,465,This is a professional keyboard with great features.,8.5,21x56x1,True
+22,Essential Scanner,5,1244.29,1026.57,239,This is a premium mouse with great features.,3.76,48x30x7,True
+23,Professional Mouse,5,63.86,200.11,714,This is a premium keyboard with great features.,17.55,5x89x47,True
+24,Advanced Keyboard,5,1250.33,505.9,247,This is a basic speaker with great features.,11.96,15x87x31,True
+25,Basic Laptop,4,1667.87,725.1,511,This is a deluxe speaker with great features.,8.64,17x57x48,False
+26,Premium Tablet,2,323.47,741.29,965,This is a premium keyboard with great features.,0.4,53x66x20,True
+27,Premium Monitor,4,1201.73,1306.49,289,This is a ultimate tablet with great features.,14.37,91x11x39,True
+28,Standard Printer,5,1047.0,1480.71,695,This is a standard camera with great features.,0.6,82x47x10,True
+29,Premium Hard Drive,5,1542.71,1414.96,299,This is a professional mouse with great features.,0.74,35x70x45,True
+30,Professional Headphones,4,1556.98,108.89,627,This is a ultimate router with great features.,14.19,25x89x4,True
+31,Basic USB Drive,3,711.8,1052.51,625,This is a premium router with great features.,9.41,22x100x49,True
+32,Premium Speaker,2,1283.05,1095.27,984,This is a ultimate keyboard with great features.,7.02,64x19x39,True
+33,Deluxe Hard Drive,3,1764.2,1498.65,947,This is a premium tv with great features.,4.17,15x62x30,True
+34,Advanced Headphones,4,887.44,1115.56,692,This is a essential ssd with great features.,16.41,12x65x40,True
+35,Professional Laptop,4,1148.59,1471.44,898,This is a ultimate laptop with great features.,0.4,5x40x20,True
+36,Deluxe Smartphone,2,1127.48,1231.99,561,This is a essential usb drive with great features.,12.21,59x84x13,False
+37,Advanced Keyboard,1,179.83,1386.74,333,This is a ultimate usb drive with great features.,7.07,73x3x48,True
+38,Advanced Router,3,559.4,809.97,976,This is a premium keyboard with great features.,5.79,62x54x22,True
+39,Advanced Mouse,2,1136.4,1413.39,40,This is a ultimate printer with great features.,8.33,49x60x12,True
+40,Standard Monitor,3,739.84,465.45,34,This is a deluxe mouse with great features.,18.28,25x71x39,False
+41,Deluxe Mouse,3,1321.56,1393.83,305,This is a standard laptop with great features.,5.26,74x91x30,True
+42,Professional Laptop,2,1328.11,973.53,231,This is a basic hard drive with great features.,3.68,86x30x50,True
+43,Essential Router,4,155.79,1132.85,485,This is a advanced printer with great features.,12.01,41x78x40,True
+44,Professional Hard Drive,5,487.04,590.14,693,This is a essential mouse with great features.,0.4,81x24x43,True
+45,Essential Printer,4,460.64,1171.21,508,This is a deluxe speaker with great features.,8.45,54x8x32,True
+46,Premium Headphones,4,781.93,1156.41,604,This is a standard router with great features.,3.24,45x32x31,True
+47,Deluxe Smartphone,3,1714.47,529.16,627,This is a advanced ssd with great features.,0.17,56x97x23,True
+48,Essential Hard Drive,3,212.34,932.88,791,This is a deluxe tablet with great features.,2.5,39x97x16,True
+49,Professional SSD,5,298.01,698.22,641,This is a basic monitor with great features.,16.9,68x23x47,False
+50,Essential Headphones,1,1426.99,759.77,885,This is a professional hard drive with great features.,4.55,99x6x15,False
+51,Professional Mouse,5,20.13,783.25,317,This is a standard laptop with great features.,19.46,26x24x24,True
+52,Professional Monitor,4,897.06,273.91,588,This is a standard camera with great features.,0.9,48x16x5,True
+53,Premium SSD,1,1876.9,406.02,490,This is a deluxe camera with great features.,5.49,89x74x6,True
+54,Standard TV,5,1547.17,1032.35,703,This is a ultimate keyboard with great features.,19.53,29x42x14,True
+55,Professional SSD,2,1402.85,378.32,822,This is a professional laptop with great features.,8.49,42x88x49,True
+56,Professional Router,1,1520.35,871.54,401,This is a advanced ssd with great features.,4.16,59x7x4,True
+57,Premium Speaker,4,1147.71,1216.08,582,This is a ultimate hard drive with great features.,5.24,93x79x44,True
+58,Basic Hard Drive,1,1171.44,1103.22,299,This is a premium hard drive with great features.,7.7,49x80x43,False
+59,Premium Speaker,5,868.25,1003.66,900,This is a basic tv with great features.,14.07,2x56x40,False
+60,Deluxe Smartphone,5,1165.65,741.75,503,This is a advanced ssd with great features.,19.82,29x92x35,True
+61,Premium Tablet,1,1694.52,156.29,106,This is a deluxe speaker with great features.,4.04,93x77x32,True
+62,Deluxe USB Drive,4,1574.51,1170.88,545,This is a advanced monitor with great features.,11.93,32x98x28,True
+63,Premium Monitor,3,828.37,920.76,940,This is a premium laptop with great features.,3.74,80x68x32,True
+64,Professional Router,2,1121.54,519.31,33,This is a premium mouse with great features.,3.75,47x40x13,False
+65,Professional Camera,3,812.29,1440.62,74,This is a advanced tv with great features.,7.67,17x11x43,True
+66,Professional Headphones,2,698.12,589.67,385,This is a standard router with great features.,13.61,9x58x29,False
+67,Professional Keyboard,1,438.93,1022.68,866,This is a deluxe camera with great features.,6.54,47x10x1,True
+68,Advanced Camera,5,705.74,1388.32,672,This is a standard scanner with great features.,14.35,46x75x4,False
+69,Premium Printer,4,1184.73,912.57,524,This is a premium printer with great features.,12.18,63x50x27,True
+70,Ultimate Speaker,4,1327.06,754.72,361,This is a essential hard drive with great features.,5.93,100x61x7,True
+71,Ultimate Keyboard,2,781.72,681.94,154,This is a standard router with great features.,2.82,100x11x34,False
+72,Deluxe USB Drive,4,1048.12,1434.52,397,This is a essential tv with great features.,6.21,91x88x48,False
+73,Advanced Laptop,2,1728.59,263.39,96,This is a advanced mouse with great features.,19.97,83x61x45,False
+74,Essential USB Drive,5,229.39,296.38,487,This is a basic headphones with great features.,17.76,62x62x2,False
+75,Deluxe TV,4,730.47,1420.81,233,This is a ultimate tablet with great features.,0.72,5x60x22,False
+76,Deluxe Tablet,3,1796.23,1345.38,454,This is a essential keyboard with great features.,16.39,12x54x48,True
+77,Advanced Camera,4,1243.74,615.6,469,This is a standard monitor with great features.,15.93,52x90x48,False
+78,Deluxe Laptop,2,1926.96,259.12,826,This is a premium scanner with great features.,15.98,38x9x17,True
+79,Standard Camera,2,493.71,1065.1,845,This is a premium headphones with great features.,3.02,3x73x46,True
+80,Ultimate Headphones,2,47.68,1193.98,777,This is a essential ssd with great features.,5.71,29x24x12,True
+81,Standard Router,4,307.41,468.38,132,This is a basic headphones with great features.,8.89,21x2x16,True
+82,Standard Hard Drive,2,1803.03,687.25,758,This is a advanced router with great features.,17.21,26x86x25,True
+83,Basic Mouse,1,108.01,1313.21,566,This is a ultimate keyboard with great features.,7.29,20x51x33,True
+84,Basic SSD,1,435.28,1012.77,330,This is a basic router with great features.,10.38,85x50x35,True
+85,Premium Smartphone,2,972.16,232.4,595,This is a deluxe smartphone with great features.,19.74,66x82x46,False
+86,Advanced USB Drive,2,882.72,617.45,10,This is a advanced smartphone with great features.,6.46,37x51x6,False
+87,Essential Keyboard,5,353.01,222.92,223,This is a advanced printer with great features.,18.41,30x84x47,False
+88,Premium Printer,2,1949.0,713.9,883,This is a basic monitor with great features.,11.14,61x88x21,True
+89,Essential SSD,4,209.76,558.44,559,This is a deluxe ssd with great features.,3.95,43x67x32,True
+90,Ultimate Printer,1,956.3,1189.15,704,This is a premium smartphone with great features.,17.04,96x32x42,True
+91,Standard Scanner,4,1457.87,1322.19,528,This is a ultimate monitor with great features.,12.84,30x2x25,True
+92,Premium SSD,3,426.56,1251.21,103,This is a deluxe camera with great features.,17.45,93x62x40,True
+93,Standard Mouse,4,1016.34,1375.51,866,This is a premium monitor with great features.,19.07,22x15x28,True
+94,Professional Smartphone,4,839.5,1436.41,42,This is a standard headphones with great features.,5.78,24x74x27,True
+95,Essential Tablet,2,1804.6,381.57,664,This is a essential tv with great features.,12.39,19x14x44,False
+96,Essential Router,5,1509.28,711.37,662,This is a essential tablet with great features.,12.62,4x1x45,True
+97,Deluxe TV,2,1915.76,792.1,508,This is a premium camera with great features.,4.48,52x90x4,True
+98,Standard USB Drive,1,750.56,545.6,641,This is a basic tablet with great features.,2.34,29x18x8,True
+99,Basic Tablet,3,646.25,208.88,815,This is a advanced tv with great features.,2.81,52x32x19,True
+100,Essential Scanner,2,122.69,27.4,287,This is a basic tv with great features.,11.41,59x12x36,True

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Insights Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Movie Insights Explorer</h1>
+            <p>Unleash the power of NL to SQL to query Google's movie database.</p>
+        </header>
+
+        <main class="app-main">
+            <aside class="app-sidebar">
+                <div class="history-container">
+                    <h2>Query History</h2>
+                    <div class="history-items" id="history-list">
+                        {% for query in query_history %}
+                            <div class="history-item">{{ query }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="logs-container">
+                    <h2>Processing Logs</h2>
+                    <div class="logs-items" id="logs-container">
+                         <!-- Logs will be displayed here -->
+                    </div>
+                </div>
+            </aside>
+
+            <section class="main-content">
+                <div class="results-header">
+                    <h2><i class="fas fa-chart-bar"></i> Results</h2>
+                </div>
+                <div class="results-history" id="results-history">
+                    <!-- Results history will be displayed here -->
+                </div>
+                
+                <!-- Template for a query result (hidden, used by JavaScript) -->
+                <template id="query-result-template">
+                    <div class="query-result">
+                        <!-- Question Section -->
+                        <div class="query-section">
+                            <div class="query-section-header" data-section="question">
+                                <div class="query-section-title">
+                                    <i class="fas fa-question-circle"></i> Question
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="query-section-content question-content">
+                                <!-- Question text will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Query Details Section -->
+                        <div class="query-section">
+                            <div class="query-section-header" data-section="query-details">
+                                <div class="query-section-title">
+                                    <i class="fas fa-code"></i> Query Details
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="query-section-content query-details-content">
+                                <strong>SQL:</strong>
+                                <pre><code class="sql-code"></code></pre>
+                            </div>
+                        </div>
+                        
+                        <!-- Confidence & Interactions Section -->
+                        <div class="query-section">
+                            <div class="query-section-header" data-section="confidence">
+                                <div class="query-section-title">
+                                    <i class="fas fa-brain"></i> Confidence & Interactions
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="query-section-content confidence-content">
+                                <div><strong>Confidence:</strong> <span class="confidence-score"></span></div>
+                                <div><strong>Interactions:</strong></div>
+                                <ul class="interaction-list">
+                                    <!-- Interactions will be inserted here -->
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Results Section -->
+                        <div class="query-section">
+                            <div class="query-section-header active" data-section="results">
+                                <div class="query-section-title">
+                                    <i class="fas fa-table"></i> Results
+                                </div>
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                            <div class="query-section-content results-content show">
+                                <!-- Results table will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Feedback Section -->
+                        <div class="query-feedback">
+                            <div class="feedback-prompt">Was this result helpful?</div>
+                            <div class="feedback-buttons">
+                                <button class="feedback-button thumbs-up" data-feedback="positive" title="Thumbs Up">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="feedback-button thumbs-down" data-feedback="negative" title="Thumbs Down">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <div class="feedback-status"></div>
+                        </div>
+                        
+                        <!-- Timestamp -->
+                        <div class="query-timestamp">
+                            <!-- Timestamp will be inserted here -->
+                        </div>
+                    </div>
+                </template>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+           <div class="input-area">
+                <span class="prompt">nlq-to-sql></span>
+                <input type="text" id="query-input" placeholder="Ask me a quantitative question on movies , actors & ratings ...">
+                <button id="submit-btn"><i class="fas fa-paper-plane"></i> Submit</button>
+           </div>
+           <div class="footer-copyright">
+                &copy; 2025 Powered by Sandilya, Clarivoy.ai
+           </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
