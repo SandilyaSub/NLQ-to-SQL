@@ -4,6 +4,18 @@ NLQ to SQL Web Terminal
 This script provides a web-based terminal interface for the NLQ to SQL converter.
 """
 
+# For cloud deployment - create credentials file from environment variable
+import os
+import json
+
+if os.environ.get('GOOGLE_CREDENTIALS_JSON'):
+    # Create credentials file from environment variable
+    creds_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+    creds_path = '/tmp/google-credentials.json'
+    with open(creds_path, 'w') as f:
+        f.write(creds_json)
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = creds_path
+
 import os
 import json
 import sqlite3
