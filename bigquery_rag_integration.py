@@ -338,6 +338,44 @@ def update_requirements():
         logger.error(f"Error updating requirements.txt: {e}")
         raise
 
+def get_bigquery_schema():
+    """Get the BigQuery IMDB schema for use in the NLQ-to-SQL system."""
+    try:
+        schema_data = load_schema()
+        
+        # Format the schema in a way that's compatible with the existing system
+        formatted_schema = {}
+        
+        # Process each table in the schema
+        for table_info in schema_data:
+            table_name = table_info.get("table_name")
+            if not table_name:
+                continue
+                
+            # Extract column information
+            columns = []
+            for column in table_info.get("columns", []):
+                columns.append({
+                    "name": column.get("name"),
+                    "type": column.get("type")
+                })
+            
+            # Add table schema
+            formatted_schema[table_name] = columns
+            
+            # Add sample data if available
+            if "sample_data" in table_info:
+                formatted_schema[f"{table_name}_sample"] = table_info["sample_data"]
+        
+        return formatted_schema
+    except Exception as e:
+        logger.error(f"Error getting BigQuery schema: {e}")
+        # Return a minimal schema to avoid errors
+        return {
+            "title": [{"name": "tconst", "type": "STRING"}, {"name": "primaryTitle", "type": "STRING"}],
+            "name": [{"name": "nconst", "type": "STRING"}, {"name": "primaryName", "type": "STRING"}]
+        }
+
 def main():
     """Main function to integrate BigQuery IMDB with the RAG system."""
     try:

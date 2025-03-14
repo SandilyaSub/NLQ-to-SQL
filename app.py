@@ -79,38 +79,55 @@ init_db()
 
 def get_database_schema():
     """Get the schema of the database tables with sample data."""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    # Handle BigQuery case
+    if DB_TYPE == "bigquery_imdb":
+        try:
+            # Use the BigQuery schema instead of SQLite
+            logger.info("Using BigQuery IMDB schema")
+            from bigquery_rag_integration import get_bigquery_schema
+            return get_bigquery_schema()
+        except Exception as e:
+            logger.error(f"Error getting BigQuery schema: {str(e)}")
+            # Return a minimal schema to avoid errors
+            return {"error": f"Failed to load BigQuery schema: {str(e)}"}
     
-    schema = {}
-    
-    if DB_TYPE == "retail":
-        tables = ["categories", "products", "customers", "orders", "order_items"]
-    else:  # movie database
-        tables = ["name_basics", "title_basics", "title_ratings", "title_crew", 
-                 "title_episode", "title_principals", "title_akas"]
-    
-    for table in tables:
-        # Get column information
-        cursor.execute(f"PRAGMA table_info({table})")
-        columns = cursor.fetchall()
-        schema[table] = [{"name": col[1], "type": col[2]} for col in columns]
+    # For SQLite databases
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
         
-        # Get a sample of data for better context
-        cursor.execute(f"SELECT * FROM {table} LIMIT 2")
-        sample_data = cursor.fetchall()
-        if sample_data:
-            column_names = [description[0] for description in cursor.description]
-            sample_rows = []
-            for row in sample_data:
-                sample_row = {}
-                for i, value in enumerate(row):
-                    sample_row[column_names[i]] = value
-                sample_rows.append(sample_row)
-            schema[f"{table}_sample"] = sample_rows
-    
-    conn.close()
-    return schema
+        schema = {}
+        
+        if DB_TYPE == "retail":
+            tables = ["categories", "products", "customers", "orders", "order_items"]
+        else:  # movie database
+            tables = ["name_basics", "title_basics", "title_ratings", "title_crew", 
+                     "title_episode", "title_principals", "title_akas"]
+        
+        for table in tables:
+            # Get column information
+            cursor.execute(f"PRAGMA table_info({table})")
+            columns = cursor.fetchall()
+            schema[table] = [{"name": col[1], "type": col[2]} for col in columns]
+            
+            # Get a sample of data for better context
+            cursor.execute(f"SELECT * FROM {table} LIMIT 2")
+            sample_data = cursor.fetchall()
+            if sample_data:
+                column_names = [description[0] for description in cursor.description]
+                sample_rows = []
+                for row in sample_data:
+                    sample_row = {}
+                    for i, value in enumerate(row):
+                        sample_row[column_names[i]] = value
+                    sample_rows.append(sample_row)
+                schema[f"{table}_sample"] = sample_rows
+        
+        conn.close()
+        return schema
+    except Exception as e:
+        logger.error(f"Error getting database schema: {str(e)}")
+        return {"error": f"Failed to load database schema: {str(e)}"}
 
 def generate_sql_query(question, schema):
     """Generate SQL query from natural language question using Together API and RAG."""
