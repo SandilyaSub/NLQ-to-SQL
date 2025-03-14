@@ -473,18 +473,30 @@ def submit_feedback():
     if query_id is None or feedback is None:
         return jsonify({"error": "Missing query_id or feedback"}), 400
     
-    # If not using BigQuery, save feedback to database
-    if DB_TYPE != "bigquery_imdb" and DB_PATH is not None:
-        try:
-            update_user_feedback(query_id, feedback)
-            return jsonify({"status": "success"})
-        except Exception as e:
-            logger.error(f"Error updating feedback: {str(e)}")
-            return jsonify({"error": str(e)}), 500
-    else:
-        # Just log the feedback for BigQuery
+    try:
+        # Log the feedback for all database types
         logger.info(f"Received feedback for query {query_id}: {feedback}")
+        
+        # If not using BigQuery, save feedback to local database
+        if DB_TYPE != "bigquery_imdb" and DB_PATH is not None:
+            update_user_feedback(query_id, feedback)
+        
+        # For all database types, save to Supabase if available
+        try:
+            from supabase_integration import get_supabase_client
+            supabase = get_supabase_client()
+            if supabase:
+                # Update the feedback in Supabase
+                supabase.table("query_feedback").update({"user_feedback": feedback}).eq("id", query_id).execute()
+                logger.info(f"Updated feedback in Supabase for query {query_id}")
+        except Exception as e:
+            logger.error(f"Error updating feedback in Supabase: {str(e)}")
+            # Continue even if Supabase update fails
+            
         return jsonify({"status": "success"})
+    except Exception as e:
+        logger.error(f"Error submitting feedback: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     # Check if database exists, if not, warn the user (skip for BigQuery which doesn't use a local DB)

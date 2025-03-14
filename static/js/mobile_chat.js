@@ -131,6 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Debug log the entire response to see its structure
         console.log('API Response Data:', JSON.stringify(data));
         
+        // Store query ID for feedback if available
+        if (data.query_id) {
+            systemMessage.setAttribute('data-query-id', data.query_id);
+        }
+        
         // Update SQL query - check multiple possible property names
         const sqlCode = systemMessage.querySelector('code.sql');
         
@@ -154,6 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (typeof data.query !== 'undefined' && data.query !== null) {
             console.log('Found SQL in data.query:', data.query);
             sqlQuery = data.query;
+        } else if (typeof data.sql_query !== 'undefined' && data.sql_query !== null) {
+            console.log('Found SQL in data.sql_query:', data.sql_query);
+            sqlQuery = data.sql_query;
         } else {
             console.error('No SQL query found in response data with known property names');
         }
@@ -266,7 +274,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Send feedback to server
         const messageElement = button.closest('.message');
+        const queryId = messageElement.getAttribute('data-query-id');
+        
+        // If no query ID is available, use the message index as fallback
         const messageIndex = Array.from(chatMessages.children).indexOf(messageElement);
+        const feedbackId = queryId || messageIndex.toString();
         
         fetch('/api/feedback', {
             method: 'POST',
@@ -274,16 +286,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                query_id: messageIndex,
+                query_id: feedbackId,
                 feedback: feedback === 'positive' ? 'thumbs_up' : 'thumbs_down'
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Feedback sent:', data);
+            // Show a small confirmation
+            const confirmationEl = document.createElement('span');
+            confirmationEl.className = 'feedback-confirmation';
+            confirmationEl.textContent = '✓ Feedback recorded';
+            feedbackSection.appendChild(confirmationEl);
+            
+            // Remove confirmation after 3 seconds
+            setTimeout(() => {
+                confirmationEl.remove();
+            }, 3000);
         })
         .catch(error => {
             console.error('Error sending feedback:', error);
+            // Show error message
+            const errorEl = document.createElement('span');
+            errorEl.className = 'feedback-error';
+            errorEl.textContent = 'Error recording feedback';
+            feedbackSection.appendChild(errorEl);
+            
+            // Remove error message after 3 seconds
+            setTimeout(() => {
+                errorEl.remove();
+            }, 3000);
         });
     }
     
