@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Movie Insights Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_chat.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h1>Movie Insights Explorer</h1>
+        </header>
+
+        <main class="chat-messages" id="chat-messages">
+            <!-- Welcome message -->
+            <div class="message system-message">
+                <div class="message-content">
+                    <p>Welcome to Movie Insights Explorer! Ask me anything about movies, actors, directors, and more.</p>
+                    <p>Example questions:</p>
+                    <ul>
+                        <li>Show me the top 10 movies by rating</li>
+                        <li>List all actors in Titanic</li>
+                        <li>What are the most popular genres?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Messages will be added here dynamically -->
+        </main>
+
+        <footer class="chat-input">
+            <form id="query-form">
+                <input type="text" id="query-input" placeholder="Ask me about movies...">
+                <button type="submit" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </footer>
+    </div>
+
+    <!-- Template for user message -->
+    <template id="user-message-template">
+        <div class="message user-message">
+            <div class="message-content">
+                <p class="query-text"></p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template for system message -->
+    <template id="system-message-template">
+        <div class="message system-message">
+            <div class="message-content">
+                <div class="thinking hidden">
+                    <div class="dot-typing"></div>
+                </div>
+                <div class="response-sections">
+                    <!-- SQL Query Section -->
+                    <div class="response-section">
+                        <div class="section-header" data-section="query">
+                            <span>SQL Query</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="section-content query-content">
+                            <pre><code class="sql"></code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div class="response-section">
+                        <div class="section-header active" data-section="results">
+                            <span>Results</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="section-content results-content show">
+                            <!-- Results will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Feedback Section -->
+                    <div class="feedback">
+                        <span>Was this helpful?</span>
+                        <button class="feedback-btn" data-feedback="positive">
+                            <i class="fas fa-thumbs-up"></i>
+                        </button>
+                        <button class="feedback-btn" data-feedback="negative">
+                            <i class="fas fa-thumbs-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/mobile_chat.js') }}"></script>
+</body>
+</html>

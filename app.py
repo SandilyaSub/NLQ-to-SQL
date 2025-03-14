@@ -222,7 +222,7 @@ SQL Query:"""
     sql_query = validate_sql_query(sql_query)
     
     logger.info(f"Generated SQL query: {sql_query}")
-    return sql_query.strip()
+    return sql_query.strip(), len(prompt), len(response.choices[0].message.content)
 
 def execute_sql_query(query):
     """Execute SQL query and return results."""
@@ -262,8 +262,107 @@ def execute_sql_query(query):
 
 @app.route('/')
 def index():
-    """Render the main page."""
-    return render_template('index.html', query_history=query_history)
+    """Render the main page based on device type."""
+    # Check if user agent is mobile
+    user_agent = request.headers.get('User-Agent', '').lower()
+    is_mobile = 'mobile' in user_agent or 'android' in user_agent or 'iphone' in user_agent or 'ipad' in user_agent
+    
+    if is_mobile:
+        return render_template('index_mobile.html', query_history=query_history)
+    else:
+        return render_template('index.html', query_history=query_history)
+
+@app.route('/query', methods=['POST'])
+def query():
+    """API endpoint for the mobile chat interface."""
+    data = request.json
+    query_text = data.get('query', '')
+    
+    if not query_text:
+        return jsonify({"error": "No query provided"}), 400
+    
+    # Add to query history
+    query_history.append(query_text)
+    if len(query_history) > 10:  # Keep only the last 10 queries
+        query_history.pop(0)
+    
+    # Ensure SchemaRAG is initialized
+    if not schema_rag.initialized:
+        logger.info("Initializing SchemaRAG system")
+        schema_rag.initialize()
+    
+    try:
+        logger.info(f"Processing query: \"{query_text}\"")
+        
+        # Start timing for NLQ to SQL conversion
+        nlq_start_time = datetime.now()
+        
+        # Get schema
+        schema = get_database_schema()
+        
+        # Generate SQL query
+        sql_query, prompt_tokens, completion_tokens = generate_sql_query(query_text, schema)
+        
+        # End timing for NLQ to SQL conversion
+        nlq_end_time = datetime.now()
+        nlq_duration = (nlq_end_time - nlq_start_time).total_seconds()
+        
+        # Start timing for SQL execution
+        sql_start_time = datetime.now()
+        
+        # Execute SQL query
+        result = execute_sql_query(sql_query)
+        
+        # End timing for SQL execution
+        sql_end_time = datetime.now()
+        sql_duration = (sql_end_time - sql_start_time).total_seconds()
+        
+        # Save query feedback to database (if not using BigQuery)
+        if DB_TYPE != "bigquery_imdb" and DB_PATH is not None:
+            try:
+                save_query_feedback(
+                    query_text=query_text,
+                    sql_query=sql_query,
+                    is_successful=True if not result.get("error") else False,
+                    error_message=result.get("error", ""),
+                    nlq_to_sql_duration=nlq_duration,
+                    sql_execution_duration=sql_duration,
+                    prompt_tokens=prompt_tokens,
+                    completion_tokens=completion_tokens
+                )
+            except Exception as e:
+                logger.error(f"Error saving query feedback: {str(e)}")
+        
+        # Return the result
+        if "error" in result:
+            return jsonify({
+                "sql": sql_query,
+                "error": result["error"]
+            })
+        else:
+            return jsonify({
+                "sql": sql_query,
+                "results": result["results"],
+                "nlq_duration": nlq_duration,
+                "sql_duration": sql_duration
+            })
+    
+    except Exception as e:
+        logger.error(f"Error processing query: {str(e)}")
+        return jsonify({"error": str(e)})
+
+@app.route('/feedback', methods=['POST'])
+def feedback():
+    """API endpoint for the mobile chat interface feedback."""
+    data = request.json
+    message_index = data.get('message_index')
+    feedback = data.get('feedback')
+    
+    # Here you would save the feedback to your database
+    # For now, we'll just log it
+    logger.info(f"Received feedback for message {message_index}: {feedback}")
+    
+    return jsonify({"status": "success"})
 
 @app.route('/api/query', methods=['POST'])
 def process_query():
