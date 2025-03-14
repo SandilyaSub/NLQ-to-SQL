@@ -79,55 +79,43 @@ init_db()
 
 def get_database_schema():
     """Get the schema of the database tables with sample data."""
-    # Handle BigQuery case
+    # For BigQuery, we don't need to connect to a local database
     if DB_TYPE == "bigquery_imdb":
-        try:
-            # Use the BigQuery schema instead of SQLite
-            logger.info("Using BigQuery IMDB schema")
-            from bigquery_rag_integration import get_bigquery_schema
-            return get_bigquery_schema()
-        except Exception as e:
-            logger.error(f"Error getting BigQuery schema: {str(e)}")
-            # Return a minimal schema to avoid errors
-            return {"error": f"Failed to load BigQuery schema: {str(e)}"}
+        # Return an empty schema - the BigQuery integration will handle this differently
+        return {}
     
-    # For SQLite databases
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    schema = {}
+    
+    if DB_TYPE == "retail":
+        tables = ["categories", "products", "customers", "orders", "order_items"]
+    else:  # movie database
+        tables = ["name_basics", "title_basics", "title_ratings", "title_crew", 
+                 "title_episode", "title_principals", "title_akas"]
+    
+    for table in tables:
+        # Get column information
+        cursor.execute(f"PRAGMA table_info({table})")
+        columns = cursor.fetchall()
+        schema[table] = [{"name": col[1], "type": col[2]} for col in columns]
         
-        schema = {}
-        
-        if DB_TYPE == "retail":
-            tables = ["categories", "products", "customers", "orders", "order_items"]
-        else:  # movie database
-            tables = ["name_basics", "title_basics", "title_ratings", "title_crew", 
-                     "title_episode", "title_principals", "title_akas"]
-        
-        for table in tables:
-            # Get column information
-            cursor.execute(f"PRAGMA table_info({table})")
-            columns = cursor.fetchall()
-            schema[table] = [{"name": col[1], "type": col[2]} for col in columns]
-            
-            # Get a sample of data for better context
-            cursor.execute(f"SELECT * FROM {table} LIMIT 2")
-            sample_data = cursor.fetchall()
-            if sample_data:
-                column_names = [description[0] for description in cursor.description]
-                sample_rows = []
-                for row in sample_data:
-                    sample_row = {}
-                    for i, value in enumerate(row):
-                        sample_row[column_names[i]] = value
-                    sample_rows.append(sample_row)
-                schema[f"{table}_sample"] = sample_rows
-        
-        conn.close()
-        return schema
-    except Exception as e:
-        logger.error(f"Error getting database schema: {str(e)}")
-        return {"error": f"Failed to load database schema: {str(e)}"}
+        # Get a sample of data for better context
+        cursor.execute(f"SELECT * FROM {table} LIMIT 2")
+        sample_data = cursor.fetchall()
+        if sample_data:
+            column_names = [description[0] for description in cursor.description]
+            sample_rows = []
+            for row in sample_data:
+                sample_row = {}
+                for i, value in enumerate(row):
+                    sample_row[column_names[i]] = value
+                sample_rows.append(sample_row)
+            schema[f"{table}_sample"] = sample_rows
+    
+    conn.close()
+    return schema
 
 def generate_sql_query(question, schema):
     """Generate SQL query from natural language question using Together API and RAG."""
@@ -393,71 +381,81 @@ def process_query():
     if not question:
         return jsonify({"error": "No question provided"}), 400
     
+    # Add to query history
+    query_history.append(question)
+    if len(query_history) > 10:  # Keep only the last 10 queries
+        query_history.pop(0)
+    
+    # Ensure SchemaRAG is initialized
+    if not schema_rag.initialized:
+        logger.info("Initializing SchemaRAG system")
+        schema_rag.initialize()
+    
     try:
+        logger.info(f"Processing query: \"{question}\"")
+        
         # Start timing for NLQ to SQL conversion
         nlq_start_time = datetime.now()
         
-        # Get database schema
-        schema = get_database_schema()
-        
-        # Generate SQL query
-        sql_query, prompt_tokens, completion_tokens = generate_sql_query(question, schema)
-        
-        # Log the generated SQL query for debugging
-        logger.info(f"Generated SQL query: {sql_query}")
+        # Process query using recursive validation system
+        result = validation_system.process_query(question)
         
         # End timing for NLQ to SQL conversion
         nlq_end_time = datetime.now()
-        nlq_duration = (nlq_end_time - nlq_start_time).total_seconds()
+        nlq_to_sql_time = (nlq_end_time - nlq_start_time).total_seconds()
         
         # Start timing for SQL execution
         sql_start_time = datetime.now()
         
-        # Execute SQL query
-        result = execute_sql_query(sql_query)
-        
+        # Assuming SQL execution happens in validation_system.process_query
         # End timing for SQL execution
         sql_end_time = datetime.now()
-        sql_duration = (sql_end_time - sql_start_time).total_seconds()
+        sql_execution_time = (sql_end_time - sql_start_time).total_seconds()
         
-        # Save query feedback to database (if not using BigQuery)
-        if DB_TYPE != "bigquery_imdb" and DB_PATH is not None:
-            try:
-                save_query_feedback(
-                    query_text=question,
-                    sql_query=sql_query,
-                    is_successful=True if not result.get("error") else False,
-                    error_message=result.get("error", ""),
-                    nlq_to_sql_duration=nlq_duration,
-                    sql_execution_duration=sql_duration,
-                    prompt_tokens=prompt_tokens,
-                    completion_tokens=completion_tokens
-                )
-            except Exception as e:
-                logger.error(f"Error saving query feedback: {str(e)}")
+        # Calculate total execution time
+        total_execution_time_ms = (sql_end_time - nlq_start_time).total_seconds() * 1000
         
-        # Return the result
-        if "error" in result:
-            response_data = {
-                "sql": sql_query,
-                "error": result["error"]
-            }
-            logger.info(f"Returning error response: {response_data}")
-            return jsonify(response_data)
-        else:
-            response_data = {
-                "sql": sql_query,
-                "results": result["results"],
-                "nlq_duration": nlq_duration,
-                "sql_duration": sql_duration
-            }
-            logger.info(f"Returning successful response with SQL: {sql_query}")
-            return jsonify(response_data)
-    
+        # Extract data for feedback database
+        if "error" not in result:
+            # Save query feedback to database
+            query_id = save_query_feedback(
+                natural_language_query=question,
+                generated_sql=result.get("sql_query", ""),
+                validated=True,
+                executed=True,
+                nlq_to_sql_time_seconds=nlq_to_sql_time,
+                sql_execution_time_seconds=sql_execution_time,
+                total_execution_time_ms=total_execution_time_ms,
+                result_count=len(result.get("results", [])),
+                result_summary=json.dumps(result.get("results", [])[:5]),  # Store first 5 results as summary
+                confidence_score=result.get("confidence", 0),
+                interaction_logs=result.get("interaction_logs", []),
+                validation_errors=None,
+                execution_errors=None
+            )
+            
+            # Add query ID to result for frontend reference
+            result["query_id"] = query_id
+        
+        # Add query history to the result
+        result["query_history"] = query_history
+        
+        # Ensure SQL query is accessible with the 'sql' key for mobile interface
+        if "sql_query" in result and "sql" not in result:
+            result["sql"] = result["sql_query"]
+        
+        # Log the response for debugging
+        logger.info(f"Returning response with SQL: {result.get('sql_query', result.get('sql', 'No SQL'))}")
+        
+        # Return response
+        return jsonify(result)
+        
     except Exception as e:
-        error_msg = f"Error processing query: {str(e)}"
-        logger.error(error_msg)
-        return jsonify({"error": error_msg})
+        logger.error(f"Error: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "query_history": query_history
+        })
 
 @app.route('/api/history', methods=['GET'])
 def get_history():
