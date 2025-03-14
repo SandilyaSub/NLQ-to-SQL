@@ -454,16 +454,21 @@ def submit_feedback():
     query_id = data.get('query_id')
     feedback = data.get('feedback')
     
-    if not query_id or not feedback:
+    if query_id is None or feedback is None:
         return jsonify({"error": "Missing query_id or feedback"}), 400
     
-    # Update feedback in database
-    success = update_user_feedback(query_id, feedback)
-    
-    if success:
-        return jsonify({"success": True, "message": "Feedback submitted successfully"})
+    # If not using BigQuery, save feedback to database
+    if DB_TYPE != "bigquery_imdb" and DB_PATH is not None:
+        try:
+            update_user_feedback(query_id, feedback)
+            return jsonify({"status": "success"})
+        except Exception as e:
+            logger.error(f"Error updating feedback: {str(e)}")
+            return jsonify({"error": str(e)}), 500
     else:
-        return jsonify({"success": False, "message": "Feedback already submitted or query not found"}), 400
+        # Just log the feedback for BigQuery
+        logger.info(f"Received feedback for query {query_id}: {feedback}")
+        return jsonify({"status": "success"})
 
 if __name__ == '__main__':
     # Check if database exists, if not, warn the user (skip for BigQuery which doesn't use a local DB)

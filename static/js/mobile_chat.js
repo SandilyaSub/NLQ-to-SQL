@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const queryInput = document.getElementById('query-input');
     const userMessageTemplate = document.getElementById('user-message-template');
     const systemMessageTemplate = document.getElementById('system-message-template');
+    const welcomeMessage = document.querySelector('.system-message');
+    let isFirstQuery = true;
     
     // Initialize the chat interface
     initChatInterface();
@@ -15,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const query = queryInput.value.trim();
         if (query) {
+            // If this is the first query, shrink the welcome message
+            if (isFirstQuery) {
+                welcomeMessage.classList.add('welcome-collapsed');
+                isFirstQuery = false;
+            }
+            
             sendQuery(query);
             queryInput.value = '';
         }
@@ -33,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const feedbackBtn = e.target.closest('.feedback-btn');
             if (feedbackBtn) {
                 handleFeedback(feedbackBtn);
+            }
+            
+            // Handle welcome message expansion/collapse
+            if (e.target.closest('.welcome-collapsed')) {
+                e.target.closest('.welcome-collapsed').classList.toggle('welcome-expanded');
             }
         });
         
@@ -58,12 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToBottom();
         
         // Send query to server
-        fetch('/query', {
+        fetch('/api/query', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ query: query })
+            body: JSON.stringify({ question: query })
         })
         .then(response => response.json())
         .then(data => {
@@ -203,14 +216,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const messageElement = button.closest('.message');
         const messageIndex = Array.from(chatMessages.children).indexOf(messageElement);
         
-        fetch('/feedback', {
+        fetch('/api/feedback', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                message_index: messageIndex,
-                feedback: feedback
+                query_id: messageIndex,
+                feedback: feedback === 'positive' ? 'thumbs_up' : 'thumbs_down'
             })
         })
         .then(response => response.json())
