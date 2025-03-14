@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
             thinkingIndicator.classList.add('hidden');
             responseSections.classList.remove('hidden');
             
-            // Log the response for debugging
-            console.log('API Response:', data);
+            // Debug log the entire response to see its structure
+            console.log('API Response Data:', JSON.stringify(data));
             
             // Update system message with response
             updateSystemMessage(systemMessage, data);
@@ -128,12 +128,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update system message with response
     function updateSystemMessage(systemMessage, data) {
+        // Debug log the entire response to see its structure
+        console.log('API Response Data:', JSON.stringify(data));
+        
         // Update SQL query - check multiple possible property names
         const sqlCode = systemMessage.querySelector('code.sql');
         
         // Check for SQL in the response with various possible property names
-        const sqlQuery = data.sql || data.generated_sql || data.query || '';
-        sqlCode.textContent = sqlQuery || 'No SQL query generated';
+        // First, check if data exists and is not null
+        if (!data) {
+            console.error('Response data is null or undefined');
+            sqlCode.textContent = 'No SQL query generated - No data received';
+            return;
+        }
+        
+        // Try to find SQL query in the response using various property names
+        let sqlQuery = null;
+        
+        if (typeof data.sql !== 'undefined' && data.sql !== null) {
+            console.log('Found SQL in data.sql:', data.sql);
+            sqlQuery = data.sql;
+        } else if (typeof data.generated_sql !== 'undefined' && data.generated_sql !== null) {
+            console.log('Found SQL in data.generated_sql:', data.generated_sql);
+            sqlQuery = data.generated_sql;
+        } else if (typeof data.query !== 'undefined' && data.query !== null) {
+            console.log('Found SQL in data.query:', data.query);
+            sqlQuery = data.query;
+        } else {
+            console.error('No SQL query found in response data with known property names');
+        }
+        
+        // Set the SQL code content
+        if (sqlQuery) {
+            sqlCode.textContent = sqlQuery;
+        } else {
+            sqlCode.textContent = 'No SQL query generated';
+        }
         
         // Update results
         const resultsContent = systemMessage.querySelector('.results-content');
