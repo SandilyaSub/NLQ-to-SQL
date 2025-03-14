@@ -29,7 +29,8 @@ import re
 from rag_utils import SchemaRAG
 from sql_validator import validate_sql_query
 from recursive_validation_system import RecursiveValidationSystem
-from query_feedback_db import init_db, save_query_feedback, update_user_feedback
+from query_feedback_db import init_db, update_user_feedback
+from supabase_integration import save_query_feedback, schedule_rag_updates, enhance_rag_with_feedback
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -495,6 +496,14 @@ if __name__ == '__main__':
         logger.info("Initializing SchemaRAG system in the background")
         schema_rag.initialize()
         logger.info("SchemaRAG system initialized successfully")
+        
+        # Schedule RAG updates with Supabase feedback data
+        logger.info("Setting up scheduled RAG updates with feedback data")
+        schedule_rag_updates(schema_rag)
+        
+        # Initial enhancement with existing feedback data
+        logger.info("Enhancing RAG with existing feedback data")
+        enhance_rag_with_feedback(schema_rag)
     
     # Run the Flask app
     app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5724)))
@@ -502,6 +511,9 @@ if __name__ == '__main__':
 # Initialize SchemaRAG system for Vercel deployment
 # This code runs when the module is imported by Vercel
 if DB_TYPE == "bigquery_imdb" and __name__ != '__main__':
-    logger.info("Initializing SchemaRAG system for serverless deployment")
+    logger.info("Initializing SchemaRAG system for server deployment")
     schema_rag.initialize()
-    logger.info("SchemaRAG system initialized successfully for serverless deployment")
+    
+    # Schedule RAG updates with Supabase feedback data for server deployment
+    logger.info("Setting up scheduled RAG updates with feedback data for server deployment")
+    schedule_rag_updates(schema_rag)
