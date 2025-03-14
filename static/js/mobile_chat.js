@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
             thinkingIndicator.classList.add('hidden');
             responseSections.classList.remove('hidden');
             
+            // Log the response for debugging
+            console.log('API Response:', data);
+            
             // Update system message with response
             updateSystemMessage(systemMessage, data);
             
@@ -125,9 +128,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update system message with response
     function updateSystemMessage(systemMessage, data) {
-        // Update SQL query
+        // Update SQL query - check multiple possible property names
         const sqlCode = systemMessage.querySelector('code.sql');
-        sqlCode.textContent = data.sql || 'No SQL query generated';
+        
+        // Check for SQL in the response with various possible property names
+        const sqlQuery = data.sql || data.generated_sql || data.query || '';
+        sqlCode.textContent = sqlQuery || 'No SQL query generated';
         
         // Update results
         const resultsContent = systemMessage.querySelector('.results-content');
@@ -174,6 +180,22 @@ document.addEventListener('DOMContentLoaded', function() {
             table.appendChild(tbody);
             resultsContent.innerHTML = '';
             resultsContent.appendChild(table);
+            
+            // Add execution time if available
+            if (data.nlq_duration || data.sql_duration) {
+                const timingInfo = document.createElement('div');
+                timingInfo.className = 'timing-info';
+                
+                if (data.nlq_duration) {
+                    timingInfo.innerHTML += `<div>NLQ to SQL: ${data.nlq_duration.toFixed(2)}s</div>`;
+                }
+                
+                if (data.sql_duration) {
+                    timingInfo.innerHTML += `<div>SQL Execution: ${data.sql_duration.toFixed(2)}s</div>`;
+                }
+                
+                resultsContent.appendChild(timingInfo);
+            }
         } else {
             // No results
             resultsContent.innerHTML = '<div class="no-results">No results found</div>';
