@@ -143,15 +143,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionTitle = questionHeader.querySelector('.query-section-title');
         questionTitle.innerHTML = `<i class="fas fa-question-circle"></i> Question: <span class="preview-text">${previewText}</span>`;
         
-        // Set SQL query
-        const sqlContent = container.querySelector('.sql-content code');
-        sqlContent.textContent = data.sql_query || data.sql || '';
+        // Set SQL query in the existing structure
+        const sqlCode = container.querySelector('.sql-code');
+        sqlCode.textContent = data.sql_query || data.sql || '';
         
         // Create preview for SQL section
-        const sqlHeader = container.querySelector('[data-section="sql"]');
-        const sqlTitle = sqlHeader.querySelector('.query-section-title');
-        const sqlPreview = data.sql_query || data.sql || 'No SQL generated';
-        sqlTitle.innerHTML = `<i class="fas fa-code"></i> SQL: <span class="preview-text">${sqlPreview.length > 50 ? sqlPreview.substring(0, 50) + '...' : sqlPreview}</span>`;
+        const queryDetailsHeader = container.querySelector('[data-section="query-details"]');
+        const sqlPreview = (data.sql_query || data.sql || 'No SQL generated');
+        const previewSql = sqlPreview.length > 40 ? sqlPreview.substring(0, 40) + '...' : sqlPreview;
+        const queryDetailsTitle = queryDetailsHeader.querySelector('.query-section-title');
+        queryDetailsTitle.innerHTML = `<i class="fas fa-code"></i> Query Details: <span class="preview-text">${previewSql}</span>`;
         
         // Set results
         const resultsContent = container.querySelector('.results-content');
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Apply syntax highlighting
-        hljs.highlightElement(sqlContent);
+        hljs.highlightElement(sqlCode);
         
         return container;
     }
