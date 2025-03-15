@@ -83,14 +83,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             submitBtn.disabled = false;
 
+            // Update history
+            updateHistory(data.query_history);
+            
             // Handle error
             if (data.error) {
                 addLogEntry(`Error: ${data.error}`, 'error');
+                
+                // Even with errors, display the result container with error info
+                // This ensures failed queries are visible in the history
+                displayResults({
+                    question: question,
+                    error: data.error,
+                    sql_query: data.sql_query || "",
+                    results: [],
+                    confidence: 0,
+                    interaction_logs: [],
+                    query_id: data.query_id
+                });
+                
                 return;
             }
 
-            // Update history
-            updateHistory(data.query_history);
             // Add log entries
             addLogEntry(`Generated SQL query: ${data.sql_query}`, 'info');
             addLogEntry('Executing SQL query...', 'info');
@@ -129,9 +143,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionTitle = questionHeader.querySelector('.query-section-title');
         questionTitle.innerHTML = `<i class="fas fa-question-circle"></i> Question: <span class="preview-text">${previewText}</span>`;
         
+        // Set SQL query
+        const sqlContent = container.querySelector('.sql-content code');
+        sqlContent.textContent = data.sql_query || data.sql || '';
+        
+        // Create preview for SQL section
+        const sqlHeader = container.querySelector('[data-section="sql"]');
+        const sqlTitle = sqlHeader.querySelector('.query-section-title');
+        const sqlPreview = data.sql_query || data.sql || 'No SQL generated';
+        sqlTitle.innerHTML = `<i class="fas fa-code"></i> SQL: <span class="preview-text">${sqlPreview.length > 50 ? sqlPreview.substring(0, 50) + '...' : sqlPreview}</span>`;
+        
         // Set results
         const resultsContent = container.querySelector('.results-content');
-        if (data.results && data.results.length > 0) {
+        
+        // Check for errors first
+        if (data.error) {
+            const errorDiv = document.createElement('div');
+            errorDiv.classList.add('error-message');
+            errorDiv.textContent = data.error;
+            resultsContent.appendChild(errorDiv);
+            
+            // Update results header to show error
+            const resultsHeader = container.querySelector('[data-section="results"]');
+            const resultsTitle = resultsHeader.querySelector('.query-section-title');
+            resultsTitle.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: <span class="preview-text">${data.error.length > 50 ? data.error.substring(0, 50) + '...' : data.error}</span>`;
+            
+            // Add error class to container
+            container.classList.add('query-error');
+        } else if (data.results && data.results.length > 0) {
             const table = document.createElement('table');
             table.classList.add('result-table');
             
@@ -149,29 +188,34 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create table body
             const tbody = document.createElement('tbody');
             data.results.forEach(row => {
-                const tableRow = document.createElement('tr');
+                const tr = document.createElement('tr');
                 Object.values(row).forEach(value => {
                     const td = document.createElement('td');
                     td.textContent = value;
-                    tableRow.appendChild(td);
+                    tr.appendChild(td);
                 });
-                tbody.appendChild(tableRow);
+                tbody.appendChild(tr);
             });
             table.appendChild(tbody);
+            
+            // Add table to results content
             resultsContent.appendChild(table);
+            
+            // Create preview for results section
+            const resultsHeader = container.querySelector('[data-section="results"]');
+            const resultsTitle = resultsHeader.querySelector('.query-section-title');
+            resultsTitle.innerHTML = `<i class="fas fa-table"></i> Results: <span class="preview-text">${data.results.length} rows</span>`;
         } else {
-            resultsContent.textContent = 'No results found.';
+            // No results
+            const noResults = document.createElement('p');
+            noResults.textContent = 'No results returned.';
+            resultsContent.appendChild(noResults);
+            
+            // Update results header
+            const resultsHeader = container.querySelector('[data-section="results"]');
+            const resultsTitle = resultsHeader.querySelector('.query-section-title');
+            resultsTitle.innerHTML = `<i class="fas fa-table"></i> Results: <span class="preview-text">No results</span>`;
         }
-        
-        // Set SQL code
-        const sqlCode = container.querySelector('.sql-code');
-        sqlCode.textContent = data.sql_query;
-        
-        // Create preview for query details section
-        const queryDetailsHeader = container.querySelector('[data-section="query-details"]');
-        const sqlPreview = data.sql_query.length > 40 ? data.sql_query.substring(0, 40) + '...' : data.sql_query;
-        const queryDetailsTitle = queryDetailsHeader.querySelector('.query-section-title');
-        queryDetailsTitle.innerHTML = `<i class="fas fa-code"></i> Query Details: <span class="preview-text">${sqlPreview}</span>`;
         
         // Set confidence score
         container.querySelector('.confidence-score').textContent = `${data.confidence}%`;
@@ -239,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Show loading state
                     feedbackStatus.textContent = 'Submitting feedback...';
-                    feedbackStatus.className = 'feedback-status';
+                    feedbackStatus.className = 'feedback-status loading';
                     
                     // Submit feedback to server
                     submitFeedback(queryId, feedback, feedbackButtons, feedbackStatus);
@@ -252,13 +296,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Apply syntax highlighting
-        hljs.highlightElement(sqlCode);
+        hljs.highlightElement(sqlContent);
         
         return container;
     }
 
     // Function to submit feedback
     function submitFeedback(queryId, feedback, buttons, statusElement) {
+        // Show loading state
+        statusElement.textContent = 'Submitting feedback...';
+        statusElement.className = 'feedback-status loading';
+        
         fetch('/api/feedback', {
             method: 'POST',
             headers: {
@@ -266,28 +314,24 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ query_id: queryId, feedback: feedback })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Show success message
-                statusElement.textContent = 'Thank you for your feedback!';
-                statusElement.className = 'feedback-status success';
-                
-                // Disable buttons
-                buttons.forEach(button => {
-                    button.classList.add('disabled');
-                });
-                
-                // Log success
-                addLogEntry('Feedback submitted successfully', 'success');
-            } else {
-                // Show error message
-                statusElement.textContent = data.message || 'Error submitting feedback';
-                statusElement.className = 'feedback-status error';
-                
-                // Log error
-                addLogEntry(`Error submitting feedback: ${data.message}`, 'error');
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
+        })
+        .then(data => {
+            // Show success message
+            statusElement.textContent = 'Thank you for your feedback!';
+            statusElement.className = 'feedback-status success';
+            
+            // Disable buttons
+            buttons.forEach(button => {
+                button.classList.add('disabled');
+            });
+            
+            // Log success
+            addLogEntry('Feedback submitted successfully', 'success');
         })
         .catch(error => {
             // Show error message

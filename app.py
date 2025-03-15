@@ -417,8 +417,9 @@ def process_query():
         total_execution_time_ms = (sql_end_time - nlq_start_time).total_seconds() * 1000
         
         # Extract data for feedback database
+        query_id = None
         if "error" not in result:
-            # Save query feedback to database
+            # Save successful query feedback to database
             query_id = save_query_feedback(
                 natural_language_query=question,
                 generated_sql=result.get("sql_query", ""),
@@ -434,9 +435,26 @@ def process_query():
                 validation_errors=None,
                 execution_errors=None
             )
+        else:
+            # Save failed query feedback to database
+            query_id = save_query_feedback(
+                natural_language_query=question,
+                generated_sql=result.get("sql_query", ""),
+                validated=False,
+                executed=False,
+                nlq_to_sql_time_seconds=nlq_to_sql_time,
+                sql_execution_time_seconds=0,
+                total_execution_time_ms=total_execution_time_ms,
+                result_count=0,
+                result_summary="[]",
+                confidence_score=result.get("confidence", 0),
+                interaction_logs=result.get("interaction_logs", []),
+                validation_errors=result.get("error", None),
+                execution_errors=result.get("error", None)
+            )
             
-            # Add query ID to result for frontend reference
-            result["query_id"] = query_id
+        # Add query ID to result for frontend reference
+        result["query_id"] = query_id
         
         # Add query history to the result
         result["query_history"] = query_history
@@ -453,9 +471,33 @@ def process_query():
         
     except Exception as e:
         logger.error(f"Error: {str(e)}")
+        
+        # Calculate execution time for failed query
+        end_time = datetime.now()
+        total_execution_time_ms = (end_time - nlq_start_time).total_seconds() * 1000 if 'nlq_start_time' in locals() else 0
+        
+        # Save error to feedback database
+        query_id = save_query_feedback(
+            natural_language_query=question,
+            generated_sql="",
+            validated=False,
+            executed=False,
+            nlq_to_sql_time_seconds=0,
+            sql_execution_time_seconds=0,
+            total_execution_time_ms=total_execution_time_ms,
+            result_count=0,
+            result_summary="[]",
+            confidence_score=0,
+            interaction_logs=[],
+            validation_errors=str(e),
+            execution_errors=str(e)
+        )
+        
+        # Return error response with query ID
         return jsonify({
             "error": str(e),
-            "query_history": query_history
+            "query_history": query_history,
+            "query_id": query_id
         })
 
 @app.route('/api/history', methods=['GET'])
