@@ -88,7 +88,7 @@ class DataAnalystAgent:
 
     def _is_nonsensical_input(self, question: str) -> bool:
         """
-        Check if a question is nonsensical (random characters, no real words).
+        Check if a question is nonsensical using a validity scoring approach.
         
         Args:
             question: Natural language question
@@ -102,42 +102,128 @@ class DataAnalystAgent:
         # Convert to lowercase for case-insensitive matching
         question_lower = question.lower().strip()
         
-        # Check for nonsensical input (random characters, no real words)
-        # This is a simple heuristic - if the question doesn't contain common English words
-        # or question patterns, it might be nonsensical
-        common_words = ['the', 'a', 'an', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'about', 'from']
-        question_words = ['what', 'who', 'where', 'when', 'why', 'how', 'which', 'show', 'list', 'tell', 'find', 'get']
+        # Initialize validity score
+        validity_score = 0
         
         # Get database type from environment or default to retail
         db_type = os.environ.get("DB_TYPE", "retail")
         
-        if db_type == "retail":
-            database_words = ['order', 'customer', 'product', 'sales', 'data', 'table', 'query', 'select', 'database', 'sql']
-        else:  # movie database
-            database_words = ['movie', 'film', 'actor', 'director', 'rating', 'title', 'episode', 'series', 'tv', 'cast', 'genre', 'data', 'table', 'query', 'select', 'database', 'sql']
+        # --- POSITIVE SIGNALS (things that indicate a valid query) ---
         
-        has_common_words = any(word in question_lower for word in common_words)
+        # 1. Contains database-specific entities
+        entities = self._extract_entities(question_lower, db_type)
+        if len(entities) > 0:
+            validity_score += 3  # Strong signal of validity
+            
+        # 2. Contains common question words
+        question_words = ['what', 'who', 'where', 'when', 'why', 'how', 'which', 'show', 'list', 'tell', 'find', 'get']
         has_question_words = any(word in question_lower for word in question_words)
-        has_database_words = any(word in question_lower for word in database_words)
+        if has_question_words:
+            validity_score += 2
+            
+        # 3. Contains query-specific patterns
+        if self._has_query_patterns(question_lower):
+            validity_score += 2
+            
+        # 4. Contains common English words (basic coherence)
+        common_words = ['the', 'a', 'an', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'about', 'from']
+        has_common_words = any(word in question_lower for word in common_words)
+        if has_common_words:
+            validity_score += 1
+            
+        # 5. Has reasonable length (not too short)
+        if len(question) > 15:
+            validity_score += 1
+            
+        # --- NEGATIVE SIGNALS (things that indicate a nonsensical query) ---
         
-        # 1. Check for very short questions without meaningful words
-        if len(question) < 15 and not (has_common_words or has_question_words or has_database_words):
-            logger.warning(f"Detected short nonsensical input: '{question}'")
-            return True
-        
-        # 2. Check for repeating character patterns (like 'asdasdasd')
+        # 1. Very short with no meaningful content
+        if len(question) < 10 and not (has_common_words or has_question_words):
+            validity_score -= 2
+            
+        # 2. Repeating character patterns
         if re.search(r'(\w)\1{2,}', question_lower) or re.search(r'(\w{2,})\1+', question_lower):
-            logger.warning(f"Detected repeating pattern in input: '{question}'")
-            return True
+            validity_score -= 3
             
-        # 3. Check for random character sequences without spaces
-        if len(question_lower) > 5 and ' ' not in question_lower and not has_database_words:
-            # If it's just a string of characters with no spaces and no database terms
-            logger.warning(f"Detected random character sequence: '{question}'")
-            return True
+        # 3. Random character sequences without spaces
+        if len(question_lower) > 5 and ' ' not in question_lower and len(entities) == 0:
+            validity_score -= 3
             
-        return False
+        # --- THRESHOLD DETERMINATION ---
         
+        # Adjust threshold based on query length
+        if len(question) < 15:
+            # Short queries need stronger positive signals
+            threshold = 3
+        else:
+            # Normal queries can have a lower threshold
+            threshold = 2
+            
+        # Log the validity assessment
+        logger.info(f"Query validity assessment: '{question}' - Score: {validity_score}, Threshold: {threshold}")
+        logger.info(f"Validity factors: entities={len(entities)}, has_question_words={has_question_words}, " +
+                   f"has_query_patterns={self._has_query_patterns(question_lower)}, has_common_words={has_common_words}")
+        
+        # Return True if the query is nonsensical (validity score below threshold)
+        return validity_score < threshold
+    
+    def _has_query_patterns(self, question: str) -> bool:
+        """
+        Check if the question contains common query patterns.
+        
+        Args:
+            question: Natural language question (lowercase)
+            
+        Returns:
+            True if the question contains query patterns, False otherwise
+        """
+        import re
+        
+        # Common query patterns with regex
+        patterns = [
+            r'top \d+',  # "top 10", "top 25", etc.
+            r'at least \d+',  # "at least 5000 votes"
+            r'more than \d+',  # "more than 10 movies"
+            r'less than \d+',  # "less than 90 minutes"
+            r'between \d+ and \d+',  # "between 1990 and 2000"
+            r'highest|lowest',  # "highest rating", "lowest budget"
+            r'average|mean|median',  # "average rating"
+            r'group by|grouped by',  # "grouped by genre"
+            r'order by|sorted by',  # "ordered by year"
+            r'most|least',  # "most popular", "least expensive"
+            r'rated|rating|score',  # "rated R", "rating above 8"
+            r'released|came out',  # "released in 1994"
+            r'directed by|director',  # "directed by Spielberg"
+            r'starring|actor|actress',  # "starring Tom Hanks"
+            r'genre|category',  # "genre is action"
+            r'budget|cost',  # "budget over $100 million"
+            r'revenue|box office|gross',  # "revenue over $200 million"
+            r'award|oscar|nomination',  # "won an Oscar"
+            r'popular|successful',  # "most popular"
+            r'recent|latest|newest',  # "most recent"
+            r'old|oldest|earliest',  # "oldest movie"
+            r'long|short|duration|runtime',  # "longest movie"
+        ]
+        
+        # Check if any pattern matches
+        for pattern in patterns:
+            if re.search(pattern, question):
+                return True
+                
+        # Check for specific database operations
+        operations = [
+            'count', 'sum', 'average', 'min', 'max', 'total',
+            'list', 'show', 'find', 'display', 'return',
+            'compare', 'rank', 'sort', 'order', 'filter',
+            'group', 'categorize', 'classify', 'segment'
+        ]
+        
+        for operation in operations:
+            if operation in question.split():
+                return True
+                
+        return False
+    
     def _is_vague_question(self, question: str) -> bool:
         """
         Check if a question is vague or specific (but not nonsensical).
