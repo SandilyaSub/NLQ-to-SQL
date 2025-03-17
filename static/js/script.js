@@ -207,32 +207,40 @@ document.addEventListener('DOMContentLoaded', function() {
             const resultsTitle = resultsHeader.querySelector('.query-section-title');
             resultsTitle.innerHTML = `<i class="fas fa-table"></i> Results: <span class="preview-text">${data.results.length} rows</span>`;
         } else {
-            // No results
+            // No results but query executed successfully
             const noResults = document.createElement('p');
-            noResults.textContent = 'No results returned.';
+            noResults.classList.add('no-results-message');
+            noResults.textContent = 'The query executed successfully, but no data was found matching your criteria.';
             resultsContent.appendChild(noResults);
             
             // Update results header
             const resultsHeader = container.querySelector('[data-section="results"]');
             const resultsTitle = resultsHeader.querySelector('.query-section-title');
-            resultsTitle.innerHTML = `<i class="fas fa-table"></i> Results: <span class="preview-text">No results</span>`;
+            resultsTitle.innerHTML = `<i class="fas fa-info-circle"></i> Results: <span class="preview-text">No matching data found</span>`;
         }
         
         // Set confidence score
-        container.querySelector('.confidence-score').textContent = `${data.confidence}%`;
+        container.querySelector('.confidence-score').textContent = `${data.confidence || 0}%`;
         
         // Set interactions
         const interactionList = container.querySelector('.interaction-list');
-        data.interaction_logs.forEach(log => {
-            const li = document.createElement('li');
-            li.textContent = log;
-            interactionList.appendChild(li);
-        });
+        if (data.interaction_logs && data.interaction_logs.length > 0) {
+            data.interaction_logs.forEach(log => {
+                const li = document.createElement('li');
+                li.textContent = log;
+                interactionList.appendChild(li);
+            });
+        } else {
+            const emptyItem = document.createElement('li');
+            emptyItem.textContent = 'No interaction logs available.';
+            emptyItem.classList.add('empty-interactions');
+            interactionList.appendChild(emptyItem);
+        }
         
         // Create preview for confidence section
         const confidenceHeader = container.querySelector('[data-section="confidence"]');
         const confidenceTitle = confidenceHeader.querySelector('.query-section-title');
-        confidenceTitle.innerHTML = `<i class="fas fa-brain"></i> Confidence: <span class="preview-text">${data.confidence}%</span>`;
+        confidenceTitle.innerHTML = `<i class="fas fa-brain"></i> Confidence: <span class="preview-text">${data.confidence || 0}%</span>`;
         
         // Set timestamp
         const timestamp = container.querySelector('.query-timestamp');

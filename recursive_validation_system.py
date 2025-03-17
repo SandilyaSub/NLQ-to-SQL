@@ -210,6 +210,22 @@ class RecursiveValidationSystem:
                         # If results is a dictionary with an error key
                         elif isinstance(results, dict) and "error" in results:
                             raise Exception(results["error"])
+                        # If results is an empty list (no data found)
+                        elif isinstance(results, list) and len(results) == 0:
+                            success_log = f"Query executed successfully with confidence {best_confidence}%, but no data was found matching the criteria"
+                            interaction_logs.append(success_log)
+                            logger.info(success_log)
+                            
+                            return {
+                                "question": question,
+                                "sql_query": best_query,
+                                "confidence": best_confidence,
+                                "results": [],
+                                "column_names": [],
+                                "iterations": iterations,
+                                "validation_history": validation_history,
+                                "interaction_logs": interaction_logs
+                            }
                         # Default case
                         else:
                             return {
@@ -234,7 +250,12 @@ class RecursiveValidationSystem:
                 else:
                     results, column_names = self._execute_sql_query(best_query)
                     
-                    success_log = f"Successfully executed query with confidence {best_confidence}%"
+                    # Check if results are empty
+                    if not results:
+                        success_log = f"Query executed successfully with confidence {best_confidence}%, but no data was found matching the criteria"
+                    else:
+                        success_log = f"Query executed successfully with confidence {best_confidence}%"
+                    
                     interaction_logs.append(success_log)
                     logger.info(success_log)
                     
@@ -310,6 +331,10 @@ class RecursiveValidationSystem:
                 # If results is a dictionary with an error key
                 elif isinstance(results, dict) and "error" in results:
                     raise Exception(results["error"])
+                # Empty results case - return empty list and empty column names
+                elif isinstance(results, list) and len(results) == 0:
+                    logger.info("Query executed successfully but returned no results")
+                    return [], []
                 # Default case
                 else:
                     return [], []
