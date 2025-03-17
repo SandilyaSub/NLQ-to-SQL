@@ -57,11 +57,14 @@ class DataAnalystAgent:
         relevant_chunks = self.schema_rag.retrieve_relevant_schema(question)
         schema_context = self.schema_rag.generate_schema_context(relevant_chunks)
         
+        # Check if this is a complex query that needs decomposition
+        is_complex = self._is_complex_query(question, schema_context)
+        
         # Build prompt with feedback and vague question handling if needed
-        prompt = self._build_prompt(question, schema_context, feedback, iteration, is_vague)
+        prompt = self._build_prompt(question, schema_context, feedback, iteration, is_vague, is_complex)
         
         # Log the prompt for debugging
-        logger.info(f"Prompt for iteration {iteration} (vague question: {is_vague}):\n{prompt}")
+        logger.info(f"Prompt for iteration {iteration} (vague: {is_vague}, complex: {is_complex}):\n{prompt}")
         
         # Generate SQL
         response = self.llm_client.chat.completions.create(
@@ -192,7 +195,8 @@ class DataAnalystAgent:
         
         return sql_query
     
-    def _build_prompt(self, question: str, schema_context: str, feedback: Optional[str] = None, iteration: int = 0, is_vague: bool = False) -> str:
+    def _build_prompt(self, question: str, schema_context: str, feedback: Optional[str] = None, 
+                     iteration: int = 0, is_vague: bool = False, is_complex: bool = False) -> str:
         """
         Build prompt with schema context and feedback.
         
@@ -202,6 +206,7 @@ class DataAnalystAgent:
             feedback: Optional feedback from validation
             iteration: Current iteration number
             is_vague: Whether the question is vague
+            is_complex: Whether the question is complex and needs decomposition
             
         Returns:
             Prompt for the LLM
@@ -288,6 +293,55 @@ class DataAnalystAgent:
 - When joining tables, remember that 'tconst' is the primary key for titles and 'nconst' is the primary key for people.
 """
 
+        # Add query decomposition instructions for complex queries
+        if is_complex:
+            prompt += """
+**Complex Query Decomposition**:
+This is a complex query that requires multiple operations. Follow these steps:
+
+1. First identify all entities and conditions in the query:
+   - List all tables that will be needed
+   - Identify all filtering conditions
+   - Note any aggregations or calculations required
+   - Determine the final sorting or limiting requirements
+
+2. Break the problem into smaller sub-problems:
+   - Start with the core entities and their relationships
+   - Add filtering conditions one by one
+   - Build up aggregations as needed
+   - Apply final sorting and limiting
+
+3. Solve each sub-problem with a Common Table Expression (CTE):
+   - Use WITH clauses to create intermediate result sets
+   - Name each CTE clearly based on its purpose
+   - Keep each CTE focused on a single aspect of the problem
+
+4. Combine the CTEs to form the final query:
+   - Join the CTEs as needed in the final SELECT
+   - Apply any final filtering, grouping, or sorting
+   - Ensure the final query returns exactly what was asked for
+
+Example structure for a complex query:
+```
+WITH filtered_movies AS (
+  SELECT * FROM `bigquery-public-data.imdb.title_basics`
+  WHERE condition1 AND condition2
+),
+director_movies AS (
+  SELECT ... FROM filtered_movies
+  JOIN ... ON ...
+  WHERE ...
+),
+final_results AS (
+  SELECT ... FROM director_movies
+  GROUP BY ...
+  HAVING ...
+)
+SELECT * FROM final_results
+ORDER BY ... LIMIT ...
+```
+"""
+
         # Add special instructions for vague questions
         if is_vague:
             # Check if the question seems nonsensical
@@ -337,3 +391,126 @@ Generate only the SQL query without any explanation. The query should be valid S
 SQL Query:"""
 
         return prompt
+
+    def _is_complex_query(self, question: str, schema_context: str) -> bool:
+        """
+        Determine if a question requires complex query decomposition.
+        
+        Args:
+            question: Natural language question
+            schema_context: Database schema context
+            
+        Returns:
+            True if the question is complex, False otherwise
+        """
+        import re
+        import os
+        
+        # Convert to lowercase for case-insensitive matching
+        question_lower = question.lower().strip()
+        
+        # Get database type from environment or default to retail
+        db_type = os.environ.get("DB_TYPE", "retail")
+        
+        # 1. Check for multiple entities requiring joins
+        entities = self._extract_entities(question_lower, db_type)
+        tables_needed = len(entities)
+        
+        # 2. Count filtering conditions (look for words that indicate conditions)
+        condition_indicators = ['where', 'greater than', 'less than', 'equal to', 'more than', 
+                               'at least', 'maximum', 'minimum', 'highest', 'lowest', 'top', 
+                               'bottom', 'between', 'over', 'under', 'above', 'below']
+        condition_count = sum(1 for indicator in condition_indicators if indicator in question_lower)
+        
+        # 3. Detect aggregations and grouping
+        aggregation_keywords = ['average', 'avg', 'sum', 'count', 'total', 'mean', 'median', 
+                               'maximum', 'minimum', 'max', 'min', 'group by', 'having']
+        has_aggregation = any(keyword in question_lower for keyword in aggregation_keywords)
+        
+        # 4. Check for nested conditions
+        nested_indicators = ['and', 'or', 'not', 'but', 'except', 'excluding', 'including', 
+                            'with', 'without', 'who', 'that', 'which']
+        nested_condition_count = sum(1 for indicator in nested_indicators if indicator in question_lower)
+        
+        # 5. Check for complex sorting or ranking
+        ranking_indicators = ['order by', 'sort by', 'rank', 'top', 'best', 'worst', 'highest', 
+                             'lowest', 'most', 'least', 'popular', 'rated', 'reviewed']
+        has_ranking = any(indicator in question_lower for indicator in ranking_indicators)
+        
+        # Determine complexity based on heuristics
+        is_complex = (
+            (tables_needed >= 3) or  # Needs 3+ tables
+            (condition_count >= 2) or  # Has 2+ filtering conditions
+            (nested_condition_count >= 2) or  # Has 2+ nested conditions
+            (has_aggregation and has_ranking) or  # Combines aggregation with ranking
+            (len(question.split()) >= 15 and has_aggregation)  # Long question with aggregation
+        )
+        
+        if is_complex:
+            logger.info(f"Classified as COMPLEX query: '{question}'")
+            logger.info(f"Complexity factors: tables={tables_needed}, conditions={condition_count}, " +
+                       f"nested={nested_condition_count}, aggregation={has_aggregation}, ranking={has_ranking}")
+        else:
+            logger.info(f"Classified as SIMPLE query: '{question}'")
+        
+        return is_complex
+    
+    def _extract_entities(self, question: str, db_type: str) -> List[str]:
+        """
+        Extract database entities mentioned in the question.
+        
+        Args:
+            question: Natural language question
+            db_type: Type of database (retail, bigquery_imdb)
+            
+        Returns:
+            List of entity names found in the question
+        """
+        entities = []
+        
+        if db_type == "bigquery_imdb":
+            # IMDB database entities
+            entity_mapping = {
+                'movie': 'title_basics',
+                'film': 'title_basics',
+                'show': 'title_basics',
+                'series': 'title_basics',
+                'episode': 'title_episode',
+                'actor': 'name_basics',
+                'actress': 'name_basics',
+                'director': 'name_basics',
+                'writer': 'name_basics',
+                'person': 'name_basics',
+                'cast': 'title_principals',
+                'crew': 'title_principals',
+                'rating': 'title_ratings',
+                'vote': 'title_ratings',
+                'genre': 'title_basics',
+                'title': 'title_basics',
+                'name': 'name_basics',
+                'aka': 'title_akas',
+                'alternative': 'title_akas'
+            }
+        elif db_type == "retail":
+            # Retail database entities
+            entity_mapping = {
+                'order': 'orders',
+                'customer': 'customers',
+                'product': 'products',
+                'category': 'product_categories',
+                'sale': 'orders',
+                'purchase': 'orders',
+                'return': 'returns',
+                'inventory': 'inventory'
+            }
+        else:
+            # Default mapping
+            entity_mapping = {}
+        
+        # Check for entity mentions in the question
+        for keyword, table in entity_mapping.items():
+            if keyword in question:
+                if table not in entities:
+                    entities.append(table)
+        
+        return entities
