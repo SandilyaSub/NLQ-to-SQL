@@ -248,6 +248,8 @@ class DataAnalystAgent:
   * Use 'start_year' (NOT 'startYear')
   * Use 'end_year' (NOT 'endYear')
   * Use 'runtime_minutes' (NOT 'runtimeMinutes')
+  * Use 'average_rating' (NOT 'averageRating')
+  * Use 'num_votes' (NOT 'numVotes')
 
 **IMDB Table Relationships**:
 - The 'title_basics' table contains core information about movies and TV shows.
@@ -257,6 +259,8 @@ class DataAnalystAgent:
   * Use 'primary_name' for person names (NOT 'name')
   * Use 'nconst' as the unique ID for people (NOT 'id' or 'person_id')
 - The 'title_ratings' table contains ratings information linked to titles via 'tconst'.
+  * Use 'average_rating' for the rating value (NOT 'averageRating' or 'rating')
+  * Use 'num_votes' for the vote count (NOT 'numVotes' or 'votes')
 - The 'title_crew' table links directors and writers to titles via 'tconst'.
 - The 'title_principals' table links cast and crew to titles via 'tconst' and to people via 'nconst'.
   * The 'category' column indicates the role (actor, actress, director, etc.)
@@ -281,7 +285,7 @@ class DataAnalystAgent:
 - The 'customers' table has 'customer_segment' column (not segment).
 - The 'customers' table has 'state' column (not customer_state).
 """
-        else:  # movie database
+        else:
             prompt += """
 - The 'title_basics' table contains core information about movies and TV shows.
 - The 'name_basics' table contains information about people (actors, directors, etc.).
