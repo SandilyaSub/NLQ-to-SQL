@@ -209,24 +209,44 @@ class ValidationAgent:
         """
         feedback = []
         confidence = 100  # Start with perfect score and deduct
+        error_details = {
+            "missing_columns": [],
+            "missing_tables": [],
+            "syntax_errors": [],
+            "error_messages": []
+        }
         
         # 1. Syntax check - most important to check first
         syntax_issues = self._check_syntax(sql_query)
         if syntax_issues:
             feedback.append(f"Syntax issues: {syntax_issues}")
+            error_details["syntax_errors"].append(syntax_issues)
             confidence -= 40  # Significant deduction for syntax errors
         
         # Only check columns if syntax is valid
         if not syntax_issues:
             # 2. Column and table existence check
-            missing_columns, incorrect_tables = self._check_columns(sql_query)
+            missing_columns, incorrect_tables, error_msgs = self._check_columns(sql_query)
             if missing_columns:
                 feedback.append(f"Missing or incorrect columns: {', '.join(missing_columns)}")
+                error_details["missing_columns"] = missing_columns
                 confidence -= min(30, len(missing_columns) * 10)  # Deduct up to 30 points
                 
             if incorrect_tables:
                 feedback.append(f"Missing or incorrect tables: {', '.join(incorrect_tables)}")
+                error_details["missing_tables"] = incorrect_tables
                 confidence -= min(30, len(incorrect_tables) * 15)  # Deduct up to 30 points
+                
+            if error_msgs:
+                error_details["error_messages"] = error_msgs
+        
+        # 3. Check for common BigQuery IMDB specific issues
+        if self.db_type == "bigquery_imdb":
+            bigquery_issues = self._check_bigquery_specific_issues(sql_query)
+            if bigquery_issues:
+                feedback.append(f"BigQuery specific issues: {bigquery_issues}")
+                error_details["syntax_errors"].append(bigquery_issues)
+                confidence -= 20  # Deduct for BigQuery specific issues
         
         # Ensure confidence is between 0-100
         confidence = max(0, min(100, confidence))
@@ -234,10 +254,11 @@ class ValidationAgent:
         return {
             "confidence": confidence,
             "feedback": "; ".join(feedback) if feedback else "Query looks good",
-            "issues_found": len(feedback) > 0
+            "issues_found": len(feedback) > 0,
+            "error_details": error_details
         }
     
-    def _check_columns(self, sql_query: str) -> Tuple[List[str], List[str]]:
+    def _check_columns(self, sql_query: str) -> Tuple[List[str], List[str], List[str]]:
         """
         Check if all columns in the query exist in the schema.
         
@@ -245,29 +266,42 @@ class ValidationAgent:
             sql_query: SQL query to check
             
         Returns:
-            Tuple of (list of missing/incorrect columns, list of missing/incorrect tables)
+            Tuple of (list of missing/incorrect columns, list of missing/incorrect tables, list of error messages)
         """
         # Extract column references from the query
         # This is a simplified approach and might miss some complex cases
-        column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX)(?:\w+\.)?(\w+)'
+        column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX)(?:(\w+)\.)?(\w+)'
         table_pattern = r'FROM\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?|JOIN\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?'
         
-        # Extract column references
+        # Extract column references with table aliases
         column_matches = re.finditer(column_pattern, sql_query, re.IGNORECASE)
         column_refs = []
+        qualified_column_refs = []  # Store table.column pairs
+        
         for match in column_matches:
-            col = match.group(1)
+            table_alias = match.group(1)
+            col = match.group(2)
             if col.lower() not in ('as', 'on', 'where', 'and', 'or', 'select', 'from', 'join', 'inner', 'left', 'right'):
                 column_refs.append(col)
+                if table_alias:
+                    qualified_column_refs.append((table_alias, col))
         
-        # Extract table references
+        # Extract table references and aliases
         table_matches = re.finditer(table_pattern, sql_query, re.IGNORECASE)
         table_refs = []
+        table_aliases = {}  # Map aliases to actual tables
+        
         for match in table_matches:
             if match.group(1):  # FROM clause
-                table_refs.append(match.group(1))
+                table = match.group(1)
+                alias = match.group(2) if match.group(2) else table
+                table_refs.append(table)
+                table_aliases[alias] = table
             elif match.group(3):  # JOIN clause
-                table_refs.append(match.group(3))
+                table = match.group(3)
+                alias = match.group(4) if match.group(4) else table
+                table_refs.append(table)
+                table_aliases[alias] = table
         
         # Check if tables exist
         incorrect_tables = []
@@ -277,6 +311,21 @@ class ValidationAgent:
         
         # Check if columns exist in any table
         missing_columns = []
+        error_messages = []
+        
+        # First check qualified column references (table.column)
+        for table_alias, col in qualified_column_refs:
+            if table_alias in table_aliases:
+                actual_table = table_aliases[table_alias]
+                # Check if this table exists
+                if actual_table.lower() in [t.lower() for t in self.schema.keys()]:
+                    # Check if column exists in this table
+                    table_schema = next((self.schema[t] for t in self.schema.keys() if t.lower() == actual_table.lower()), [])
+                    if col.lower() not in [c['name'].lower() for c in table_schema]:
+                        missing_columns.append(f"{col} in {actual_table}")
+                        error_messages.append(f"Name {col} not found inside {actual_table}")
+        
+        # Then check unqualified column references
         for col in column_refs:
             # Skip special cases like * or functions
             if col == '*' or col.lower() in ('count', 'sum', 'avg', 'min', 'max'):
@@ -314,65 +363,44 @@ class ValidationAgent:
                         for table, columns in self.schema.items():
                             if underscore_col.lower() in [c['name'].lower() for c in columns]:
                                 missing_columns.append(f"{col} (should be {underscore_col})")
+                                error_messages.append(f"Column {col} should be {underscore_col}")
                                 found = True  # Mark as found but still report the issue
                                 break
                 
                 if not found:
                     missing_columns.append(col)
         
-        return missing_columns, incorrect_tables
+        return missing_columns, incorrect_tables, error_messages
     
-    def _check_joins(self, sql_query: str) -> Optional[str]:
+    def _check_bigquery_specific_issues(self, sql_query: str) -> Optional[str]:
         """
-        Check if joins in the query are using correct relationships.
+        Check for BigQuery IMDB specific issues.
         
         Args:
             sql_query: SQL query to check
             
         Returns:
-            String describing join issues or None if no issues found
+            String describing BigQuery specific issues or None if no issues found
         """
-        # This is a simplified check and might miss some complex cases
-        join_pattern = r'(\w+)\s+(?:INNER|LEFT|RIGHT|OUTER)?\s*JOIN\s+(\w+)\s+ON\s+(\w+)\.(\w+)\s*=\s*(\w+)\.(\w+)'
-        
-        join_matches = re.finditer(join_pattern, sql_query, re.IGNORECASE)
-        
-        for match in join_matches:
-            table1, table2 = match.group(1), match.group(2)
-            t1_alias, t2_alias = match.group(3), match.group(5)
-            col1, col2 = match.group(4), match.group(6)
+        if self.db_type != "bigquery_imdb":
+            return None
             
-            # Skip if we can't determine the actual tables (due to aliases)
-            if t1_alias != table1 and t2_alias != table2:
-                continue
-                
-            # Check if this join matches a known relationship
-            valid_join = False
-            
-            # Check relationships in both directions
-            for src_table, relationships in self.table_relationships.items():
-                if src_table.lower() not in (table1.lower(), table2.lower()):
-                    continue
-                    
-                for rel in relationships:
-                    # Check if this relationship matches our join
-                    if (src_table.lower() == table1.lower() and 
-                        rel['table'].lower() == table2.lower() and
-                        rel['from_column'].lower() == col1.lower() and
-                        rel['to_column'].lower() == col2.lower()):
-                        valid_join = True
-                        break
-                    elif (src_table.lower() == table2.lower() and 
-                          rel['table'].lower() == table1.lower() and
-                          rel['from_column'].lower() == col2.lower() and
-                          rel['to_column'].lower() == col1.lower()):
-                        valid_join = True
-                        break
-            
-            if not valid_join:
-                return f"Join between {table1} and {table2} might not use the correct relationship"
+        issues = []
         
-        return None
+        # Check for unqualified table names
+        table_pattern = r'FROM\s+(?!`bigquery-public-data\.imdb\.)(\w+)|JOIN\s+(?!`bigquery-public-data\.imdb\.)(\w+)'
+        unqualified_tables = re.finditer(table_pattern, sql_query, re.IGNORECASE)
+        
+        for match in unqualified_tables:
+            table = match.group(1) if match.group(1) else match.group(2)
+            if table and table.lower() in [t.lower() for t in self.schema.keys()]:
+                issues.append(f"Table '{table}' should be fully qualified as `bigquery-public-data.imdb.{table}`")
+        
+        # Check for missing backticks around table names
+        if "`bigquery-public-data.imdb." not in sql_query and "bigquery-public-data.imdb." in sql_query:
+            issues.append("BigQuery table names should be enclosed in backticks: `bigquery-public-data.imdb.table_name`")
+        
+        return "; ".join(issues) if issues else None
     
     def _check_syntax(self, sql_query: str) -> Optional[str]:
         """
@@ -545,16 +573,133 @@ class ValidationAgent:
         # Generate suggestions based on the feedback
         suggestions = []
         
+        # Extract specific error details
+        error_details = validation_result.get("error_details", {})
+        
+        # Check for column reference errors - these are the most common issues
         if "Missing or incorrect columns" in feedback:
-            suggestions.append("Check column names and make sure they exist in the database schema.")
+            missing_columns = error_details.get("missing_columns", [])
+            for col in missing_columns:
+                # Try to suggest correct column names
+                if col == "title" or col == "name":
+                    suggestions.append(f"Column '{col}' not found. Use 'primary_{col}' instead in the appropriate table.")
+                elif col.endswith("Name") or col.endswith("Title") or col.endswith("Year"):
+                    # Convert camelCase to snake_case for BigQuery IMDB
+                    snake_case = ''.join(['_'+c.lower() if c.isupper() else c for c in col]).lstrip('_')
+                    suggestions.append(f"Column '{col}' not found. BigQuery IMDB uses snake_case: use '{snake_case}' instead.")
+                else:
+                    suggestions.append(f"Check that column '{col}' exists in the referenced table.")
             
+            # Add general column reference guidance
+            suggestions.append("Common column mappings in BigQuery IMDB schema:")
+            suggestions.append("- For movie titles, use 'primary_title' in 'title_basics' table")
+            suggestions.append("- For person names, use 'primary_name' in 'name_basics' table")
+            suggestions.append("- For movie IDs, use 'tconst' (not 'id' or 'movie_id')")
+            suggestions.append("- For person IDs, use 'nconst' (not 'id' or 'person_id')")
+            
+        # Check for table reference errors
         if "Missing or incorrect tables" in feedback:
-            suggestions.append("Check table names and make sure they exist in the database.")
+            missing_tables = error_details.get("missing_tables", [])
+            for table in missing_tables:
+                # Try to suggest correct table names
+                if table.lower() == "movies":
+                    suggestions.append(f"Table '{table}' not found. Use 'title_basics' instead.")
+                elif table.lower() == "actors" or table.lower() == "people":
+                    suggestions.append(f"Table '{table}' not found. Use 'name_basics' instead.")
+                elif table.lower() == "ratings":
+                    suggestions.append(f"Table '{table}' not found. Use 'title_ratings' instead.")
+                else:
+                    suggestions.append(f"Check that table '{table}' exists in the database.")
             
+            # Add general table reference guidance
+            suggestions.append("Make sure to use the correct BigQuery IMDB table names:")
+            suggestions.append("- 'title_basics' for movie/TV show information")
+            suggestions.append("- 'name_basics' for person information")
+            suggestions.append("- 'title_principals' for cast and crew connections")
+            suggestions.append("- 'title_ratings' for ratings information")
+            suggestions.append("- 'title_crew' for director and writer information")
+        
+        # Check for syntax issues
         if "Syntax issues" in feedback:
-            suggestions.append("Fix syntax errors in the query.")
+            syntax_errors = error_details.get("syntax_errors", [])
+            for error in syntax_errors:
+                suggestions.append(f"Syntax error: {error}")
+            
+            # Add general syntax guidance for BigQuery
+            if self.db_type == "bigquery_imdb":
+                suggestions.append("For BigQuery IMDB, remember to:")
+                suggestions.append("- Fully qualify table names with backticks: `bigquery-public-data.imdb.table_name`")
+                suggestions.append("- Use proper JOIN syntax with ON clauses")
+                suggestions.append("- Avoid using semicolons at the end of queries")
+        
+        # Extract and correct column reference errors from error messages
+        if "error_messages" in error_details:
+            for error_msg in error_details.get("error_messages", []):
+                corrected_query = self._extract_and_correct_column_errors(error_msg, sql_query)
+                if corrected_query != sql_query:
+                    suggestions.append(f"Based on the error message, try this correction:")
+                    suggestions.append(f"```sql\n{corrected_query}\n```")
         
         if not suggestions:
             return feedback
             
         return feedback + "\n\nSuggested fixes:\n- " + "\n- ".join(suggestions)
+    
+    def _extract_and_correct_column_errors(self, error_message: str, sql_query: str) -> str:
+        """
+        Extract column reference errors and apply corrections.
+        
+        Args:
+            error_message: Error message from validation
+            sql_query: Original SQL query
+            
+        Returns:
+            Corrected SQL query or original if no corrections applied
+        """
+        # Common patterns for BigQuery error messages
+        column_error_pattern = r"Name ([a-zA-Z0-9_]+) not found inside ([a-zA-Z0-9_]+)"
+        matches = re.findall(column_error_pattern, error_message)
+        
+        if not matches:
+            return sql_query
+        
+        corrected_query = sql_query
+        
+        # Common correction mappings for IMDB schema
+        column_corrections = {
+            # Format: (table, wrong_column): correct_column
+            ("title_principals", "title"): "title_basics.primary_title",
+            ("title_principals", "primary_title"): "title_basics.primary_title",
+            ("title_principals", "name"): "name_basics.primary_name",
+            ("title_principals", "primary_name"): "name_basics.primary_name",
+            ("title_crew", "name"): "name_basics.primary_name",
+            ("title_crew", "primary_name"): "name_basics.primary_name",
+            ("title_basics", "name"): "primary_title",
+            ("name_basics", "title"): "primary_name",
+            # Add camelCase to snake_case mappings
+            ("title_basics", "primaryTitle"): "primary_title",
+            ("title_basics", "originalTitle"): "original_title",
+            ("title_basics", "startYear"): "start_year",
+            ("title_basics", "endYear"): "end_year",
+            ("title_basics", "runtimeMinutes"): "runtime_minutes",
+            ("name_basics", "primaryName"): "primary_name",
+            ("name_basics", "birthYear"): "birth_year",
+            ("name_basics", "deathYear"): "death_year",
+            ("title_principals", "titleId"): "tconst",
+            ("title_principals", "personId"): "nconst"
+        }
+        
+        for wrong_column, table in matches:
+            correction_key = (table, wrong_column)
+            
+            if correction_key in column_corrections:
+                # Get the correct column reference
+                correct_column = column_corrections[correction_key]
+                
+                # Create regex pattern to find the incorrect reference
+                pattern = r'\b' + re.escape(table) + r'\.' + re.escape(wrong_column) + r'\b'
+                
+                # Apply correction
+                corrected_query = re.sub(pattern, correct_column, corrected_query)
+        
+        return corrected_query

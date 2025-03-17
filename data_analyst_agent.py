@@ -222,6 +222,8 @@ class DataAnalystAgent:
 - Return ONLY the SQL query, no explanations.
 - Always use the exact column names as provided in the schema.
 - Pay special attention to table relationships and join conditions.
+- Avoid common column reference errors by double-checking column names.
+- Ensure all columns referenced in SELECT, WHERE, GROUP BY, and JOIN clauses exist in the schema.
 """        
 
         # Add database-specific instructions
@@ -241,14 +243,31 @@ class DataAnalystAgent:
   * Use 'start_year' (NOT 'startYear')
   * Use 'end_year' (NOT 'endYear')
   * Use 'runtime_minutes' (NOT 'runtimeMinutes')
+
+**IMDB Table Relationships**:
 - The 'title_basics' table contains core information about movies and TV shows.
+  * Use 'primary_title' for movie/show titles (NOT 'title' or 'name')
+  * Use 'tconst' as the unique ID for movies/shows (NOT 'id' or 'movie_id')
 - The 'name_basics' table contains information about people (actors, directors, etc.).
+  * Use 'primary_name' for person names (NOT 'name')
+  * Use 'nconst' as the unique ID for people (NOT 'id' or 'person_id')
 - The 'title_ratings' table contains ratings information linked to titles via 'tconst'.
 - The 'title_crew' table links directors and writers to titles via 'tconst'.
 - The 'title_principals' table links cast and crew to titles via 'tconst' and to people via 'nconst'.
-- The 'title_episode' table contains TV episode information linked to series via 'parentTconst'.
-- The 'title_akas' table contains alternative titles linked to the main title via 'titleId'.
-- When joining tables, remember that 'tconst' is the primary key for titles and 'nconst' is the primary key for people.
+  * The 'category' column indicates the role (actor, actress, director, etc.)
+- The 'title_episode' table contains TV episode information linked to series via 'parent_tconst'.
+- The 'title_akas' table contains alternative titles linked to the main title via 'title_id'.
+
+**Common Join Patterns**:
+- To join movies with their ratings:
+  `bigquery-public-data.imdb.title_basics` tb JOIN `bigquery-public-data.imdb.title_ratings` tr ON tb.tconst = tr.tconst
+- To join movies with their cast:
+  `bigquery-public-data.imdb.title_basics` tb JOIN `bigquery-public-data.imdb.title_principals` tp ON tb.tconst = tp.tconst
+- To join cast with person details:
+  `bigquery-public-data.imdb.title_principals` tp JOIN `bigquery-public-data.imdb.name_basics` nb ON tp.nconst = nb.nconst
+- To join movies with their directors:
+  `bigquery-public-data.imdb.title_basics` tb JOIN `bigquery-public-data.imdb.title_crew` tc ON tb.tconst = tc.tconst
+
 - DO NOT include semicolons at the end of your SQL queries.
 """
         elif db_type == "retail":
@@ -298,6 +317,15 @@ class DataAnalystAgent:
             prompt += f"""
 **Previous Attempt Issues (Iteration {iteration})**:
 {feedback}
+
+**How to Fix Common Column Reference Errors**:
+- If you see "Missing or incorrect columns", double-check the column names in the schema.
+- If you see "Column 'X' not found", make sure you're using the correct table prefix.
+- For BigQuery IMDB, remember to use snake_case (primary_title) not camelCase (primaryTitle).
+- For movie titles, use 'primary_title' in 'title_basics' table, not just 'title'.
+- For person names, use 'primary_name' in 'name_basics' table, not just 'name'.
+- For movie IDs, use 'tconst', not 'id' or 'movie_id'.
+- For person IDs, use 'nconst', not 'id' or 'person_id'.
 
 Please fix these issues in your SQL query.
 """
