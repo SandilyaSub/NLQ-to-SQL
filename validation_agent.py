@@ -192,12 +192,13 @@ class ValidationAgent:
         
         return False
     
-    def validate(self, sql_query: str) -> Dict:
+    def validate(self, sql_query: str, question: str = None) -> Dict[str, Any]:
         """
         Validate a SQL query against the schema.
         
         Args:
             sql_query: SQL query to validate
+            question: Original natural language question (kept for backward compatibility)
             
         Returns:
             Dictionary with validation results
