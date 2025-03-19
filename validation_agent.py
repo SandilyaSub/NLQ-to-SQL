@@ -21,10 +21,11 @@ class ValidationAgent:
     Agent responsible for validating SQL queries and providing feedback
     for refinement.
     
-    This simplified version focuses on three key validations:
+    This simplified version focuses on four key validations:
     1. Syntax validation
     2. Column name validation
     3. Table column existence validation
+    4. CTE (Common Table Expression) validation
     """
     
     def __init__(self, db_path: str, db_type: str = "retail"):
@@ -195,10 +196,11 @@ class ValidationAgent:
         """
         Validate a SQL query and return a confidence score with feedback.
         
-        This simplified version focuses on three key validations:
+        This version focuses on four key validations:
         1. Syntax validation
         2. Column name validation
         3. Table column existence validation
+        4. CTE (Common Table Expression) validation
         
         Args:
             sql_query: SQL query to validate
@@ -213,61 +215,301 @@ class ValidationAgent:
             "missing_columns": [],
             "missing_tables": [],
             "syntax_errors": [],
-            "error_messages": []
+            "error_messages": [],
+            "cte_issues": [],
+            "fatal_errors": [],
+            "warnings": [],
+            "style_issues": []
         }
+        
+        # Parse CTEs first to understand the query structure
+        ctes = self._extract_ctes(sql_query)
         
         # 1. Syntax check - most important to check first
         syntax_issues = self._check_syntax(sql_query)
         if syntax_issues:
-            feedback.append(f"Syntax issues: {syntax_issues}")
+            # Classify as fatal error
+            error_details["fatal_errors"].append(f"Syntax issues: {syntax_issues}")
             error_details["syntax_errors"].append(syntax_issues)
             confidence -= 40  # Significant deduction for syntax errors
+            feedback.append(f"Syntax issues: {syntax_issues}")
         
         # Only check columns if syntax is valid
         if not syntax_issues:
             # 2. Column and table existence check
-            missing_columns, incorrect_tables, error_msgs = self._check_columns(sql_query)
+            missing_columns, incorrect_tables, error_msgs = self._check_columns(sql_query, ctes)
+            
+            # Classify column issues
             if missing_columns:
-                feedback.append(f"Missing or incorrect columns: {', '.join(missing_columns)}")
+                # Check if these are fatal errors (non-existent columns in actual tables)
+                fatal_column_errors = []
+                warning_column_errors = []
+                
+                for col in missing_columns:
+                    if " in " in col:  # This is a qualified column reference
+                        table_name = col.split(" in ")[1]
+                        if table_name not in ctes:
+                            # Column missing from actual table - fatal error
+                            fatal_column_errors.append(col)
+                        else:
+                            # Column missing from CTE - warning
+                            warning_column_errors.append(col)
+                    else:
+                        # Unqualified column - could be fatal
+                        fatal_column_errors.append(col)
+                
+                if fatal_column_errors:
+                    error_details["fatal_errors"].append(f"Missing columns: {', '.join(fatal_column_errors)}")
+                    feedback.append(f"Missing or incorrect columns: {', '.join(fatal_column_errors)}")
+                    # Deduct more for fatal column errors
+                    confidence -= min(40, len(fatal_column_errors) * 15)
+                
+                if warning_column_errors:
+                    error_details["warnings"].append(f"Possible CTE column issues: {', '.join(warning_column_errors)}")
+                    if not fatal_column_errors:  # Only add to feedback if no fatal errors
+                        feedback.append(f"Possible CTE column issues: {', '.join(warning_column_errors)}")
+                    # Deduct less for warning column errors
+                    confidence -= min(15, len(warning_column_errors) * 5)
+                
                 error_details["missing_columns"] = missing_columns
-                confidence -= min(30, len(missing_columns) * 10)  # Deduct up to 30 points
-                
+            
+            # Classify table issues
             if incorrect_tables:
-                feedback.append(f"Missing or incorrect tables: {', '.join(incorrect_tables)}")
-                error_details["missing_tables"] = incorrect_tables
-                confidence -= min(30, len(incorrect_tables) * 15)  # Deduct up to 30 points
+                # Filter out tables that might be CTEs
+                actual_missing_tables = [table for table in incorrect_tables if table not in ctes]
+                cte_related_tables = [table for table in incorrect_tables if table in ctes]
                 
+                if actual_missing_tables:
+                    error_details["fatal_errors"].append(f"Missing tables: {', '.join(actual_missing_tables)}")
+                    feedback.append(f"Missing or incorrect tables: {', '.join(actual_missing_tables)}")
+                    # Deduct more for missing actual tables
+                    confidence -= min(40, len(actual_missing_tables) * 20)
+                
+                if cte_related_tables and not actual_missing_tables:
+                    # These are likely false positives due to CTEs
+                    error_details["style_issues"].append(f"CTE references: {', '.join(cte_related_tables)}")
+                    # No confidence deduction for CTE references
+                
+                error_details["missing_tables"] = incorrect_tables
+            
+            # Add error messages
             if error_msgs:
                 error_details["error_messages"] = error_msgs
+            
+            # 3. Check CTE definitions and usage
+            cte_issues = self._validate_ctes(sql_query, ctes)
+            if cte_issues:
+                error_details["cte_issues"] = cte_issues
+                error_details["warnings"].extend(cte_issues)
+                feedback.append(f"CTE structure issues: {'; '.join(cte_issues)}")
+                # Moderate deduction for CTE issues
+                confidence -= min(20, len(cte_issues) * 5)
         
-        # 3. Check for common BigQuery IMDB specific issues
+        # 4. Check for common BigQuery IMDB specific issues
         if self.db_type == "bigquery_imdb":
             bigquery_issues = self._check_bigquery_specific_issues(sql_query)
             if bigquery_issues:
+                error_details["warnings"].append(f"BigQuery specific issues: {bigquery_issues}")
                 feedback.append(f"BigQuery specific issues: {bigquery_issues}")
-                error_details["syntax_errors"].append(bigquery_issues)
-                confidence -= 20  # Deduct for BigQuery specific issues
+                # Moderate deduction for BigQuery specific issues
+                confidence -= 20
         
         # Ensure confidence is between 0-100
         confidence = max(0, min(100, confidence))
         
+        # Prioritize feedback - fatal errors first, then warnings, then style issues
+        prioritized_feedback = []
+        
+        if error_details["fatal_errors"]:
+            prioritized_feedback.append("FATAL ERRORS (will prevent execution):")
+            prioritized_feedback.extend([f"- {error}" for error in error_details["fatal_errors"]])
+        
+        if error_details["warnings"] and not error_details["fatal_errors"]:
+            prioritized_feedback.append("WARNINGS (may affect results):")
+            prioritized_feedback.extend([f"- {warning}" for warning in error_details["warnings"]])
+        
+        if error_details["style_issues"] and not error_details["fatal_errors"] and not error_details["warnings"]:
+            prioritized_feedback.append("STYLE ISSUES (won't affect execution):")
+            prioritized_feedback.extend([f"- {issue}" for issue in error_details["style_issues"]])
+        
+        # If we have prioritized feedback, use it instead of the original feedback
+        if prioritized_feedback:
+            feedback_text = "\n".join(prioritized_feedback)
+        else:
+            feedback_text = "; ".join(feedback) if feedback else "Query looks good"
+        
         return {
             "confidence": confidence,
-            "feedback": "; ".join(feedback) if feedback else "Query looks good",
+            "feedback": feedback_text,
             "issues_found": len(feedback) > 0,
             "error_details": error_details
         }
     
-    def _check_columns(self, sql_query: str) -> Tuple[List[str], List[str], List[str]]:
+    def _extract_ctes(self, sql_query: str) -> Dict[str, Dict]:
         """
-        Check if all columns in the query exist in the schema.
+        Extract Common Table Expressions (CTEs) from a SQL query.
+        
+        Args:
+            sql_query: SQL query to analyze
+            
+        Returns:
+            Dictionary mapping CTE names to their definitions
+        """
+        ctes = {}
+        
+        # Check if query has WITH clause
+        if not re.search(r'\bWITH\b', sql_query, re.IGNORECASE):
+            return ctes
+        
+        # Extract the WITH clause
+        with_pattern = r'\bWITH\b\s+(.*?)(?=\bSELECT\b)'
+        with_match = re.search(with_pattern, sql_query, re.IGNORECASE | re.DOTALL)
+        
+        if not with_match:
+            return ctes
+        
+        with_clause = with_match.group(1)
+        
+        # Split the WITH clause into individual CTEs
+        # This is a simplified approach and might not handle all edge cases
+        cte_pattern = r'([a-zA-Z0-9_]+)\s+AS\s+\((.*?)(?:\)\s*,|\)\s*$)'
+        cte_matches = re.finditer(cte_pattern, with_clause, re.IGNORECASE | re.DOTALL)
+        
+        for match in cte_matches:
+            cte_name = match.group(1)
+            cte_definition = match.group(2).strip()
+            
+            # Extract columns from the CTE definition
+            columns = self._extract_columns_from_cte(cte_definition)
+            
+            ctes[cte_name] = {
+                "definition": cte_definition,
+                "columns": columns
+            }
+        
+        return ctes
+    
+    def _extract_columns_from_cte(self, cte_definition: str) -> List[str]:
+        """
+        Extract column names from a CTE definition.
+        
+        Args:
+            cte_definition: SQL for the CTE definition
+            
+        Returns:
+            List of column names
+        """
+        columns = []
+        
+        # Look for explicit column aliases in the SELECT clause
+        select_pattern = r'\bSELECT\b\s+(.*?)(?:\bFROM\b)'
+        select_match = re.search(select_pattern, cte_definition, re.IGNORECASE | re.DOTALL)
+        
+        if not select_match:
+            return columns
+        
+        select_clause = select_match.group(1)
+        
+        # Split by commas, but handle function calls and nested expressions
+        # This is a simplified approach and might not handle all edge cases
+        in_function = 0
+        in_parentheses = 0
+        current_column = ""
+        
+        for char in select_clause:
+            if char == '(':
+                in_parentheses += 1
+                current_column += char
+            elif char == ')':
+                in_parentheses -= 1
+                current_column += char
+            elif char == ',' and in_parentheses == 0:
+                # End of column expression
+                columns.append(current_column.strip())
+                current_column = ""
+            else:
+                current_column += char
+        
+        # Add the last column
+        if current_column.strip():
+            columns.append(current_column.strip())
+        
+        # Extract column aliases
+        result_columns = []
+        for col in columns:
+            # Look for AS alias
+            as_match = re.search(r'\bAS\b\s+([a-zA-Z0-9_]+)', col, re.IGNORECASE)
+            if as_match:
+                result_columns.append(as_match.group(1))
+            else:
+                # Look for implicit alias (column_expression alias)
+                implicit_match = re.search(r'([a-zA-Z0-9_]+)$', col.strip())
+                if implicit_match:
+                    result_columns.append(implicit_match.group(1))
+                else:
+                    # For expressions without aliases, use the full expression
+                    # This is not ideal but better than nothing
+                    result_columns.append(col.strip())
+        
+        return result_columns
+    
+    def _validate_ctes(self, sql_query: str, ctes: Dict[str, Dict]) -> List[str]:
+        """
+        Validate CTE definitions and usage.
+        
+        Args:
+            sql_query: SQL query to validate
+            ctes: Dictionary of CTEs extracted from the query
+            
+        Returns:
+            List of CTE validation issues
+        """
+        issues = []
+        
+        if not ctes:
+            return issues
+        
+        # Check for recursive references (CTEs referencing themselves)
+        for cte_name, cte_info in ctes.items():
+            if re.search(r'\b' + re.escape(cte_name) + r'\b', cte_info["definition"], re.IGNORECASE):
+                issues.append(f"CTE '{cte_name}' references itself, which may cause issues")
+        
+        # Check for forward references (CTEs referencing CTEs defined later)
+        cte_names = list(ctes.keys())
+        for i, cte_name in enumerate(cte_names):
+            cte_info = ctes[cte_name]
+            for later_cte in cte_names[i+1:]:
+                if re.search(r'\b' + re.escape(later_cte) + r'\b', cte_info["definition"], re.IGNORECASE):
+                    issues.append(f"CTE '{cte_name}' references '{later_cte}' which is defined later")
+        
+        # Check for unused CTEs
+        main_query = sql_query
+        with_match = re.search(r'\bWITH\b\s+(.*?)(?:\bSELECT\b)', sql_query, re.IGNORECASE | re.DOTALL)
+        if with_match:
+            # Get the part of the query after the WITH clause
+            with_end_pos = with_match.end() - len("SELECT")
+            main_query = sql_query[with_end_pos:]
+        
+        for cte_name in ctes:
+            if not re.search(r'\b' + re.escape(cte_name) + r'\b', main_query, re.IGNORECASE):
+                issues.append(f"CTE '{cte_name}' is defined but not used in the main query")
+        
+        return issues
+    
+    def _check_columns(self, sql_query: str, ctes: Dict[str, Dict] = None) -> Tuple[List[str], List[str], List[str]]:
+        """
+        Check if all columns in the query exist in the schema or CTEs.
         
         Args:
             sql_query: SQL query to check
+            ctes: Dictionary of CTEs extracted from the query
             
         Returns:
             Tuple of (list of missing/incorrect columns, list of missing/incorrect tables, list of error messages)
         """
+        if ctes is None:
+            ctes = {}
+            
         # Extract column references from the query
         # This is a simplified approach and might miss some complex cases
         column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX)(?:(\w+)\.)?(\w+)'
@@ -303,13 +545,13 @@ class ValidationAgent:
                 table_refs.append(table)
                 table_aliases[alias] = table
         
-        # Check if tables exist
+        # Check if tables exist (either in schema or as CTEs)
         incorrect_tables = []
         for table in table_refs:
-            if table.lower() not in [t.lower() for t in self.schema.keys()]:
+            if table.lower() not in [t.lower() for t in self.schema.keys()] and table not in ctes:
                 incorrect_tables.append(table)
         
-        # Check if columns exist in any table
+        # Check if columns exist in any table or CTE
         missing_columns = []
         error_messages = []
         
@@ -317,8 +559,15 @@ class ValidationAgent:
         for table_alias, col in qualified_column_refs:
             if table_alias in table_aliases:
                 actual_table = table_aliases[table_alias]
-                # Check if this table exists
-                if actual_table.lower() in [t.lower() for t in self.schema.keys()]:
+                
+                # Check if this is a CTE
+                if actual_table in ctes:
+                    # Check if column exists in this CTE
+                    if col not in ctes[actual_table]["columns"]:
+                        missing_columns.append(f"{col} in {actual_table}")
+                        error_messages.append(f"Column {col} not found in CTE {actual_table}")
+                # Check if this is a real table
+                elif actual_table.lower() in [t.lower() for t in self.schema.keys()]:
                     # Check if column exists in this table
                     table_schema = next((self.schema[t] for t in self.schema.keys() if t.lower() == actual_table.lower()), [])
                     if col.lower() not in [c['name'].lower() for c in table_schema]:
@@ -331,12 +580,21 @@ class ValidationAgent:
             if col == '*' or col.lower() in ('count', 'sum', 'avg', 'min', 'max'):
                 continue
                 
-            # Check if column exists in any table
+            # Check if column exists in any table or CTE
             found = False
+            
+            # First check in actual tables
             for table, columns in self.schema.items():
                 if col.lower() in [c['name'].lower() for c in columns]:
                     found = True
                     break
+            
+            # Then check in CTEs
+            if not found:
+                for cte_name, cte_info in ctes.items():
+                    if col in cte_info["columns"]:
+                        found = True
+                        break
             
             if not found:
                 # For BigQuery IMDB, check if this might be a camelCase version of a valid column
@@ -371,36 +629,6 @@ class ValidationAgent:
                     missing_columns.append(col)
         
         return missing_columns, incorrect_tables, error_messages
-    
-    def _check_bigquery_specific_issues(self, sql_query: str) -> Optional[str]:
-        """
-        Check for BigQuery IMDB specific issues.
-        
-        Args:
-            sql_query: SQL query to check
-            
-        Returns:
-            String describing BigQuery specific issues or None if no issues found
-        """
-        if self.db_type != "bigquery_imdb":
-            return None
-            
-        issues = []
-        
-        # Check for unqualified table names
-        table_pattern = r'FROM\s+(?!`bigquery-public-data\.imdb\.)(\w+)|JOIN\s+(?!`bigquery-public-data\.imdb\.)(\w+)'
-        unqualified_tables = re.finditer(table_pattern, sql_query, re.IGNORECASE)
-        
-        for match in unqualified_tables:
-            table = match.group(1) if match.group(1) else match.group(2)
-            if table and table.lower() in [t.lower() for t in self.schema.keys()]:
-                issues.append(f"Table '{table}' should be fully qualified as `bigquery-public-data.imdb.{table}`")
-        
-        # Check for missing backticks around table names
-        if "`bigquery-public-data.imdb." not in sql_query and "bigquery-public-data.imdb." in sql_query:
-            issues.append("BigQuery table names should be enclosed in backticks: `bigquery-public-data.imdb.table_name`")
-        
-        return "; ".join(issues) if issues else None
     
     def _check_syntax(self, sql_query: str) -> Optional[str]:
         """
@@ -448,7 +676,7 @@ class ValidationAgent:
                 else:
                     return error_msg
         # Handle SQLite database types
-        else:
+        elif self.db_path is not None:
             try:
                 # Use SQLite parser to check syntax with a new connection
                 with sqlite3.connect(self.db_path) as conn:
@@ -467,6 +695,64 @@ class ValidationAgent:
                     return f"Column '{column_name}' not found. Please check the column name."
                 else:
                     return error_msg
+        else:
+            # For testing or when no database is available, perform basic syntax check
+            # Check for common syntax errors
+            if "SELECT" not in test_query.upper():
+                return "Missing SELECT statement"
+            if "FROM" not in test_query.upper():
+                return "Missing FROM clause"
+            if test_query.upper().count("FROM") > test_query.upper().count("SELECT"):
+                return "Mismatched FROM clauses"
+            if test_query.count("(") != test_query.count(")"):
+                return "Mismatched parentheses"
+            
+            # Check for other common SQL syntax errors
+            common_errors = [
+                (r'\bSELECT\s+,', "Invalid SELECT syntax with leading comma"),
+                (r',\s*FROM\b', "Invalid comma before FROM clause"),
+                (r'\bFROM\s+,', "Invalid FROM syntax with comma"),
+                (r'\bWHERE\s+OR\b', "Invalid WHERE clause starting with OR"),
+                (r'\bWHERE\s+AND\b', "Invalid WHERE clause starting with AND"),
+                (r'\bGROUP BY\s+,', "Invalid GROUP BY syntax with leading comma"),
+                (r'\bORDER BY\s+,', "Invalid ORDER BY syntax with leading comma")
+            ]
+            
+            for pattern, error_msg in common_errors:
+                if re.search(pattern, test_query, re.IGNORECASE):
+                    return error_msg
+            
+            return None
+    
+    def _check_bigquery_specific_issues(self, sql_query: str) -> Optional[str]:
+        """
+        Check for BigQuery IMDB specific issues.
+        
+        Args:
+            sql_query: SQL query to check
+            
+        Returns:
+            String describing BigQuery specific issues or None if no issues found
+        """
+        if self.db_type != "bigquery_imdb":
+            return None
+            
+        issues = []
+        
+        # Check for unqualified table names
+        table_pattern = r'FROM\s+(?!`bigquery-public-data\.imdb\.)(\w+)|JOIN\s+(?!`bigquery-public-data\.imdb\.)(\w+)'
+        unqualified_tables = re.finditer(table_pattern, sql_query, re.IGNORECASE)
+        
+        for match in unqualified_tables:
+            table = match.group(1) if match.group(1) else match.group(2)
+            if table and table.lower() in [t.lower() for t in self.schema.keys()]:
+                issues.append(f"Table '{table}' should be fully qualified as `bigquery-public-data.imdb.{table}`")
+        
+        # Check for missing backticks around table names
+        if "`bigquery-public-data.imdb." not in sql_query and "bigquery-public-data.imdb." in sql_query:
+            issues.append("BigQuery table names should be enclosed in backticks: `bigquery-public-data.imdb.table_name`")
+        
+        return "; ".join(issues) if issues else None
     
     def _check_intent(self, sql_query: str, question: str) -> Optional[str]:
         """

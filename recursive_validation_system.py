@@ -131,9 +131,38 @@ class RecursiveValidationSystem:
                 validation_result = self.validator.validate(sql_query, question)
                 confidence = validation_result["confidence"]
                 
-                # Log validation result
-                validation_log = f"Validation Agent feedback (confidence: {confidence}%): {validation_result['feedback']}"
+                # Extract error details for better logging
+                error_details = validation_result.get("error_details", {})
+                fatal_errors = error_details.get("fatal_errors", [])
+                warnings = error_details.get("warnings", [])
+                style_issues = error_details.get("style_issues", [])
+                
+                # Log validation result with error categories
+                validation_log = f"Validation Agent feedback (confidence: {confidence}%):"
                 interaction_logs.append(validation_log)
+                
+                # Add categorized errors to logs
+                if fatal_errors:
+                    fatal_log = "FATAL ERRORS (will prevent execution):"
+                    interaction_logs.append(fatal_log)
+                    for error in fatal_errors:
+                        interaction_logs.append(f"- {error}")
+                
+                if warnings:
+                    warning_log = "WARNINGS (may affect results):"
+                    interaction_logs.append(warning_log)
+                    for warning in warnings:
+                        interaction_logs.append(f"- {warning}")
+                
+                if style_issues:
+                    style_log = "STYLE ISSUES (won't affect execution):"
+                    interaction_logs.append(style_log)
+                    for issue in style_issues:
+                        interaction_logs.append(f"- {issue}")
+                
+                if not fatal_errors and not warnings and not style_issues:
+                    interaction_logs.append("Query looks good!")
+                
                 logger.info(f"Validation result: confidence={confidence}, feedback={validation_result['feedback']}")
                 
                 # Save validation history
@@ -141,7 +170,10 @@ class RecursiveValidationSystem:
                     "iteration": iterations,
                     "sql_query": sql_query,
                     "confidence": confidence,
-                    "feedback": validation_result["feedback"]
+                    "feedback": validation_result["feedback"],
+                    "fatal_errors": fatal_errors,
+                    "warnings": warnings,
+                    "style_issues": style_issues
                 })
                 
                 # Track best query
@@ -149,9 +181,11 @@ class RecursiveValidationSystem:
                     best_query = sql_query
                     best_confidence = confidence
                 
-                # Check if good enough
-                if confidence >= self.confidence_threshold or validation_result["feedback"] == "Query looks good":
-                    logger.info(f"Query achieved confidence threshold ({confidence}% >= {self.confidence_threshold}%). Stopping iterations.")
+                # Check if good enough - now considering both confidence and absence of fatal errors
+                if (confidence >= self.confidence_threshold and not fatal_errors) or validation_result["feedback"] == "Query looks good":
+                    success_log = f"Query achieved confidence threshold ({confidence}% >= {self.confidence_threshold}%) with no fatal errors. Stopping iterations."
+                    interaction_logs.append(success_log)
+                    logger.info(success_log)
                     break
                     
                 # Prepare for next iteration - only one refinement attempt
@@ -169,7 +203,10 @@ class RecursiveValidationSystem:
                     context = {
                         "question": question,
                         "feedback": detailed_feedback,
-                        "iteration": iterations
+                        "iteration": iterations,
+                        "fatal_errors": fatal_errors,  # Include categorized errors in context
+                        "warnings": warnings,
+                        "style_issues": style_issues
                     }
                 else:
                     max_iter_log = f"Reached maximum iterations ({self.max_iterations}). Using best query with confidence {best_confidence}%."
