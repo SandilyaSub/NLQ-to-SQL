@@ -192,157 +192,95 @@ class ValidationAgent:
         
         return False
     
-    def validate(self, sql_query: str, question: str) -> Dict[str, Any]:
+    def validate(self, sql_query: str) -> Dict:
         """
-        Validate a SQL query and return a confidence score with feedback.
-        
-        This version focuses on four key validations:
-        1. Syntax validation
-        2. Column name validation
-        3. Table column existence validation
-        4. CTE (Common Table Expression) validation
+        Validate a SQL query against the schema.
         
         Args:
             sql_query: SQL query to validate
-            question: Original natural language question
             
         Returns:
             Dictionary with validation results
         """
-        feedback = []
-        confidence = 100  # Start with perfect score and deduct
-        error_details = {
-            "missing_columns": [],
-            "missing_tables": [],
-            "syntax_errors": [],
-            "error_messages": [],
-            "cte_issues": [],
-            "fatal_errors": [],
-            "warnings": [],
-            "style_issues": []
-        }
-        
-        # Parse CTEs first to understand the query structure
+        if not sql_query:
+            return {
+                "valid": False,
+                "error": "Empty query",
+                "severity": "error",
+                "error_type": "syntax",
+                "error_detail": "The query is empty"
+            }
+            
+        # Extract CTEs from the query
         ctes = self._extract_ctes(sql_query)
         
-        # 1. Syntax check - most important to check first
-        syntax_issues = self._check_syntax(sql_query)
-        if syntax_issues:
-            # Classify as fatal error
-            error_details["fatal_errors"].append(f"Syntax issues: {syntax_issues}")
-            error_details["syntax_errors"].append(syntax_issues)
-            confidence -= 40  # Significant deduction for syntax errors
-            feedback.append(f"Syntax issues: {syntax_issues}")
-        
-        # Only check columns if syntax is valid
-        if not syntax_issues:
-            # 2. Column and table existence check
-            missing_columns, incorrect_tables, error_msgs = self._check_columns(sql_query, ctes)
+        # Check for syntax errors
+        syntax_error = self._check_syntax(sql_query)
+        if syntax_error:
+            return {
+                "valid": False,
+                "error": syntax_error,
+                "severity": "error",
+                "error_type": "syntax",
+                "error_detail": "The query has syntax errors"
+            }
             
-            # Classify column issues
-            if missing_columns:
-                # Check if these are fatal errors (non-existent columns in actual tables)
-                fatal_column_errors = []
-                warning_column_errors = []
-                
-                for col in missing_columns:
-                    if " in " in col:  # This is a qualified column reference
-                        table_name = col.split(" in ")[1]
-                        if table_name not in ctes:
-                            # Column missing from actual table - fatal error
-                            fatal_column_errors.append(col)
-                        else:
-                            # Column missing from CTE - warning
-                            warning_column_errors.append(col)
-                    else:
-                        # Unqualified column - could be fatal
-                        fatal_column_errors.append(col)
-                
-                if fatal_column_errors:
-                    error_details["fatal_errors"].append(f"Missing columns: {', '.join(fatal_column_errors)}")
-                    feedback.append(f"Missing or incorrect columns: {', '.join(fatal_column_errors)}")
-                    # Deduct more for fatal column errors
-                    confidence -= min(40, len(fatal_column_errors) * 15)
-                
-                if warning_column_errors:
-                    error_details["warnings"].append(f"Possible CTE column issues: {', '.join(warning_column_errors)}")
-                    if not fatal_column_errors:  # Only add to feedback if no fatal errors
-                        feedback.append(f"Possible CTE column issues: {', '.join(warning_column_errors)}")
-                    # Deduct less for warning column errors
-                    confidence -= min(15, len(warning_column_errors) * 5)
-                
-                error_details["missing_columns"] = missing_columns
-            
-            # Classify table issues
-            if incorrect_tables:
-                # Filter out tables that might be CTEs
-                actual_missing_tables = [table for table in incorrect_tables if table not in ctes]
-                cte_related_tables = [table for table in incorrect_tables if table in ctes]
-                
-                if actual_missing_tables:
-                    error_details["fatal_errors"].append(f"Missing tables: {', '.join(actual_missing_tables)}")
-                    feedback.append(f"Missing or incorrect tables: {', '.join(actual_missing_tables)}")
-                    # Deduct more for missing actual tables
-                    confidence -= min(40, len(actual_missing_tables) * 20)
-                
-                if cte_related_tables and not actual_missing_tables:
-                    # These are likely false positives due to CTEs
-                    error_details["style_issues"].append(f"CTE references: {', '.join(cte_related_tables)}")
-                    # No confidence deduction for CTE references
-                
-                error_details["missing_tables"] = incorrect_tables
-            
-            # Add error messages
-            if error_msgs:
-                error_details["error_messages"] = error_msgs
-            
-            # 3. Check CTE definitions and usage
-            cte_issues = self._validate_ctes(sql_query, ctes)
-            if cte_issues:
-                error_details["cte_issues"] = cte_issues
-                error_details["warnings"].extend(cte_issues)
-                feedback.append(f"CTE structure issues: {'; '.join(cte_issues)}")
-                # Moderate deduction for CTE issues
-                confidence -= min(20, len(cte_issues) * 5)
-        
-        # 4. Check for common BigQuery IMDB specific issues
+        # Check for BigQuery-specific issues
         if self.db_type == "bigquery_imdb":
             bigquery_issues = self._check_bigquery_specific_issues(sql_query)
             if bigquery_issues:
-                error_details["warnings"].append(f"BigQuery specific issues: {bigquery_issues}")
-                feedback.append(f"BigQuery specific issues: {bigquery_issues}")
-                # Moderate deduction for BigQuery specific issues
-                confidence -= 20
+                return {
+                    "valid": False,
+                    "error": bigquery_issues,
+                    "severity": "warning",
+                    "error_type": "bigquery_specific",
+                    "error_detail": "The query has BigQuery-specific issues"
+                }
+            
+        # Check for missing/incorrect columns and tables
+        missing_columns, incorrect_tables, error_messages = self._check_columns(sql_query, ctes)
         
-        # Ensure confidence is between 0-100
-        confidence = max(0, min(100, confidence))
-        
-        # Prioritize feedback - fatal errors first, then warnings, then style issues
-        prioritized_feedback = []
-        
-        if error_details["fatal_errors"]:
-            prioritized_feedback.append("FATAL ERRORS (will prevent execution):")
-            prioritized_feedback.extend([f"- {error}" for error in error_details["fatal_errors"]])
-        
-        if error_details["warnings"] and not error_details["fatal_errors"]:
-            prioritized_feedback.append("WARNINGS (may affect results):")
-            prioritized_feedback.extend([f"- {warning}" for warning in error_details["warnings"]])
-        
-        if error_details["style_issues"] and not error_details["fatal_errors"] and not error_details["warnings"]:
-            prioritized_feedback.append("STYLE ISSUES (won't affect execution):")
-            prioritized_feedback.extend([f"- {issue}" for issue in error_details["style_issues"]])
-        
-        # If we have prioritized feedback, use it instead of the original feedback
-        if prioritized_feedback:
-            feedback_text = "\n".join(prioritized_feedback)
-        else:
-            feedback_text = "; ".join(feedback) if feedback else "Query looks good"
-        
+        # Classify errors by severity
+        if incorrect_tables:
+            # Missing tables is a critical error
+            tables_str = ", ".join(incorrect_tables)
+            return {
+                "valid": False,
+                "error": f"Tables not found: {tables_str}",
+                "severity": "error",
+                "error_type": "table_not_found",
+                "error_detail": f"The following tables were not found in the schema: {tables_str}"
+            }
+        elif missing_columns:
+            # Check if these are just CTE column issues
+            cte_column_issues = [col for col in missing_columns if " in " in col and col.split(" in ")[1] in ctes]
+            regular_column_issues = [col for col in missing_columns if " in " not in col or col.split(" in ")[1] not in ctes]
+            
+            # If we only have CTE column issues, it's a warning
+            if cte_column_issues and not regular_column_issues:
+                columns_str = ", ".join(cte_column_issues)
+                return {
+                    "valid": True,  # Still valid but with warnings
+                    "warning": f"Potential CTE column issues: {columns_str}",
+                    "severity": "warning",
+                    "error_type": "cte_column_reference",
+                    "error_detail": "The query references columns in CTEs that couldn't be validated. This might be due to limitations in the validation process."
+                }
+            # If we have regular column issues, it's an error
+            elif regular_column_issues:
+                columns_str = ", ".join(regular_column_issues)
+                return {
+                    "valid": False,
+                    "error": f"Columns not found: {columns_str}",
+                    "severity": "error",
+                    "error_type": "column_not_found",
+                    "error_detail": f"The following columns were not found in the schema: {columns_str}"
+                }
+            
+        # If we get here, the query is valid
         return {
-            "confidence": confidence,
-            "feedback": feedback_text,
-            "issues_found": len(feedback) > 0,
-            "error_details": error_details
+            "valid": True,
+            "message": "Query is valid"
         }
     
     def _extract_ctes(self, sql_query: str) -> Dict[str, Dict]:
@@ -361,18 +299,45 @@ class ValidationAgent:
         if not re.search(r'\bWITH\b', sql_query, re.IGNORECASE):
             return ctes
         
-        # Extract the WITH clause
-        with_pattern = r'\bWITH\b\s+(.*?)(?=\bSELECT\b)'
-        with_match = re.search(with_pattern, sql_query, re.IGNORECASE | re.DOTALL)
+        # Normalize the query to help with regex matching
+        # Remove extra whitespace and newlines
+        normalized_query = re.sub(r'\s+', ' ', sql_query).strip()
+        
+        # Extract the WITH clause - improved pattern that handles multiple CTEs
+        # This pattern matches from WITH to the first SELECT that's not inside parentheses
+        with_pattern = r'\bWITH\b\s+(.*?)(?=\bSELECT\b(?![^()]*\)))'
+        with_match = re.search(with_pattern, normalized_query, re.IGNORECASE | re.DOTALL)
         
         if not with_match:
-            return ctes
-        
-        with_clause = with_match.group(1)
+            # Try an alternative approach - find the main SELECT after all CTEs
+            # First, find the position of WITH
+            with_pos = re.search(r'\bWITH\b', normalized_query, re.IGNORECASE).start()
+            
+            # Track parentheses to find the end of all CTE definitions
+            paren_count = 0
+            in_cte_block = True
+            cte_end_pos = with_pos + 4  # Start after "WITH"
+            
+            for i in range(with_pos + 4, len(normalized_query)):
+                if normalized_query[i] == '(':
+                    paren_count += 1
+                elif normalized_query[i] == ')':
+                    paren_count -= 1
+                
+                # If we're at balanced parentheses and find a SELECT not followed by another CTE definition
+                if paren_count == 0 and re.match(r'\bSELECT\b', normalized_query[i:i+6], re.IGNORECASE):
+                    if not re.search(r'\)\s*,\s*\w+\s+AS\s+\(', normalized_query[i:i+30], re.IGNORECASE):
+                        cte_end_pos = i
+                        break
+            
+            # Extract the WITH clause content
+            with_clause = normalized_query[with_pos + 4:cte_end_pos].strip()
+        else:
+            with_clause = with_match.group(1)
         
         # Split the WITH clause into individual CTEs
-        # This is a simplified approach and might not handle all edge cases
-        cte_pattern = r'([a-zA-Z0-9_]+)\s+AS\s+\((.*?)(?:\)\s*,|\)\s*$)'
+        # Improved pattern that handles nested parentheses
+        cte_pattern = r'([a-zA-Z0-9_]+)\s+AS\s+\(((?:[^()]|\([^()]*\)|\((?:[^()]*\))+\))*)\)'
         cte_matches = re.finditer(cte_pattern, with_clause, re.IGNORECASE | re.DOTALL)
         
         for match in cte_matches:
@@ -386,6 +351,54 @@ class ValidationAgent:
                 "definition": cte_definition,
                 "columns": columns
             }
+        
+        # If we didn't find any CTEs with the regex, try a more manual approach
+        if not ctes:
+            # Split by commas outside of parentheses
+            parts = []
+            current_part = ""
+            paren_count = 0
+            
+            for char in with_clause:
+                if char == '(':
+                    paren_count += 1
+                elif char == ')':
+                    paren_count -= 1
+                
+                if char == ',' and paren_count == 0:
+                    parts.append(current_part.strip())
+                    current_part = ""
+                else:
+                    current_part += char
+            
+            if current_part.strip():
+                parts.append(current_part.strip())
+            
+            # Process each part as a CTE
+            for part in parts:
+                match = re.match(r'([a-zA-Z0-9_]+)\s+AS\s+\((.*)', part, re.IGNORECASE | re.DOTALL)
+                if match:
+                    cte_name = match.group(1)
+                    # Find the matching closing parenthesis
+                    cte_def = match.group(2)
+                    paren_count = 1  # We've already seen one opening parenthesis
+                    
+                    for i, char in enumerate(cte_def):
+                        if char == '(':
+                            paren_count += 1
+                        elif char == ')':
+                            paren_count -= 1
+                            if paren_count == 0:
+                                cte_definition = cte_def[:i].strip()
+                                break
+                    
+                    # Extract columns
+                    columns = self._extract_columns_from_cte(cte_definition)
+                    
+                    ctes[cte_name] = {
+                        "definition": cte_definition,
+                        "columns": columns
+                    }
         
         return ctes
     
@@ -401,23 +414,56 @@ class ValidationAgent:
         """
         columns = []
         
+        # Normalize the definition to help with regex matching
+        normalized_def = re.sub(r'\s+', ' ', cte_definition).strip()
+        
         # Look for explicit column aliases in the SELECT clause
         select_pattern = r'\bSELECT\b\s+(.*?)(?:\bFROM\b)'
-        select_match = re.search(select_pattern, cte_definition, re.IGNORECASE | re.DOTALL)
+        select_match = re.search(select_pattern, normalized_def, re.IGNORECASE | re.DOTALL)
         
         if not select_match:
-            return columns
+            # Try a more lenient approach for complex queries
+            # Find the first FROM after SELECT
+            select_pos = re.search(r'\bSELECT\b', normalized_def, re.IGNORECASE)
+            if select_pos:
+                select_pos = select_pos.start()
+                from_pos = re.search(r'\bFROM\b', normalized_def[select_pos:], re.IGNORECASE)
+                if from_pos:
+                    from_pos = select_pos + from_pos.start()
+                    select_clause = normalized_def[select_pos + 6:from_pos].strip()
+                else:
+                    # If FROM not found, try to extract columns anyway
+                    select_clause = normalized_def[select_pos + 6:].strip()
+            else:
+                return columns
+        else:
+            select_clause = select_match.group(1)
         
-        select_clause = select_match.group(1)
+        # Handle SELECT * case
+        if select_clause.strip() == '*':
+            # For SELECT *, we need to infer columns from the referenced tables
+            # This is complex and would require analyzing the FROM clause of the CTE
+            # For now, we'll just return a special marker
+            return ['*']
         
         # Split by commas, but handle function calls and nested expressions
-        # This is a simplified approach and might not handle all edge cases
         in_function = 0
         in_parentheses = 0
+        in_quotes = False
+        quote_char = None
         current_column = ""
         
         for char in select_clause:
-            if char == '(':
+            if char in ('"', "'", '`') and (not quote_char or char == quote_char):
+                in_quotes = not in_quotes
+                if in_quotes:
+                    quote_char = char
+                else:
+                    quote_char = None
+                current_column += char
+            elif in_quotes:
+                current_column += char
+            elif char == '(':
                 in_parentheses += 1
                 current_column += char
             elif char == ')':
@@ -437,19 +483,50 @@ class ValidationAgent:
         # Extract column aliases
         result_columns = []
         for col in columns:
-            # Look for AS alias
-            as_match = re.search(r'\bAS\b\s+([a-zA-Z0-9_]+)', col, re.IGNORECASE)
+            # Handle special case for BigQuery backtick identifiers
+            if self.db_type == "bigquery_imdb" and '`' in col:
+                # Extract the last backticked identifier if it's an alias
+                backtick_parts = re.findall(r'`([^`]+)`', col)
+                if backtick_parts:
+                    # Check if the last part is likely an alias
+                    if ' AS ' in col.upper():
+                        result_columns.append(backtick_parts[-1])
+                    else:
+                        # Get the last part of the path (e.g., `project.dataset.table`.`column` -> column)
+                        last_part = backtick_parts[-1].split('.')[-1]
+                        result_columns.append(last_part)
+                    continue
+            
+            # Look for AS alias (case insensitive)
+            as_match = re.search(r'\bAS\b\s+([a-zA-Z0-9_]+|\`[^\`]+\`)', col, re.IGNORECASE)
             if as_match:
-                result_columns.append(as_match.group(1))
-            else:
-                # Look for implicit alias (column_expression alias)
-                implicit_match = re.search(r'([a-zA-Z0-9_]+)$', col.strip())
-                if implicit_match:
-                    result_columns.append(implicit_match.group(1))
-                else:
-                    # For expressions without aliases, use the full expression
-                    # This is not ideal but better than nothing
-                    result_columns.append(col.strip())
+                alias = as_match.group(1)
+                # Remove backticks if present
+                alias = alias.strip('`')
+                result_columns.append(alias)
+                continue
+                
+            # Look for implicit alias (column_expression alias)
+            implicit_match = re.search(r'([a-zA-Z0-9_]+|\`[^\`]+\`)$', col.strip())
+            if implicit_match:
+                alias = implicit_match.group(1)
+                # Remove backticks if present
+                alias = alias.strip('`')
+                result_columns.append(alias)
+                continue
+                
+            # For expressions without aliases, try to extract a meaningful name
+            # Check for common aggregate functions
+            agg_match = re.search(r'\b(COUNT|SUM|AVG|MIN|MAX|DISTINCT)\s*\(\s*(?:DISTINCT\s+)?([^\(\)]+)\)', col, re.IGNORECASE)
+            if agg_match:
+                func = agg_match.group(1).lower()
+                col_name = agg_match.group(2).strip().split('.')[-1].strip('`" ')
+                result_columns.append(f"{func}_{col_name}")
+                continue
+                
+            # For other expressions without aliases, use a generic name
+            # This is not ideal but better than nothing
+            result_columns.append(col.strip())
         
         return result_columns
     
@@ -510,45 +587,110 @@ class ValidationAgent:
         if ctes is None:
             ctes = {}
             
-        # Extract column references from the query
-        # This is a simplified approach and might miss some complex cases
-        column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX)(?:(\w+)\.)?(\w+)'
-        table_pattern = r'FROM\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?|JOIN\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?'
+        # Normalize the query to help with regex matching
+        normalized_query = re.sub(r'\s+', ' ', sql_query).strip()
+            
+        # Extract table references and aliases with improved patterns for BigQuery
+        # Handle backtick-quoted identifiers for BigQuery
+        if self.db_type == "bigquery_imdb":
+            # Pattern for BigQuery table references with backticks
+            table_pattern = r'FROM\s+(?:`[^`]+`(?:\.[^`]+`)?|[a-zA-Z0-9_]+)(?:\s+(?:AS\s+)?([a-zA-Z0-9_]+))?|JOIN\s+(?:`[^`]+`(?:\.[^`]+`)?|[a-zA-Z0-9_]+)(?:\s+(?:AS\s+)?([a-zA-Z0-9_]+))?'
+        else:
+            # Standard pattern for SQLite
+            table_pattern = r'FROM\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?|JOIN\s+(\w+)(?:\s+(?:AS\s+)?(\w+))?'
+        
+        # Extract table references and aliases
+        table_matches = re.finditer(table_pattern, normalized_query, re.IGNORECASE)
+        table_refs = []
+        table_aliases = {}  # Map aliases to actual tables
+        
+        for match in table_matches:
+            if self.db_type == "bigquery_imdb":
+                # Extract table name and alias for BigQuery
+                if match.group(0).startswith('FROM'):
+                    # Extract the table name from backticks if present
+                    table_part = re.search(r'FROM\s+(`[^`]+`(?:\.[^`]+`)?|[a-zA-Z0-9_]+)', match.group(0))
+                    if table_part:
+                        table = table_part.group(1).strip('`')
+                        # For BigQuery, handle fully qualified names
+                        if '.' in table:
+                            # Extract just the table name from the fully qualified path
+                            table = table.split('.')[-1]
+                        alias = match.group(1) if match.group(1) else table
+                        table_refs.append(table)
+                        table_aliases[alias] = table
+                else:  # JOIN clause
+                    table_part = re.search(r'JOIN\s+(`[^`]+`(?:\.[^`]+`)?|[a-zA-Z0-9_]+)', match.group(0))
+                    if table_part:
+                        table = table_part.group(1).strip('`')
+                        # For BigQuery, handle fully qualified names
+                        if '.' in table:
+                            # Extract just the table name from the fully qualified path
+                            table = table.split('.')[-1]
+                        alias = match.group(2) if match.group(2) else table
+                        table_refs.append(table)
+                        table_aliases[alias] = table
+            else:
+                # Standard SQLite extraction
+                if match.group(1):  # FROM clause
+                    table = match.group(1)
+                    alias = match.group(2) if match.group(2) else table
+                    table_refs.append(table)
+                    table_aliases[alias] = table
+                elif match.group(3):  # JOIN clause
+                    table = match.group(3)
+                    alias = match.group(4) if match.group(4) else table
+                    table_refs.append(table)
+                    table_aliases[alias] = table
+        
+        # Add CTE names as valid table references
+        for cte_name in ctes:
+            if cte_name not in table_refs:
+                table_refs.append(cte_name)
+                table_aliases[cte_name] = cte_name
+        
+        # Extract column references with improved patterns
+        # Handle both standard and backtick-quoted column references
+        if self.db_type == "bigquery_imdb":
+            column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX|DISTINCT)(?:([a-zA-Z0-9_]+|`[^`]+`)\.)?([a-zA-Z0-9_]+|`[^`]+`)'
+        else:
+            column_pattern = r'(?:SELECT|WHERE|ORDER BY|GROUP BY|HAVING|ON|AND|OR|,)\s+(?!COUNT|SUM|AVG|MIN|MAX|DISTINCT)(?:(\w+)\.)?(\w+)'
         
         # Extract column references with table aliases
-        column_matches = re.finditer(column_pattern, sql_query, re.IGNORECASE)
+        column_matches = re.finditer(column_pattern, normalized_query, re.IGNORECASE)
         column_refs = []
         qualified_column_refs = []  # Store table.column pairs
         
         for match in column_matches:
             table_alias = match.group(1)
             col = match.group(2)
-            if col.lower() not in ('as', 'on', 'where', 'and', 'or', 'select', 'from', 'join', 'inner', 'left', 'right'):
+            
+            # Clean up backticks for BigQuery
+            if table_alias:
+                table_alias = table_alias.strip('`')
+            if col:
+                col = col.strip('`')
+            
+            # Skip SQL keywords and special cases
+            if col and col.lower() not in ('as', 'on', 'where', 'and', 'or', 'select', 'from', 'join', 'inner', 'left', 'right', 'full', 'outer', '*'):
                 column_refs.append(col)
                 if table_alias:
                     qualified_column_refs.append((table_alias, col))
         
-        # Extract table references and aliases
-        table_matches = re.finditer(table_pattern, sql_query, re.IGNORECASE)
-        table_refs = []
-        table_aliases = {}  # Map aliases to actual tables
-        
-        for match in table_matches:
-            if match.group(1):  # FROM clause
-                table = match.group(1)
-                alias = match.group(2) if match.group(2) else table
-                table_refs.append(table)
-                table_aliases[alias] = table
-            elif match.group(3):  # JOIN clause
-                table = match.group(3)
-                alias = match.group(4) if match.group(4) else table
-                table_refs.append(table)
-                table_aliases[alias] = table
-        
         # Check if tables exist (either in schema or as CTEs)
         incorrect_tables = []
         for table in table_refs:
-            if table.lower() not in [t.lower() for t in self.schema.keys()] and table not in ctes:
+            # Skip checking CTEs - they are valid by definition
+            if table in ctes:
+                continue
+                
+            # For BigQuery, check if this is a fully qualified table
+            if self.db_type == "bigquery_imdb" and '.' in table:
+                # Extract just the table name
+                simple_table = table.split('.')[-1]
+                if simple_table.lower() not in [t.lower() for t in self.schema.keys()]:
+                    incorrect_tables.append(table)
+            elif table.lower() not in [t.lower() for t in self.schema.keys()]:
                 incorrect_tables.append(table)
         
         # Check if columns exist in any table or CTE
@@ -563,70 +705,103 @@ class ValidationAgent:
                 # Check if this is a CTE
                 if actual_table in ctes:
                     # Check if column exists in this CTE
-                    if col not in ctes[actual_table]["columns"]:
+                    cte_columns = ctes[actual_table]["columns"]
+                    
+                    # Handle the special case where CTE returns '*'
+                    if '*' in cte_columns:
+                        # We can't validate this precisely without analyzing the FROM clause of the CTE
+                        continue
+                        
+                    if col.lower() not in [c.lower() for c in cte_columns]:
                         missing_columns.append(f"{col} in {actual_table}")
                         error_messages.append(f"Column {col} not found in CTE {actual_table}")
                 # Check if this is a real table
                 elif actual_table.lower() in [t.lower() for t in self.schema.keys()]:
+                    # Get the actual table name with correct case
+                    actual_table_name = next((t for t in self.schema.keys() if t.lower() == actual_table.lower()), actual_table)
+                    
                     # Check if column exists in this table
-                    table_schema = next((self.schema[t] for t in self.schema.keys() if t.lower() == actual_table.lower()), [])
+                    table_schema = self.schema[actual_table_name]
                     if col.lower() not in [c['name'].lower() for c in table_schema]:
                         missing_columns.append(f"{col} in {actual_table}")
-                        error_messages.append(f"Name {col} not found inside {actual_table}")
+                        error_messages.append(f"Column {col} not found in table {actual_table}")
+            else:
+                # Table alias not found - this is likely a syntax error
+                # We'll skip this as it will be caught by the syntax check
+                pass
         
         # Then check unqualified column references
         for col in column_refs:
             # Skip special cases like * or functions
-            if col == '*' or col.lower() in ('count', 'sum', 'avg', 'min', 'max'):
+            if col == '*' or col.lower() in ('count', 'sum', 'avg', 'min', 'max', 'distinct'):
                 continue
                 
             # Check if column exists in any table or CTE
             found = False
             
-            # First check in actual tables
-            for table, columns in self.schema.items():
-                if col.lower() in [c['name'].lower() for c in columns]:
-                    found = True
-                    break
-            
-            # Then check in CTEs
-            if not found:
-                for cte_name, cte_info in ctes.items():
-                    if col in cte_info["columns"]:
+            # First check in tables referenced in the query
+            for table_alias, actual_table in table_aliases.items():
+                # Check if this is a CTE
+                if actual_table in ctes:
+                    cte_columns = ctes[actual_table]["columns"]
+                    # Handle the special case where CTE returns '*'
+                    if '*' in cte_columns:
+                        found = True
+                        break
+                    if col.lower() in [c.lower() for c in cte_columns]:
+                        found = True
+                        break
+                # Check if this is a real table
+                elif actual_table.lower() in [t.lower() for t in self.schema.keys()]:
+                    # Get the actual table name with correct case
+                    actual_table_name = next((t for t in self.schema.keys() if t.lower() == actual_table.lower()), actual_table)
+                    table_schema = self.schema[actual_table_name]
+                    if col.lower() in [c['name'].lower() for c in table_schema]:
                         found = True
                         break
             
+            # If not found in referenced tables, check all tables (less reliable)
             if not found:
-                # For BigQuery IMDB, check if this might be a camelCase version of a valid column
-                if self.db_type == "bigquery_imdb":
-                    # Common camelCase to underscore mappings
-                    camel_to_underscore = {
-                        'primaryName': 'primary_name',
-                        'titleType': 'title_type',
-                        'birthYear': 'birth_year',
-                        'deathYear': 'death_year',
-                        'primaryTitle': 'primary_title',
-                        'originalTitle': 'original_title',
-                        'isAdult': 'is_adult',
-                        'startYear': 'start_year',
-                        'endYear': 'end_year',
-                        'runtimeMinutes': 'runtime_minutes',
-                        'primaryProfession': 'primary_profession',
-                        'knownForTitles': 'known_for_titles'
-                    }
-                    
-                    if col in camel_to_underscore:
-                        underscore_col = camel_to_underscore[col]
-                        # Check if the underscore version exists
-                        for table, columns in self.schema.items():
-                            if underscore_col.lower() in [c['name'].lower() for c in columns]:
+                for table, columns in self.schema.items():
+                    if col.lower() in [c['name'].lower() for c in columns]:
+                        found = True
+                        break
+            
+            # For BigQuery IMDB, check for camelCase vs. snake_case issues
+            if not found and self.db_type == "bigquery_imdb":
+                # Common camelCase to underscore mappings
+                camel_to_underscore = {
+                    'primaryName': 'primary_name',
+                    'titleType': 'title_type',
+                    'birthYear': 'birth_year',
+                    'deathYear': 'death_year',
+                    'primaryTitle': 'primary_title',
+                    'originalTitle': 'original_title',
+                    'isAdult': 'is_adult',
+                    'startYear': 'start_year',
+                    'endYear': 'end_year',
+                    'runtimeMinutes': 'runtime_minutes',
+                    'primaryProfession': 'primary_profession',
+                    'knownForTitles': 'known_for_titles',
+                    'averageRating': 'average_rating',
+                    'numVotes': 'num_votes'
+                }
+                
+                if col in camel_to_underscore:
+                    underscore_col = camel_to_underscore[col]
+                    # Check if the underscore version exists in any table
+                    for table_alias, actual_table in table_aliases.items():
+                        if actual_table.lower() in [t.lower() for t in self.schema.keys()]:
+                            actual_table_name = next((t for t in self.schema.keys() if t.lower() == actual_table.lower()), actual_table)
+                            table_schema = self.schema[actual_table_name]
+                            if underscore_col.lower() in [c['name'].lower() for c in table_schema]:
                                 missing_columns.append(f"{col} (should be {underscore_col})")
                                 error_messages.append(f"Column {col} should be {underscore_col}")
                                 found = True  # Mark as found but still report the issue
                                 break
-                
-                if not found:
-                    missing_columns.append(col)
+            
+            if not found:
+                missing_columns.append(col)
         
         return missing_columns, incorrect_tables, error_messages
     
@@ -734,23 +909,61 @@ class ValidationAgent:
         Returns:
             String describing BigQuery specific issues or None if no issues found
         """
-        if self.db_type != "bigquery_imdb":
-            return None
-            
         issues = []
         
-        # Check for unqualified table names
-        table_pattern = r'FROM\s+(?!`bigquery-public-data\.imdb\.)(\w+)|JOIN\s+(?!`bigquery-public-data\.imdb\.)(\w+)'
-        unqualified_tables = re.finditer(table_pattern, sql_query, re.IGNORECASE)
+        # Check for unqualified table references (missing `bigquery-public-data.imdb.`)
+        # Look for FROM or JOIN followed by a table name without backticks or proper qualification
+        unqualified_tables = re.finditer(r'(?:FROM|JOIN)\s+(?!`bigquery-public-data\.imdb\.)([a-zA-Z0-9_]+)(?!\s*AS|\s*ON|\s*WHERE|\s*GROUP|\s*ORDER|\s*LIMIT)', sql_query, re.IGNORECASE)
         
         for match in unqualified_tables:
-            table = match.group(1) if match.group(1) else match.group(2)
-            if table and table.lower() in [t.lower() for t in self.schema.keys()]:
+            table = match.group(1)
+            # Check if this is a valid table name in our schema
+            if table.lower() in [t.lower() for t in self.schema.keys()]:
                 issues.append(f"Table '{table}' should be fully qualified as `bigquery-public-data.imdb.{table}`")
         
-        # Check for missing backticks around table names
-        if "`bigquery-public-data.imdb." not in sql_query and "bigquery-public-data.imdb." in sql_query:
-            issues.append("BigQuery table names should be enclosed in backticks: `bigquery-public-data.imdb.table_name`")
+        # Check for missing backticks around table references
+        missing_backticks = re.finditer(r'(?:FROM|JOIN)\s+bigquery-public-data\.imdb\.([a-zA-Z0-9_]+)(?!\s*`)', sql_query, re.IGNORECASE)
+        
+        for match in missing_backticks:
+            table = match.group(1)
+            issues.append(f"Table 'bigquery-public-data.imdb.{table}' should be enclosed in backticks: `bigquery-public-data.imdb.{table}`")
+        
+        # Check for camelCase column names instead of snake_case
+        camel_to_underscore = {
+            'primaryName': 'primary_name',
+            'titleType': 'title_type',
+            'birthYear': 'birth_year',
+            'deathYear': 'death_year',
+            'primaryTitle': 'primary_title',
+            'originalTitle': 'original_title',
+            'isAdult': 'is_adult',
+            'startYear': 'start_year',
+            'endYear': 'end_year',
+            'runtimeMinutes': 'runtime_minutes',
+            'primaryProfession': 'primary_profession',
+            'knownForTitles': 'known_for_titles',
+            'averageRating': 'average_rating',
+            'numVotes': 'num_votes'
+        }
+        
+        for camel, underscore in camel_to_underscore.items():
+            if re.search(r'\b' + camel + r'\b', sql_query):
+                issues.append(f"Column '{camel}' should be '{underscore}' (use snake_case instead of camelCase)")
+        
+        # Check for semicolons at the end of the query (not needed in BigQuery)
+        if sql_query.strip().endswith(';'):
+            issues.append("Semicolons at the end of queries are not needed in BigQuery")
+        
+        # Check for improper CTE syntax
+        # BigQuery requires commas between CTEs
+        cte_pattern = r'\bWITH\b\s+([a-zA-Z0-9_]+\s+AS\s+\([^)]+\))\s+([a-zA-Z0-9_]+\s+AS\s+\()'
+        if re.search(cte_pattern, sql_query, re.IGNORECASE | re.DOTALL):
+            issues.append("Missing comma between CTE definitions. Use: WITH cte1 AS (...), cte2 AS (...)")
+        
+        # Check for proper JOIN syntax
+        join_without_on = re.search(r'\bJOIN\b\s+(`[^`]+`|[a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)*)\s+(?!ON|USING)', sql_query, re.IGNORECASE)
+        if join_without_on:
+            issues.append(f"JOIN must be followed by ON or USING clause: {join_without_on.group(0)}")
         
         return "; ".join(issues) if issues else None
     
