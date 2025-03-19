@@ -87,91 +87,108 @@ class RecursiveValidationSystem:
             interaction_logs.append(iteration_log)
             logger.info(iteration_log)
             
-            # Generate SQL query
-            sql_query = self.data_analyst.generate_sql(context)
-            
-            # Log the generated SQL
-            sql_log = f"Iteration {iterations + 1}: Data Analyst Agent generated SQL: {sql_query}"
-            interaction_logs.append(sql_log)
-            logger.info(sql_log)
-            
-            # Check if the response is an error message from the DataAnalystAgent
-            if sql_query.startswith("ERROR:"):
-                error_log = f"Data Analyst Agent rejected the input: {sql_query}"
-                interaction_logs.append(error_log)
-                logger.warning(error_log)
+            try:
+                # Generate SQL query
+                sql_query = self.data_analyst.generate_sql(context)
+                
+                # Log the generated SQL
+                sql_log = f"Iteration {iterations + 1}: Data Analyst Agent generated SQL: {sql_query}"
+                interaction_logs.append(sql_log)
+                logger.info(sql_log)
+                
+                # Check if the response is an error message from the DataAnalystAgent
+                if sql_query.startswith("ERROR:"):
+                    error_log = f"Data Analyst Agent rejected the input: {sql_query}"
+                    interaction_logs.append(error_log)
+                    logger.warning(error_log)
+                    return {
+                        "error": "Could not generate SQL from your question",
+                        "message": sql_query.replace("ERROR: ", ""),
+                        "suggestion": "Please provide a clear, specific question about the database.",
+                        "interaction_logs": interaction_logs,
+                        "sql_query": ""  # Include empty SQL for consistency
+                    }
+                
+                # Check if response is actually SQL
+                if not self.validator.is_sql(sql_query):
+                    error_log = f"Generated response is not SQL: {sql_query}"
+                    interaction_logs.append(error_log)
+                    logger.warning(error_log)
+                    return {
+                        "error": "Could not generate SQL from your question",
+                        "message": sql_query,
+                        "suggestion": "Please provide more specific details about what you're looking for in the database.",
+                        "interaction_logs": interaction_logs,
+                        "sql_query": sql_query  # Include the non-SQL response
+                    }
+                
+                # Log validation start
+                validation_start_log = f"Validation Agent validating SQL..."
+                interaction_logs.append(validation_start_log)
+                logger.info(validation_start_log)
+                
+                # Validate query - focusing only on syntax and column/table existence
+                validation_result = self.validator.validate(sql_query, question)
+                confidence = validation_result["confidence"]
+                
+                # Log validation result
+                validation_log = f"Validation Agent feedback (confidence: {confidence}%): {validation_result['feedback']}"
+                interaction_logs.append(validation_log)
+                logger.info(f"Validation result: confidence={confidence}, feedback={validation_result['feedback']}")
+                
+                # Save validation history
+                validation_history.append({
+                    "iteration": iterations,
+                    "sql_query": sql_query,
+                    "confidence": confidence,
+                    "feedback": validation_result["feedback"]
+                })
+                
+                # Track best query
+                if confidence > best_confidence:
+                    best_query = sql_query
+                    best_confidence = confidence
+                
+                # Check if good enough
+                if confidence >= self.confidence_threshold or validation_result["feedback"] == "Query looks good":
+                    logger.info(f"Query achieved confidence threshold ({confidence}% >= {self.confidence_threshold}%). Stopping iterations.")
+                    break
+                    
+                # Prepare for next iteration - only one refinement attempt
+                iterations += 1
+                if iterations < self.max_iterations:
+                    # Get detailed feedback with suggestions
+                    detailed_feedback = self.validator.suggest_fixes(validation_result, sql_query)
+                    
+                    # Log detailed feedback
+                    feedback_log = f"Validation Agent provided feedback for refinement: {detailed_feedback}"
+                    interaction_logs.append(feedback_log)
+                    logger.info(feedback_log)
+                    
+                    # Add feedback for refinement
+                    context = {
+                        "question": question,
+                        "feedback": detailed_feedback,
+                        "iteration": iterations
+                    }
+                else:
+                    max_iter_log = f"Reached maximum iterations ({self.max_iterations}). Using best query with confidence {best_confidence}%."
+                    interaction_logs.append(max_iter_log)
+                    logger.info(max_iter_log)
+                    
+            except Exception as e:
+                # Log the exception in the interaction logs
+                error_message = f"Error during iteration {iterations + 1}: {str(e)}"
+                interaction_logs.append(error_message)
+                logger.error(error_message)
+                
+                # Return error with interaction logs
                 return {
-                    "error": "Could not generate SQL from your question",
-                    "message": sql_query.replace("ERROR: ", ""),
-                    "suggestion": "Please provide a clear, specific question about the database.",
+                    "error": f"An error occurred: {str(e)}",
+                    "sql_query": sql_query if 'sql_query' in locals() else "",
+                    "confidence": 0,
                     "interaction_logs": interaction_logs
                 }
-            
-            # Check if response is actually SQL
-            if not self.validator.is_sql(sql_query):
-                error_log = f"Generated response is not SQL: {sql_query}"
-                interaction_logs.append(error_log)
-                logger.warning(error_log)
-                return {
-                    "error": "Could not generate SQL from your question",
-                    "message": sql_query,
-                    "suggestion": "Please provide more specific details about what you're looking for in the database.",
-                    "interaction_logs": interaction_logs
-                }
-            
-            # Log validation start
-            validation_start_log = f"Validation Agent validating SQL..."
-            interaction_logs.append(validation_start_log)
-            logger.info(validation_start_log)
-            
-            # Validate query - focusing only on syntax and column/table existence
-            validation_result = self.validator.validate(sql_query, question)
-            confidence = validation_result["confidence"]
-            
-            # Log validation result
-            validation_log = f"Validation Agent feedback (confidence: {confidence}%): {validation_result['feedback']}"
-            interaction_logs.append(validation_log)
-            logger.info(f"Validation result: confidence={confidence}, feedback={validation_result['feedback']}")
-            
-            # Save validation history
-            validation_history.append({
-                "iteration": iterations,
-                "sql_query": sql_query,
-                "confidence": confidence,
-                "feedback": validation_result["feedback"]
-            })
-            
-            # Track best query
-            if confidence > best_confidence:
-                best_query = sql_query
-                best_confidence = confidence
-            
-            # Check if good enough
-            if confidence >= self.confidence_threshold or validation_result["feedback"] == "Query looks good":
-                logger.info(f"Query achieved confidence threshold ({confidence}% >= {self.confidence_threshold}%). Stopping iterations.")
-                break
-                
-            # Prepare for next iteration - only one refinement attempt
-            iterations += 1
-            if iterations < self.max_iterations:
-                # Get detailed feedback with suggestions
-                detailed_feedback = self.validator.suggest_fixes(validation_result, sql_query)
-                
-                # Log detailed feedback
-                feedback_log = f"Validation Agent provided feedback for refinement: {detailed_feedback}"
-                interaction_logs.append(feedback_log)
-                logger.info(feedback_log)
-                
-                # Add feedback for refinement
-                context = {
-                    "question": question,
-                    "feedback": detailed_feedback,
-                    "iteration": iterations
-                }
-            else:
-                max_iter_log = f"Reached maximum iterations ({self.max_iterations}). Using best query with confidence {best_confidence}%."
-                interaction_logs.append(max_iter_log)
-                logger.info(max_iter_log)
         
         # Execute best query
         if best_query:
@@ -188,10 +205,17 @@ class RecursiveValidationSystem:
                         # Fix unqualified table names in the query
                         fixed_query = fix_unqualified_tables(best_query)
                         
-                        logger.info(f"Executing BigQuery SQL query: {fixed_query}")
+                        # Log the execution attempt
+                        execution_log = f"Executing BigQuery SQL query: {fixed_query}"
+                        interaction_logs.append(execution_log)
+                        logger.info(execution_log)
                         
                         # Execute the query using the BigQuery connector
                         results = execute_query(fixed_query)
+                        
+                        # Log the execution success
+                        success_log = f"Query executed successfully. Retrieved {len(results) if results else 0} results."
+                        interaction_logs.append(success_log)
                         
                         # If results is a list of dictionaries
                         if isinstance(results, list) and len(results) > 0 and isinstance(results[0], dict):
@@ -200,99 +224,89 @@ class RecursiveValidationSystem:
                             return {
                                 "question": question,
                                 "sql_query": best_query,
-                                "confidence": best_confidence,
                                 "results": results,
                                 "column_names": column_names,
-                                "iterations": iterations,
+                                "confidence": best_confidence,
                                 "validation_history": validation_history,
                                 "interaction_logs": interaction_logs
                             }
-                        # If results is a dictionary with an error key
-                        elif isinstance(results, dict) and "error" in results:
-                            raise Exception(results["error"])
-                        # If results is an empty list (no data found)
-                        elif isinstance(results, list) and len(results) == 0:
-                            success_log = f"Query executed successfully with confidence {best_confidence}%, but no data was found matching the criteria"
-                            interaction_logs.append(success_log)
-                            logger.info(success_log)
-                            
+                        else:
+                            # Empty results or unexpected format
                             return {
                                 "question": question,
                                 "sql_query": best_query,
-                                "confidence": best_confidence,
                                 "results": [],
                                 "column_names": [],
-                                "iterations": iterations,
-                                "validation_history": validation_history,
-                                "interaction_logs": interaction_logs
-                            }
-                        # Default case
-                        else:
-                            return {
-                                "error": "Error executing query",
-                                "sql_query": best_query,
                                 "confidence": best_confidence,
-                                "suggestion": "The query syntax looks valid but there was an execution error",
                                 "validation_history": validation_history,
                                 "interaction_logs": interaction_logs
                             }
                     except Exception as e:
-                        logger.error(f"Error executing BigQuery query: {str(e)}")
+                        # Log the execution error
+                        error_log = f"Error executing BigQuery SQL: {str(e)}"
+                        interaction_logs.append(error_log)
+                        logger.error(error_log)
+                        
+                        # Return error with interaction logs
                         return {
-                            "error": f"Error executing BigQuery query: {str(e)}",
+                            "error": f"Error executing SQL query: {str(e)}",
                             "sql_query": best_query,
                             "confidence": best_confidence,
-                            "suggestion": "The query syntax looks valid but there was an execution error",
                             "validation_history": validation_history,
                             "interaction_logs": interaction_logs
                         }
-                # Handle SQLite database types
                 else:
-                    results, column_names = self._execute_sql_query(best_query)
-                    
-                    # Check if results are empty
-                    if not results:
-                        success_log = f"Query executed successfully with confidence {best_confidence}%, but no data was found matching the criteria"
-                    else:
-                        success_log = f"Query executed successfully with confidence {best_confidence}%"
-                    
-                    interaction_logs.append(success_log)
-                    logger.info(success_log)
-                    
-                    return {
-                        "question": question,
-                        "sql_query": best_query,
-                        "confidence": best_confidence,
-                        "results": results,
-                        "column_names": column_names,
-                        "iterations": iterations,
-                        "validation_history": validation_history,
-                        "interaction_logs": interaction_logs
-                    }
+                    # SQLite execution
+                    with sqlite3.connect(self.db_path) as conn:
+                        conn.row_factory = sqlite3.Row
+                        cursor = conn.cursor()
+                        
+                        # Log the execution attempt
+                        execution_log = f"Executing SQLite query: {best_query}"
+                        interaction_logs.append(execution_log)
+                        logger.info(execution_log)
+                        
+                        cursor.execute(best_query)
+                        results = [dict(row) for row in cursor.fetchall()]
+                        
+                        # Log the execution success
+                        success_log = f"Query executed successfully. Retrieved {len(results)} results."
+                        interaction_logs.append(success_log)
+                        
+                        column_names = [description[0] for description in cursor.description] if cursor.description else []
+                        
+                        return {
+                            "question": question,
+                            "sql_query": best_query,
+                            "results": results,
+                            "column_names": column_names,
+                            "confidence": best_confidence,
+                            "validation_history": validation_history,
+                            "interaction_logs": interaction_logs
+                        }
             except Exception as e:
-                logger.error(f"Error executing query: {str(e)}")
-                error_log = f"Error executing query: {str(e)}"
+                # Log the execution error
+                error_log = f"Error executing SQL: {str(e)}"
                 interaction_logs.append(error_log)
                 logger.error(error_log)
                 
+                # Return error with interaction logs
                 return {
-                    "error": f"Error executing query: {str(e)}",
+                    "error": f"Error executing SQL query: {str(e)}",
                     "sql_query": best_query,
                     "confidence": best_confidence,
-                    "suggestion": "The query syntax looks valid but there was an execution error",
                     "validation_history": validation_history,
                     "interaction_logs": interaction_logs
                 }
         else:
-            logger.error("Could not generate a valid SQL query")
-            error_log = "Could not generate a valid SQL query"
-            interaction_logs.append(error_log)
-            logger.error(error_log)
+            # No valid query was generated
+            no_query_log = "No valid SQL query could be generated."
+            interaction_logs.append(no_query_log)
+            logger.warning(no_query_log)
             
             return {
-                "error": "Could not generate a valid SQL query",
-                "message": "The system could not translate your question to SQL",
-                "validation_history": validation_history,
+                "error": "Could not generate a valid SQL query for your question.",
+                "suggestion": "Please try rephrasing your question to be more specific about what you're looking for in the database.",
                 "interaction_logs": interaction_logs
             }
     
