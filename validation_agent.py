@@ -209,7 +209,9 @@ class ValidationAgent:
                 "error": "Empty query",
                 "severity": "error",
                 "error_type": "syntax",
-                "error_detail": "The query is empty"
+                "error_detail": "The query is empty",
+                "confidence": 0,
+                "feedback": "The query is empty"
             }
             
         # Extract CTEs from the query
@@ -223,7 +225,9 @@ class ValidationAgent:
                 "error": syntax_error,
                 "severity": "error",
                 "error_type": "syntax",
-                "error_detail": "The query has syntax errors"
+                "error_detail": "The query has syntax errors",
+                "confidence": 0,
+                "feedback": f"Syntax error: {syntax_error}"
             }
             
         # Check for BigQuery-specific issues
@@ -235,7 +239,9 @@ class ValidationAgent:
                     "error": bigquery_issues,
                     "severity": "warning",
                     "error_type": "bigquery_specific",
-                    "error_detail": "The query has BigQuery-specific issues"
+                    "error_detail": "The query has BigQuery-specific issues",
+                    "confidence": 50,
+                    "feedback": f"BigQuery-specific issues: {bigquery_issues}"
                 }
             
         # Check for missing/incorrect columns and tables
@@ -250,7 +256,9 @@ class ValidationAgent:
                 "error": f"Tables not found: {tables_str}",
                 "severity": "error",
                 "error_type": "table_not_found",
-                "error_detail": f"The following tables were not found in the schema: {tables_str}"
+                "error_detail": f"The following tables were not found in the schema: {tables_str}",
+                "confidence": 0,
+                "feedback": f"Tables not found: {tables_str}"
             }
         elif missing_columns:
             # Check if these are just CTE column issues
@@ -265,7 +273,9 @@ class ValidationAgent:
                     "warning": f"Potential CTE column issues: {columns_str}",
                     "severity": "warning",
                     "error_type": "cte_column_reference",
-                    "error_detail": "The query references columns in CTEs that couldn't be validated. This might be due to limitations in the validation process."
+                    "error_detail": "The query references columns in CTEs that couldn't be validated. This might be due to limitations in the validation process.",
+                    "confidence": 80,
+                    "feedback": f"Query is valid but has potential CTE column issues: {columns_str}"
                 }
             # If we have regular column issues, it's an error
             elif regular_column_issues:
@@ -275,13 +285,17 @@ class ValidationAgent:
                     "error": f"Columns not found: {columns_str}",
                     "severity": "error",
                     "error_type": "column_not_found",
-                    "error_detail": f"The following columns were not found in the schema: {columns_str}"
+                    "error_detail": f"The following columns were not found in the schema: {columns_str}",
+                    "confidence": 0,
+                    "feedback": f"Columns not found: {columns_str}"
                 }
             
         # If we get here, the query is valid
         return {
             "valid": True,
-            "message": "Query is valid"
+            "message": "Query is valid",
+            "confidence": 100,
+            "feedback": "Query looks good"
         }
     
     def _extract_ctes(self, sql_query: str) -> Dict[str, Dict]:
@@ -1064,6 +1078,7 @@ class ValidationAgent:
         Returns:
             String with suggested fixes
         """
+        # Get feedback from the validation result
         feedback = validation_result.get("feedback", "")
         
         # If no issues, no fixes needed
@@ -1073,33 +1088,21 @@ class ValidationAgent:
         # Generate suggestions based on the feedback
         suggestions = []
         
-        # Extract specific error details
-        error_details = validation_result.get("error_details", {})
+        # Extract error details
+        error = validation_result.get("error", "")
+        error_type = validation_result.get("error_type", "")
+        error_detail = validation_result.get("error_detail", "")
         
-        # Check for column reference errors - these are the most common issues
-        if "Missing or incorrect columns" in feedback:
-            missing_columns = error_details.get("missing_columns", [])
-            for col in missing_columns:
-                # Try to suggest correct column names
-                if col == "title" or col == "name":
-                    suggestions.append(f"Column '{col}' not found. Use 'primary_{col}' instead in the appropriate table.")
-                elif col.endswith("Name") or col.endswith("Title") or col.endswith("Year"):
-                    # Convert camelCase to snake_case for BigQuery IMDB
-                    snake_case = ''.join(['_'+c.lower() if c.isupper() else c for c in col]).lstrip('_')
-                    suggestions.append(f"Column '{col}' not found. BigQuery IMDB uses snake_case: use '{snake_case}' instead.")
-                else:
-                    suggestions.append(f"Check that column '{col}' exists in the referenced table.")
-            
-            # Add general column reference guidance
-            suggestions.append("Common column mappings in BigQuery IMDB schema:")
-            suggestions.append("- For movie titles, use 'primary_title' in 'title_basics' table")
-            suggestions.append("- For person names, use 'primary_name' in 'name_basics' table")
-            suggestions.append("- For movie IDs, use 'tconst' (not 'id' or 'movie_id')")
-            suggestions.append("- For person IDs, use 'nconst' (not 'id' or 'person_id')")
-            
+        # Organize errors into categories for better suggestions
+        missing_columns = []
+        missing_tables = []
+        syntax_errors = []
+        
         # Check for table reference errors
-        if "Missing or incorrect tables" in feedback:
-            missing_tables = error_details.get("missing_tables", [])
+        if error_type == "table_not_found":
+            tables_str = error.replace("Tables not found: ", "")
+            missing_tables = [table.strip() for table in tables_str.split(",")]
+            
             for table in missing_tables:
                 # Try to suggest correct table names
                 if table.lower() == "movies":
@@ -1118,10 +1121,34 @@ class ValidationAgent:
             suggestions.append("- 'title_principals' for cast and crew connections")
             suggestions.append("- 'title_ratings' for ratings information")
             suggestions.append("- 'title_crew' for director and writer information")
-        
-        # Check for syntax issues
-        if "Syntax issues" in feedback:
-            syntax_errors = error_details.get("syntax_errors", [])
+            
+        # Check for column reference errors
+        elif error_type == "column_not_found":
+            columns_str = error.replace("Columns not found: ", "")
+            missing_columns = [col.strip() for col in columns_str.split(",")]
+            
+            for col in missing_columns:
+                # Try to suggest correct column names
+                if col == "title" or col == "name":
+                    suggestions.append(f"Column '{col}' not found. Use 'primary_{col}' instead in the appropriate table.")
+                elif col.endswith("Name") or col.endswith("Title") or col.endswith("Year"):
+                    # Convert camelCase to snake_case for BigQuery IMDB
+                    snake_case = ''.join(['_'+c.lower() if c.isupper() else c for c in col]).lstrip('_')
+                    suggestions.append(f"Column '{col}' not found. BigQuery IMDB uses snake_case: use '{snake_case}' instead.")
+                else:
+                    suggestions.append(f"Check that column '{col}' exists in the referenced table.")
+            
+            # Add general column reference guidance
+            suggestions.append("Common column mappings in BigQuery IMDB schema:")
+            suggestions.append("- For movie titles, use 'primary_title' in 'title_basics' table")
+            suggestions.append("- For person names, use 'primary_name' in 'name_basics' table")
+            suggestions.append("- For movie IDs, use 'tconst' (not 'id' or 'movie_id')")
+            suggestions.append("- For person IDs, use 'nconst' (not 'id' or 'person_id')")
+            
+        # Check for syntax errors
+        elif error_type == "syntax":
+            syntax_errors.append(error)
+            
             for error in syntax_errors:
                 suggestions.append(f"Syntax error: {error}")
             
@@ -1131,15 +1158,16 @@ class ValidationAgent:
                 suggestions.append("- Fully qualify table names with backticks: `bigquery-public-data.imdb.table_name`")
                 suggestions.append("- Use proper JOIN syntax with ON clauses")
                 suggestions.append("- Avoid using semicolons at the end of queries")
-        
-        # Extract and correct column reference errors from error messages
-        if "error_messages" in error_details:
-            for error_msg in error_details.get("error_messages", []):
-                corrected_query = self._extract_and_correct_column_errors(error_msg, sql_query)
-                if corrected_query != sql_query:
-                    suggestions.append(f"Based on the error message, try this correction:")
-                    suggestions.append(f"```sql\n{corrected_query}\n```")
-        
+                
+        # Check for BigQuery-specific issues
+        elif error_type == "bigquery_specific":
+            suggestions.append(error)
+            suggestions.append("Make sure to follow BigQuery IMDB conventions:")
+            suggestions.append("- Always fully qualify table names with `bigquery-public-data.imdb.table_name`")
+            suggestions.append("- Use backticks around table names")
+            suggestions.append("- Use snake_case for column names (e.g., primary_title, not primaryTitle)")
+            
+        # If we couldn't categorize the error, just return the feedback
         if not suggestions:
             return feedback
             
