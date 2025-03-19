@@ -397,6 +397,7 @@ class ValidationAgent:
                     # Find the matching closing parenthesis
                     cte_def = match.group(2)
                     paren_count = 1  # We've already seen one opening parenthesis
+                    cte_definition = ""  # Initialize the variable outside the loop
                     
                     for i, char in enumerate(cte_def):
                         if char == '(':
@@ -406,6 +407,10 @@ class ValidationAgent:
                             if paren_count == 0:
                                 cte_definition = cte_def[:i].strip()
                                 break
+                    
+                    # If we didn't find a matching closing parenthesis, use the whole string
+                    if paren_count > 0:
+                        cte_definition = cte_def.strip()
                     
                     # Extract columns
                     columns = self._extract_columns_from_cte(cte_definition)
